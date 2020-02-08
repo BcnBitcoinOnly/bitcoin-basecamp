@@ -8,7 +8,7 @@ Enable the firewall
 ```
 $ ufw enable
 ```
-Config [basic rules] https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
+Config some [basic rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
 ```
 $ sudo ufw default deny incoming
 $ sudo ufw default allow outgoing
