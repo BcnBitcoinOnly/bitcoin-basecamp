@@ -1,5 +1,10 @@
-# Debian 11 (testing)
+# Debian 10 Gnome
 
-1. Instalar Chromium (si se prefiere a Firefox)
+* Install Git
 
-$ `apt install chromium chromium-l10n`
+$ `sudo apt-get install git`
+
+* Customize grub and update default settings
+$ `git clone https://github.com/vinceliuice/grub2-themes.git`
+$ `sudo nano /etc/default/grub`
+$ `sudo update-grub`
