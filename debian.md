@@ -22,15 +22,15 @@ $ sudo ufw allow https
 `$ sudo apt-get install git`
 
 * ### Connect with GitHub by a SSH key
-⋅⋅⋅1. Generate a SSH key
+⋅⋅* Generate a SSH key
 ```
 $ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
-⋅⋅⋅2. Add the SSH key to your SSH-key agent.
+⋅⋅* Add the SSH key to your SSH-key agent.
 ```
 $ ssh-add ~/.ssh/id_rsa
 ```
-⋅⋅⋅3. Add the SSH key to your GitHub account.
+⋅⋅* Add the SSH key to your GitHub account.
   Copy the content of the key and paste in the Github SSH keys section.
 ```
 $ cat ~/.ssh/id_rsa.pub
