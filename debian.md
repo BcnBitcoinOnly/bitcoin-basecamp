@@ -1,10 +1,25 @@
 # Debian 10 Gnome
 
-* Install Git
+* ### Install Git
 
 $ `sudo apt-get install git`
 
-* Customize grub and update default settings
+* ### Connect with GitHub by a SSH key
+⋅⋅1. Generate a SSH key
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+```
+⋅⋅2. Add the SSH key to your SSH-key agent.
+```
+ssh-add ~/.ssh/id_rsa
+```
+⋅⋅3. Add the SSH key to your GitHub account.
+  Copy the content of the key and paste in the Github SSH keys section.
+```
+cat ~/.ssh/id_rsa.pub
+```
+
+* ### Customize grub and update default settings
 ```
 $ git clone https://github.com/vinceliuice/grub2-themes.git
 ```
