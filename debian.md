@@ -1,26 +1,34 @@
 # Debian 10
+
+Run as sudo from now onwards:
+```
+$ sudo su
+```
+
 ### Install and config a firewall
 Uncomplicated FireWall (UFW)
 
-$ `sudo apt install ufw`
-
-Enable the firewall
-
-$ `sudo ufw enable`
+```
+# apt install ufw
+```
 
 
 Config some [basic rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+```
+# ufw default deny incoming
+# ufw default allow outgoing
+# ufw allow ssh
+```
 
-$ `sudo ufw default deny incoming`
+Enable the firewall
+```
+# ufw enable
+```
 
-$ `sudo ufw default allow outgoing`
+### Mount Backups disks [1]
+```
 
-$ `sudo ufw allow ssh`
-
-$ `sudo ufw allow http`
-
-$ `sudo ufw allow https`
-
+```
 
 ### Install Git
 
@@ -53,3 +61,5 @@ $ sudo nano /etc/default/grub
 ```
 $ sudo update-grub
 ```
+
+[1]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
