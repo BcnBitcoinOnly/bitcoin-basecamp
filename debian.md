@@ -80,18 +80,18 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 
 ### Install Git
-
-$ `sudo apt install git`
+```apt install git
+```
 
 #### Connect with GitHub by a SSH key
   1- Generate a SSH key
 ```
-$ ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
   
   2- Add the SSH key to your SSH-key agent.
 ```
-$ ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/id_rsa
 ```
   
   3- Add the SSH key to your GitHub account.
