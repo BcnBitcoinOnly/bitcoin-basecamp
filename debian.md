@@ -26,6 +26,11 @@ ufw enable
 ```
 
 
+## Install some utilities:
+```
+apt install -y tldr tree locate
+```
+
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
 
