@@ -7,11 +7,11 @@ Enable the firewall
 $ `sudo ufw enable`
 
 Config some [basic rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
-$ `sudo ufw default deny incoming`
-$ `sudo ufw default allow outgoing`
-$ `sudo ufw allow ssh`
-$ `sudo ufw allow http`
-$ `sudo ufw allow https`
+* $ `sudo ufw default deny incoming`
+* $ `sudo ufw default allow outgoing`
+* $ `sudo ufw allow ssh`
+* $ `sudo ufw allow http`
+* $ `sudo ufw allow https`
 
 * ### Install Git
 
