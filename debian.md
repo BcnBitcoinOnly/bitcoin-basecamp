@@ -28,7 +28,7 @@ ufw enable
 
 ## Install some utilities:
 ```
-apt install -y tldr tree locate
+apt install -y tldr tree locate debian-keyring
 ```
 
 ## Mount a storage device (i.e.: USB)[2]
