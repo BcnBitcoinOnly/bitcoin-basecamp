@@ -2,33 +2,39 @@
 
 Run as sudo from now onwards:
 ```
-$ sudo su
+sudo su
 ```
 
 ### Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
 
 ```
-# apt install ufw
+apt install ufw
 ```
 
 
 Config some basic rules
 ```
-# ufw default deny incoming
-# ufw default allow outgoing
-# ufw allow ssh
+ufw default deny incoming
+ufw default allow outgoing
+ufw allow ssh
 ```
 
 Enable the firewall
 ```
-# ufw enable
+ufw enable
 ```
 
-### Mount Backups disks [2]
+### Mount a storage device [2]
+You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
+
+Plug the storage device into a USB port on the Raspberry Pi.
+
+List all the disk partitions on the Pi using the following command:
+```
+lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 ```
 
-```
 
 ### Install Git
 
