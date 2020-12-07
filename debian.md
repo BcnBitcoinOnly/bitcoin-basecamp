@@ -25,14 +25,35 @@ Enable the firewall
 ufw enable
 ```
 
-### Mount a storage device [2]
+
+### Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
 
-Plug the storage device into a USB port on the Raspberry Pi.
+1. Plug the storage device into a USB port on the Raspberry Pi.
 
-List all the disk partitions on the Pi using the following command:
+2. List all the disk partitions on the Pi using the following command:
 ```
 lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
+```
+
+3. Run the following command to get the location of the disk partition:
+```
+blkid
+```
+
+4. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
+```
+mkdir /mnt/mydisk
+```
+
+5. Mount the storage device at the mount point you created:
+```
+mount /dev/sda1 /mnt/mydisk
+```
+
+6. Verify that the storage device is mounted successfully by listing the contents:
+```
+ls /mnt/mydisk
 ```
 
 
@@ -57,16 +78,6 @@ $ ssh-add ~/.ssh/id_rsa
 $ cat ~/.ssh/id_rsa.pub
 ```
 
-### Customize grub and update default settings
-```
-$ git clone https://github.com/vinceliuice/grub2-themes.git
-```
-```
-$ sudo nano /etc/default/grub
-```
-```
-$ sudo update-grub
-```
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
