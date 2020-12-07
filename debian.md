@@ -1,21 +1,17 @@
-# Debian 10 Gnome
+# Debian 10
 * ### Install and config a firewall
 Install for example: UFW
-```
-$ apt-get install ufw
-```
+$ `sudo apt install ufw`
+
 Enable the firewall
-```
-$ ufw enable
-```
+$ `sudo ufw enable`
+
 Config some [basic rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
-```
-$ sudo ufw default deny incoming
-$ sudo ufw default allow outgoing
-$ sudo ufw allow ssh
-$ sudo ufw allow http
-$ sudo ufw allow https
-```
+$ `sudo ufw default deny incoming`
+$ `sudo ufw default allow outgoing`
+$ `sudo ufw allow ssh`
+$ `sudo ufw allow http`
+$ `sudo ufw allow https`
 
 * ### Install Git
 
