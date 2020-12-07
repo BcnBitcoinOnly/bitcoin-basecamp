@@ -5,7 +5,7 @@ Run as sudo from now onwards:
 $ sudo su
 ```
 
-### Install and config a firewall
+### Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
 
 ```
@@ -13,7 +13,7 @@ Uncomplicated FireWall (UFW)
 ```
 
 
-Config some [basic rules](https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands)
+Config some basic rules
 ```
 # ufw default deny incoming
 # ufw default allow outgoing
@@ -25,7 +25,7 @@ Enable the firewall
 # ufw enable
 ```
 
-### Mount Backups disks [1]
+### Mount Backups disks [2]
 ```
 
 ```
@@ -62,4 +62,5 @@ $ sudo nano /etc/default/grub
 $ sudo update-grub
 ```
 
-[1]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
+[1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
+[2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
