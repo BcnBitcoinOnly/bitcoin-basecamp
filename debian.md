@@ -1,15 +1,11 @@
 # Debian 10
 
-Run as sudo from now onwards:
-```
-sudo su
-```
-
 
 ## Update the system
 ```
-apt update
-apt full-upgrade
+sudo apt update
+sudo apt full-upgrade
+sudo reboot now
 ```
 
 
@@ -17,31 +13,45 @@ apt full-upgrade
 Uncomplicated FireWall (UFW)
 
 ```
-apt install ufw
+sudo apt install ufw
 ```
 
 
 Config some basic rules
 ```
-ufw default deny incoming
-ufw default allow outgoing
-ufw allow ssh
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw limit ssh/tcp
 ```
 
 Enable the firewall
 ```
-ufw enable
+sudo ufw enable
+```
+
+
+## Overclock CPU [3]
+Edit /boot/config.txt and change the following:
+```
+over_voltage=6
+arm_freq=2000
 ```
 
 
 ## Install some utilities:
 ```
-apt install -y tldr tree locate debian-keyring
+sudo apt install -y tldr tree locate debian-keyring
 ```
 
 
 ## Install Docker
-See [Docker docs](https://docs.docker.com/engine/install/debian/)
+See Docker docs. [4]
+
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+```
+
 
 Add non-sudo user to docker group in order to use docker without sudo.
 ```
@@ -61,17 +71,17 @@ lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 
 3. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
 ```
-mkdir /mnt/mydisk
+sudo mkdir /mnt/mydisk
 ```
 
 4. Mount the storage device at the mount point you created:
 ```
-mount /dev/sda1 /mnt/mydisk
+sudo mount /dev/sda1 /mnt/mydisk
 ```
 
 5. Verify that the storage device is mounted successfully by listing the contents:
 ```
-ls /mnt/mydisk
+sudo ls /mnt/mydisk
 ```
 
 
@@ -85,7 +95,7 @@ blkid
 
 3. Open the fstab file using a command line editor:
 ```
-nano /etc/fstab
+sudo nano /etc/fstab
 ```
 
 4. Add the following line in the fstab file:
@@ -98,7 +108,8 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 
 ### Install Git
-```apt install git
+```
+sudo apt install git
 ```
 
 #### Connect with GitHub by a SSH key
@@ -121,3 +132,5 @@ $ cat ~/.ssh/id_rsa.pub
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
+[3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
+[4]:https://docs.docker.com/engine/install/debian/
