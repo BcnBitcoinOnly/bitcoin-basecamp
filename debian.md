@@ -5,6 +5,14 @@ Run as sudo from now onwards:
 sudo su
 ```
 
+
+## Update the system
+```
+apt update
+apt full-upgrade
+```
+
+
 ## Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
 
@@ -30,6 +38,9 @@ ufw enable
 ```
 apt install -y tldr tree locate debian-keyring
 ```
+
+## Install Docker
+See [Docker docs](https://docs.docker.com/engine/install/debian/)
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
