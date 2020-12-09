@@ -39,8 +39,15 @@ ufw enable
 apt install -y tldr tree locate debian-keyring
 ```
 
+
 ## Install Docker
 See [Docker docs](https://docs.docker.com/engine/install/debian/)
+
+Add non-sudo user to docker group in order to use docker without sudo.
+```
+sudo usermod -aG docker your-user
+```
+
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
