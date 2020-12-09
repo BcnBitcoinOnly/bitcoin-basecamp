@@ -38,13 +38,13 @@ arm_freq=2000
 ```
 
 
-## Install some utilities:
+### Install some utilities:
 ```
 sudo apt install -y tldr tree locate debian-keyring
 ```
 
 
-## Install Docker
+### Install Docker
 See Docker docs. [4]
 
 ```
@@ -111,6 +111,19 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 ```
 sudo apt install git
 ```
+
+
+#### Set Global Credentials
+Set your username:
+```
+git config --global user.name "FIRST_NAME LAST_NAME"
+```
+
+Set your email address: 
+```
+git config --global user.email "MY_NAME@example.com"
+```
+
 
 #### Connect with GitHub by a SSH key
   1- Generate a SSH key
