@@ -189,6 +189,7 @@ PermitEmptyPasswords no
 
 ## Install a LEMP stack (Linux + Nginx + MariaDB + PHP)
 
+
 ### Install Nginx (webserver)
 ```
 sudo apt install -y nginx
@@ -197,7 +198,9 @@ sudo apt install -y nginx
 Allow Nginx in the firewall
 ```
 sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
 ```
+
 
 ### Install Maria DB (SQL server)
 ```
@@ -210,6 +213,32 @@ sudo mysql_secure_installation
 ```
 
 
+### Install PHP
+```
+sudo apt install -y php-fpm php-mysql
+```
+
+
+## Install Pi-Hole
+```
+wget -O basic-install.sh https://install.pi-hole.net
+sudo bash basic-install.sh
+```
+
+Allow ports in firewall
+```
+sudo ufw allow 53/tcp comment DNS
+sudo ufw allow 53/udp comment DNS
+sudo ufw allow 67/tcp comment DHCP
+sudo ufw allow 67/udp comment DHCP
+sudo ufw allow 546:547/udp comment "DHCP IPv6"
+```
+
+
+## Install Unbound
+```
+sudo apt install -y unbound
+```
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
