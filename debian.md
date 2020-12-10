@@ -33,14 +33,14 @@ sudo ufw enable
 ## Overclock CPU [3]
 Edit /boot/config.txt and change the following:
 ```
-over_voltage=6
-arm_freq=2000
+over_voltage=2
+arm_freq=1750
 ```
 
 
 ### Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav
 ```
 
 
@@ -187,6 +187,15 @@ PermitEmptyPasswords no
 ```
 
 
+## Install Fail2ban
+```
+sudo apt install -y fail2ban
+```
+
+Configure fail2ban as [following](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server):
+
+
+
 ## Install a LEMP stack (Linux + Nginx + MariaDB + PHP)
 
 
@@ -239,6 +248,20 @@ sudo ufw allow 546:547/udp comment "DHCP IPv6"
 ```
 sudo apt install -y unbound
 ```
+
+See [Pi-Hole Docs](https://docs.pi-hole.net/guides/unbound/) to config Unbound and Pi-Hole.
+
+
+## Install Unattended Upgrades
+```
+sudo apt install -y unattended-upgrades
+```
+
+Configure as [following](https://libre-software.net/ubuntu-automatic-updates/):
+
+
+## Install backups utilities
+sudo apt install -y borgbackup rsync rclone
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
