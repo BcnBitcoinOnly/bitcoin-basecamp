@@ -143,7 +143,33 @@ $ cat ~/.ssh/id_rsa.pub
 ```
 
 
+## Harden' SSH security
+Edit /etc/ssh/sshd_config with the following [5]
+```
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no               
+#StrictModes yes
+MaxAuthTries 6
+MaxSessions 10
+
+PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no                                                                                                                
+PermitEmptyPasswords no
+```
+
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
 [3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
 [4]:https://docs.docker.com/engine/install/debian/
+[5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
