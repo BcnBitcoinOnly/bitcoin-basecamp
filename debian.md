@@ -186,6 +186,31 @@ PasswordAuthentication no
 PermitEmptyPasswords no
 ```
 
+
+## Install a LEMP stack (Linux + Nginx + MariaDB + PHP)
+
+### Install Nginx (webserver)
+```
+sudo apt install -y nginx
+```
+
+Allow Nginx in the firewall
+```
+sudo ufw allow 'Nginx HTTP'
+```
+
+### Install Maria DB (SQL server)
+```
+sudo apt install -y mariadb-server
+```
+
+Configurar db root user and answer "Y" to all the questions
+```
+sudo mysql_secure_installation
+```
+
+
+
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
 [3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
