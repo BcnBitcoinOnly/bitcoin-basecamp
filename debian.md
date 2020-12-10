@@ -4,7 +4,7 @@
 ## Update the system
 ```
 sudo apt update
-sudo apt full-upgrade
+sudo apt -y full-upgrade
 sudo reboot now
 ```
 
@@ -13,7 +13,7 @@ sudo reboot now
 Uncomplicated FireWall (UFW)
 
 ```
-sudo apt install ufw
+sudo apt install -y ufw
 ```
 
 
@@ -52,10 +52,28 @@ curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
 ```
 
+#### Install Docker Compose
+For Debian:
+```
+sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+Alternative, for Raspbian OS:
+First install dependencies (and PIP):
+```
+sudo apt install -y libffi-dev libssl-dev
+sudo apt install -y python3-pip
+```
+
+Then, install with PIP:
+```
+sudo pip3 install -y docker-compose
+```
 
 Add non-sudo user to docker group in order to use docker without sudo.
 ```
-sudo usermod -aG docker your-user
+sudo usermod -aG docker YOUR-USER
 ```
 
 
@@ -109,7 +127,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ### Install Git
 ```
-sudo apt install git
+sudo apt install -y git
 ```
 
 
