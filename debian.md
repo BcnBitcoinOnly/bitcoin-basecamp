@@ -225,16 +225,26 @@ sudo mysql_secure_installation
 ```
 
 
+##  Restore Mysql databases
+Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
+Uncompress backup and:
+```
+gzip -dk db.gz
+
+```
+
+Restore all databases
+```
+sudo mysql -u root < db.sql
+```
+
+
 ### Install PHP
 ```
 sudo apt install -y php-fpm php-mysql
 ```
 
 PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
-
-##  Restore Mysql databases
-Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
-Uncompress
 
 
 ## Install Pi-Hole
