@@ -295,6 +295,10 @@ sudo systemctl enable wg-quick@wg0
 ```
 
 
+Allow IP forwarding (to allow DNS request in a different subnet)
+Uncomment `net.ipv4.ip_forward=1` in /etc/sysctl.conf
+
+
 ## Install backups utilities
 sudo apt install -y borgbackup rsync rclone
 
