@@ -73,7 +73,7 @@ sudo pip3 install -y docker-compose
 
 Add non-sudo user to docker group in order to use docker without sudo.
 ```
-sudo usermod -aG docker YOUR-USER
+sudo usermod -aG docker pi
 ```
 
 
@@ -241,9 +241,9 @@ sudo mysql -u root < db.sql
 ```
 
 
-### Install PHP
+### Install PHP and some modules
 ```
-sudo apt install -y php-fpm php-mysql
+sudo apt install -y php-fpm php-mysql php-bcmath php-gmp php-imagick
 ```
 
 PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
