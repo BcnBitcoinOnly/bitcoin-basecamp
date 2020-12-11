@@ -260,6 +260,41 @@ sudo apt install -y unattended-upgrades
 Configure as [following](https://libre-software.net/ubuntu-automatic-updates/):
 
 
+## Install Wireguard VPN
+Wireguard is still not available in stable repositories. It is neccesary to [install from Debian Backports](https://backports.debian.org/Instructions/).
+
+Add Debian Backports to sources.list and then accept GPG keys:
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
+```
+
+Now, install Wireguard
+```
+sudo apt update
+sudo apt install -y wireguard linux-headers
+```
+
+Allow firewall rules
+```
+sudo ufw allow 51820/udp comment Wireguard
+```
+
+Initiate Wireguard interface
+```
+sudo dkms status
+sudo dkms build wireguard/1.0.20200520
+sudo dkms install wireguard/1.0.20200520
+sudo modprobe wireguard
+sudo wg-quick up wg0
+```
+
+Start Wireguard on boot
+```
+sudo systemctl enable wg-quick@wg0
+```
+
+
 ## Install backups utilities
 sudo apt install -y borgbackup rsync rclone
 
