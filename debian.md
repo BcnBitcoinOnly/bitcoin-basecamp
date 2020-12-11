@@ -230,6 +230,12 @@ sudo mysql_secure_installation
 sudo apt install -y php-fpm php-mysql
 ```
 
+PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
+
+##  Restore Mysql databases
+Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
+Uncompress
+
 
 ## Install Pi-Hole
 ```
@@ -300,6 +306,22 @@ sudo systemctl enable wg-quick@wg0
 
 Allow IP forwarding (to allow DNS request in a different subnet)
 Uncomment `net.ipv4.ip_forward=1` in /etc/sysctl.conf
+
+
+## Install phpMyAdmin
+
+
+
+## Install Nextcloud
+### Prerequisites
+Change PHP memory limit and upload max size:
+Edit `/etc/php/7.4/fpm/php.ini` and change `memory_limit = 512M` and `upload_max_filesize = 20M`.
+
+Restart service
+```
+sudo service php7.4-fpm restart
+```
+
 
 
 ## Install backups utilities
