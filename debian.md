@@ -213,6 +213,9 @@ sudo ufw allow 'Nginx HTTP'
 sudo ufw allow 'Nginx HTTPS'
 ```
 
+#### Restore Nginx configurations
+Restore from backup `etc/nginx` and generate new SSL certificates for each site.
+
 
 ### Install Maria DB (SQL server)
 ```
@@ -225,12 +228,11 @@ sudo mysql_secure_installation
 ```
 
 
-##  Restore Mysql databases
+####  Restore Mysql databases
 Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
 Uncompress backup and:
 ```
 gzip -dk db.gz
-
 ```
 
 Restore all databases
@@ -247,7 +249,17 @@ sudo apt install -y php-fpm php-mysql
 PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
 
 
+#### Install phpMyAdmin
+sudo apt install -y phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring
+
+
 ## Install Pi-Hole
+### Install and configure the [prerequisites](https://docs.pi-hole.net/guides/nginx-configuration/)
+```
+apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+usermod -aG pihole www-data
+```
+
 ```
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
@@ -318,18 +330,12 @@ Allow IP forwarding (to allow DNS request in a different subnet)
 Uncomment `net.ipv4.ip_forward=1` in /etc/sysctl.conf
 
 
-## Install phpMyAdmin
-
-
-
 ## Install Nextcloud
-### Prerequisites
-Change PHP memory limit and upload max size:
-Edit `/etc/php/7.4/fpm/php.ini` and change `memory_limit = 512M` and `upload_max_filesize = 20M`.
+Restore files and databases from backup.
 
-Restart service
+Install APCu (data cache)
 ```
-sudo service php7.4-fpm restart
+sudo install -y php-apcu
 ```
 
 
