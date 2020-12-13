@@ -201,7 +201,7 @@ Configure fail2ban as [following](https://www.digitalocean.com/community/tutoria
 
 ### Install Nginx (webserver)
 ```
-sudo apt install -y nginx certbot python-certbot-nginx
+sudo apt install -y nginx certbot python-certbot-nginx webhook
 ```
 
 More details in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10) and in [Certbot](https://certbot.eff.org/lets-encrypt/debianbuster-nginx).
