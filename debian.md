@@ -250,13 +250,15 @@ PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. U
 
 
 #### Install phpMyAdmin
+```
 sudo apt install -y phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring
+```
 
 
 ## Install Pi-Hole
 ### Install and configure the [prerequisites](https://docs.pi-hole.net/guides/nginx-configuration/)
 ```
-apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+sudo apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
 usermod -aG pihole www-data
 ```
 
