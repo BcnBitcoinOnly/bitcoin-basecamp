@@ -302,6 +302,8 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
 ```
 
+Add `deb http://deb.debian.org/debian buster-backports main` to file `/etc/apt/sources.list`
+
 Now, install Wireguard
 ```
 sudo apt update
