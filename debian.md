@@ -259,12 +259,12 @@ sudo apt install -y phpmyadmin php-mbstring php-zip php-gd php-json php-curl php
 ### Install and configure the [prerequisites](https://docs.pi-hole.net/guides/nginx-configuration/)
 ```
 sudo apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
-usermod -aG pihole www-data
 ```
 
 ```
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
+usermod -aG pihole www-data
 ```
 
 Allow ports in firewall
