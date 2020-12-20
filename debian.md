@@ -8,6 +8,11 @@ sudo apt -y full-upgrade
 sudo reboot now
 ```
 
+Quick alternative to avoid all apt-updates:
+```
+sudo apt update -y ufw tldr tree locate debian-keyring logrotate lnav git fail2ban nginx certbot python-certbot-nginx webhook mariadb-server php-fpm php-mysql php-bcmath php-gmp php-imagick phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils unbound unattended-upgrades 
+```
+
 
 ## Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
@@ -206,6 +211,8 @@ sudo apt install -y nginx certbot python-certbot-nginx webhook
 
 More details in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10) and in [Certbot](https://certbot.eff.org/lets-encrypt/debianbuster-nginx).
 
+Recover config files from Backup.
+
 
 Allow Nginx in the firewall
 ```
@@ -264,7 +271,7 @@ sudo apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3
 ```
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
-usermod -aG pihole www-data
+sudo usermod -aG pihole www-data
 ```
 
 Allow ports in firewall
@@ -282,7 +289,7 @@ sudo ufw allow 546:547/udp comment "DHCP IPv6"
 sudo apt install -y unbound
 ```
 
-See [Pi-Hole Docs](https://docs.pi-hole.net/guides/unbound/) to config Unbound and Pi-Hole.
+See [Pi-Hole Docs](https://docs.pi-hole.net/guides/unbound/) to config Unbound and Pi-Hole. (Alternative recover from backups)
 
 
 ## Install Unattended Upgrades
@@ -290,7 +297,7 @@ See [Pi-Hole Docs](https://docs.pi-hole.net/guides/unbound/) to config Unbound a
 sudo apt install -y unattended-upgrades
 ```
 
-Configure as [following](https://libre-software.net/ubuntu-automatic-updates/):
+Configure as [following](https://libre-software.net/ubuntu-automatic-updates/). (Alternative recover from backups)
 
 
 ## Install Wireguard VPN
@@ -302,7 +309,7 @@ sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
 ```
 
-Add `deb http://deb.debian.org/debian buster-backports main` to file `/etc/apt/sources.list`
+Add `deb http://deb.debian.org/debian buster-backports main` to file `/etc/apt/sources.list`. (Alternative recover from backups)
 
 Now, install Wireguard
 ```
@@ -331,7 +338,7 @@ sudo systemctl enable wg-quick@wg0
 
 
 Allow IP forwarding (to allow DNS request in a different subnet)
-Uncomment `net.ipv4.ip_forward=1` in /etc/sysctl.conf
+Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative recover from backups)
 
 
 ## Install Nextcloud
@@ -339,13 +346,17 @@ Restore files and databases from backup.
 
 Install APCu (data cache)
 ```
-sudo install -y php-apcu
+sudo apt install -y php-apcu
 ```
-
 
 
 ## Install backups utilities
 sudo apt install -y borgbackup rsync rclone
+
+
+# Recover backups
+To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
+
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
