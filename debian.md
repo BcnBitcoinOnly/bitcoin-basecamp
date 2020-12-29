@@ -166,6 +166,12 @@ $ cat ~/.ssh/id_rsa.pub
 ```
 
 
+## Disable passwordless sudo
+Edit with visudo `/etc/sudoers.d/010_pi-nopasswd` and change it to:
+```
+pi ALL=(ALL) PASSWD: ALL
+```
+
 ## Harden' SSH security
 Edit /etc/ssh/sshd_config with the following [5]
 ```
