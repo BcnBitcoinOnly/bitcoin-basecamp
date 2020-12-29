@@ -349,6 +349,7 @@ Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative reco
 
 ## Install Nextcloud
 Restore files and databases from backup.
+Comment out Memcache line to recovery.
 
 Install APCu (data cache)
 ```
