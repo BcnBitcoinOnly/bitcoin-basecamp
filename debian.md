@@ -10,7 +10,7 @@ sudo reboot now
 
 Quick alternative to avoid all apt-updates:
 ```
-sudo apt update -y ufw tldr tree locate debian-keyring logrotate lnav git fail2ban nginx certbot python-certbot-nginx webhook mariadb-server php-fpm php-mysql php-bcmath php-gmp php-imagick phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils unbound unattended-upgrades 
+sudo apt install -y ufw tldr tree locate debian-keyring logrotate lnav git fail2ban nginx certbot python-certbot-nginx webhook mariadb-server php-fpm php-mysql php-bcmath php-gmp php-imagick phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils unbound unattended-upgrades borgbackup rsync rclone
 ```
 
 
@@ -99,12 +99,12 @@ sudo mkdir /mnt/mydisk
 
 4. Mount the storage device at the mount point you created:
 ```
-sudo mount /dev/sda1 /mnt/mydisk
+sudo mount /dev/sda1 /mnt/usb
 ```
 
 5. Verify that the storage device is mounted successfully by listing the contents:
 ```
-sudo ls /mnt/mydisk
+sudo ls /mnt/usb
 ```
 
 
