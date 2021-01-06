@@ -358,10 +358,24 @@ sudo apt install -y php-apcu php-intl
 
 
 ## Install Webmin
-Download lastest version and install manually
+Edit `/etc/apt/sources.list` and add the following line:
 ```
-wget https://sourceforge.net/projects/webadmin/files/latest/download
+deb https://download.webmin.com/download/repository sarge contrib 
 ```
+
+Fetch and install the GPG key with which the repository is signed:
+```
+wget https://download.webmin.com/jcameron-key.asc & sudo apt-key add jcameron-key.asc 
+```
+
+Install Webmin
+```
+sudo apt-get -y install apt-transport-https 
+sudo apt-get update 
+sudo apt-get -y install webmin 
+```
+
+Recover `/etc/webmin/miniserv.conf` configuration file from backup.
 
 
 ## Install backups utilities
