@@ -357,6 +357,13 @@ sudo apt install -y php-apcu php-intl
 ```
 
 
+## Install Webmin
+Download lastest version and install manually
+```
+wget https://sourceforge.net/projects/webadmin/files/latest/download
+```
+
+
 ## Install backups utilities
 sudo apt install -y borgbackup rsync rclone
 
