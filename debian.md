@@ -337,6 +337,9 @@ sudo modprobe wireguard
 sudo wg-quick up wg0
 ```
 
+If problem persist after rebuilding it for new kernel, try reinstalling it with `sudo dpkg-reconfigure wireguard-dkms`.
+
+
 Start Wireguard on boot
 ```
 sudo systemctl enable wg-quick@wg0
