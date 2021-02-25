@@ -73,7 +73,7 @@ sudo apt install -y python3-pip
 
 Then, install with PIP:
 ```
-sudo pip3 install -y docker-compose
+sudo pip3 install docker-compose
 ```
 
 Add non-sudo user to docker group in order to use docker without sudo.
