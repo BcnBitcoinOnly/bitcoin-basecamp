@@ -1,0 +1,4 @@
+/docker/.env
+/docker/etc-pihole/
+/docker/etc-dnsmasq.d/
+/docker/var-log/
