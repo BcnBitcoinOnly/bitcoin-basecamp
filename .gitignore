@@ -2,3 +2,4 @@
 /docker/etc-pihole/
 /docker/etc-dnsmasq.d/
 /docker/var-log/
+/docker/portainer_data/
