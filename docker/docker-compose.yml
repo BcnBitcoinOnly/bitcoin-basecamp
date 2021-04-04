@@ -1,4 +1,4 @@
-version: "3"
+version: "2"
 
 # Sources:
 # https://github.com/pi-hole/docker-pi-hole/blob/master/README.md
@@ -73,7 +73,7 @@ services:
       - 8000:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - portainer_data:/data
+      - ./portainer_data/:/data
 
 volumes:
   portainer_data:
