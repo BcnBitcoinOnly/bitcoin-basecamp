@@ -58,14 +58,18 @@ git config --global user.email "MY_NAME@example.com"
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
-  2- Add the SSH key to your SSH-key agent.
+  2- Initiate SSH-agent
 ```
-ssh-add ~/.ssh/id_rsa
+eval `ssh-agent -s`
+```  
+  3- Add the SSH key to your SSH-key agent.
 ```
-  3- Add the SSH key to your GitHub account.
+ssh-add ~/.ssh/github.com
+```
+  4- Add the SSH key to your GitHub account.
   Copy the content of the key and paste in the Github SSH keys section.
 ```
-$ cat ~/.ssh/id_rsa.pub
+$ cat ~/.ssh/github.com.pub
 ```
 ## Harden' SSH security
 Edit /etc/ssh/sshd_config with the following [3]
