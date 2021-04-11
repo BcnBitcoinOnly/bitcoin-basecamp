@@ -4,3 +4,4 @@
 /docker/var-log/
 /docker/portainer_data/
 /docker/npm-data/
+/docker/letsencrypt/
