@@ -69,7 +69,7 @@ ssh-add ~/.ssh/github.com
   4- Add the SSH key to your GitHub account.
   Copy the content of the key and paste in the Github SSH keys section.
 ```
-$ cat ~/.ssh/github.com.pub
+cat ~/.ssh/github.com.pub
 ```
 ## Harden' SSH security
 Edit /etc/ssh/sshd_config with the following [3]
