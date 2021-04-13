@@ -22,7 +22,7 @@ sudo ufw enable
 ```
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav net-tools curl
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav net-tools curl dnsutils
 ```
 ### Virtual Box Guest Additions [2]
 ```
