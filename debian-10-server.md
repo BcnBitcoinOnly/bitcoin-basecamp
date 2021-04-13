@@ -116,10 +116,12 @@ sudo apt install -y fail2ban
 ```
 Configure fail2ban as [following](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server):
 ## Install backups utilities
+```
 sudo apt install -y borgbackup rsync rclone
+```
 # Recover backups
 To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
-# Sources
+
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://linuxize.com/post/how-to-install-virtualbox-guest-additions-on-debian-10/
 [3]:https://docs.docker.com/engine/install/debian/
