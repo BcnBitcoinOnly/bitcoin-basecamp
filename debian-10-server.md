@@ -20,12 +20,27 @@ Enable the firewall
 ```
 sudo ufw enable
 ```
-### Install some utilities:
+## Install some utilities:
 ```
 sudo apt install -y tldr tree locate debian-keyring logrotate lnav net-tools curl
 ```
+### Virtual Box Guest Additions [2]
+```
+sudo apt update
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo mkdir -p /mnt/cdrom
+sudo mount /dev/cdrom /mnt/cdrom
+cd /mnt/cdrom
+sudo sh ./VBoxLinuxAdditions.run --nox11
+sudo shutdown -r now
+lsmod | grep vboxguest 
+```
+Check if output of lsmod is something similar to:
+```
+vboxguest             348160  2 vboxsf
+```
 ### Install Docker
-See Docker docs. [2]
+See Docker docs. [3]
 ```
 curl -fsSL https://get.docker.com -o get-docker.sh
 sudo sh get-docker.sh
@@ -72,7 +87,7 @@ ssh-add ~/.ssh/github.com
 cat ~/.ssh/github.com.pub
 ```
 ## Harden' SSH security
-Edit /etc/ssh/sshd_config with the following [3]
+Edit /etc/ssh/sshd_config with the following [4]
 ```
 # Logging
 SyslogFacility AUTH
@@ -104,8 +119,8 @@ Configure fail2ban as [following](https://www.digitalocean.com/community/tutoria
 sudo apt install -y borgbackup rsync rclone
 # Recover backups
 To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
-
 # Sources
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
-[2]:https://docs.docker.com/engine/install/debian/
-[3]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+[2]:https://linuxize.com/post/how-to-install-virtualbox-guest-additions-on-debian-10/
+[3]:https://docs.docker.com/engine/install/debian/
+[4]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
