@@ -27,7 +27,7 @@ sudo apt install -y tldr tree locate debian-keyring logrotate lnav net-tools cur
 ### Virtual Box Guest Additions [2]
 ```
 sudo apt update
-sudo apt install build-essential dkms linux-headers-$(uname -r)
+sudo apt install -y build-essential dkms linux-headers-$(uname -r)
 sudo mkdir -p /mnt/cdrom
 sudo mount /dev/cdrom /mnt/cdrom
 cd /mnt/cdrom
