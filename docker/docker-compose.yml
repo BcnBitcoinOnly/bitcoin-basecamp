@@ -1,6 +1,7 @@
 version: "3"
 services:
   portainer:
+    container_name: portainer
     image: portainer/portainer
     command: -H unix:///var/run/docker.sock
     restart: always
@@ -9,23 +10,25 @@ services:
       - 8000:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer_data:/data
+      - ./portainer/data:/data
   npm:
+    container_name: nginx_proxy_manager
     image: 'jc21/nginx-proxy-manager:latest'
     ports:
       - 80:80
       - 81:81
       - 443:443
     environment:
-      DB_MYSQL_HOST: "db-npm"
+      DB_MYSQL_HOST: "npm-db"
       DB_MYSQL_PORT: 3306
       DB_MYSQL_USER: "npm"
       DB_MYSQL_PASSWORD: "npm"
       DB_MYSQL_NAME: "npm"
     volumes:
-      - ./npm-data:/data
-      - ./letsencrypt:/etc/letsencrypt
-  db-npm:
+      - ./npm/data:/data
+      - ./npm/etc-letsencrypt:/etc/letsencrypt
+  npm-db:
+    container_name: npm-mariadb
     image: 'jc21/mariadb-aria:latest'
     environment:
       MYSQL_ROOT_PASSWORD: 'npm'
@@ -33,27 +36,35 @@ services:
       MYSQL_USER: 'npm'
       MYSQL_PASSWORD: 'npm'
     volumes:
-      - ./npm-data/mysql:/var/lib/mysql
+      - ./npm/mysql:/var/lib/mysql
   pihole:
+    container_name: pihole
     image: pihole/pihole:latest
     ports:
       - '53:53/tcp'
       - '53:53/udp'
-      - '67:67/udp'
-      - '9080:80/tcp'
-      - '9443:443/tcp'
+#      - '67:67/udp'
+      - '8080:80/tcp'
+      - '8081:443/tcp'
     volumes:
-      - './etc-pihole:/etc/pihole/'
-      - './etc-dnsmasq.d:/etc/dnsmasq.d/'
+      - './pihole/etc-pihole:/etc/pihole/'
+      - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d/'
       # run `touch ./var-log/pihole.log` first unless you like errors
       # - './var-log/pihole.log:/var/log/pihole.log'
+    
     environment:
       TZ: 'Europe/Madrid'
       WEBPASSWORD: '7yCY8flx1254'
+      DNS1: '127.0.0.1#5053'
+      DNS2: 'no'
+    restart: always
+  unbound:
+    container_name: unbound
+    image: klutchell/unbound
+    ports:
+      - '5053:5053/udp'
     restart: always
 volumes:
-  portainer_data:
-  npm-data:
-  letsencrypt:
-  etc-pihole:
-  etc-dnsmasq.d:
+  portainer:
+  npm:
+  pihole:
