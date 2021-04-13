@@ -1,7 +1,4 @@
 /docker/.env
-/docker/etc-pihole/
-/docker/etc-dnsmasq.d/
-/docker/var-log/
-/docker/portainer_data/
-/docker/npm-data/
-/docker/letsencrypt/
+/docker/pihole/
+/docker/portainer/
+/docker/npm/
