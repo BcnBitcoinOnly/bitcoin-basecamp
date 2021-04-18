@@ -11,32 +11,6 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer/data:/data
-  npm:
-    container_name: nginx_proxy_manager
-    image: 'jc21/nginx-proxy-manager:latest'
-    ports:
-      - 80:80
-      - 81:81
-      - 443:443
-    environment:
-      DB_MYSQL_HOST: "npm-db"
-      DB_MYSQL_PORT: 3306
-      DB_MYSQL_USER: "npm"
-      DB_MYSQL_PASSWORD: "npm"
-      DB_MYSQL_NAME: "npm"
-    volumes:
-      - ./npm/data:/data
-      - ./npm/etc-letsencrypt:/etc/letsencrypt
-  npm-db:
-    container_name: npm-mariadb
-    image: 'jc21/mariadb-aria:latest'
-    environment:
-      MYSQL_ROOT_PASSWORD: 'npm'
-      MYSQL_DATABASE: 'npm'
-      MYSQL_USER: 'npm'
-      MYSQL_PASSWORD: 'npm'
-    volumes:
-      - ./npm/mysql:/var/lib/mysql
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
@@ -46,17 +20,21 @@ services:
 #      - '67:67/udp'
       - '8080:80/tcp'
       - '8081:443/tcp'
+    dns:
+      - '127.0.0.1'
+      - '1.1.1.1'
     volumes:
       - './pihole/etc-pihole:/etc/pihole/'
       - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d/'
       # run `touch ./var-log/pihole.log` first unless you like errors
       # - './var-log/pihole.log:/var/log/pihole.log'
-    
     environment:
       TZ: 'Europe/Madrid'
       WEBPASSWORD: '7yCY8flx1254'
       DNS1: '127.0.0.1#5053'
-      DNS2: 'no'
+      DNS2: '127.0.0.1#5053'
+      INTERFACE: 'eth0'
+      DNSMASQ_LISTENING: 'eth0'
     restart: always
   unbound:
     container_name: unbound
@@ -66,5 +44,4 @@ services:
     restart: always
 volumes:
   portainer:
-  npm:
   pihole:
