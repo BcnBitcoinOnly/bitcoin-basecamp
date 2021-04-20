@@ -86,6 +86,19 @@ ssh-add ~/.ssh/github.com
 ```
 cat ~/.ssh/github.com.pub
 ```
+### Install Nginx (webserver)
+```
+sudo apt install -y nginx certbot python-certbot-nginx webhook
+```
+More details in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10) and in [Certbot](https://certbot.eff.org/lets-encrypt/debianbuster-nginx).
+Recover config files from Backup.
+Allow Nginx in the firewall
+```
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
+```
+#### Restore Nginx configurations
+Restore from backup `etc/nginx` and generate new SSL certificates for each site.
 ## Harden' SSH security
 Edit /etc/ssh/sshd_config with the following [4]
 ```
