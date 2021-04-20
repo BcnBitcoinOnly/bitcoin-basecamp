@@ -19,9 +19,3 @@ echo "Initializing SSH Agent and adding local Github private key"
 eval `ssh-agent -s`
 ssh-add /home/"$USER"/.ssh/github.com
 ssh-add -l
-
-### For .profile in desktop version, add below lines to .profile file.
-#if [ -f ~/.bash_profile ]; then
-#    . ~/.bash_profile
-#fi
-
