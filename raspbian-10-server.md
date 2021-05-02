@@ -1,5 +1,12 @@
 # Debian 10
 
+## Export variables
+```
+export $SSH_PORT=nnnn
+export $WG_PORT=nnnn
+export $GIT_USER='Federico'
+export $GIT_MAIL='me@federicociro.com'
+```
 
 ## Update the system
 ```
@@ -78,7 +85,7 @@ sudo pip3 install docker-compose
 
 Add non-sudo user to docker group in order to use docker without sudo.
 ```
-sudo usermod -aG docker pi
+sudo usermod -aG docker $USER
 ```
 
 
@@ -139,30 +146,30 @@ sudo apt install -y git
 #### Set Global Credentials
 Set your username:
 ```
-git config --global user.name "FIRST_NAME LAST_NAME"
+git config --global user.name $GIT_USER
 ```
 
 Set your email address: 
 ```
-git config --global user.email "MY_NAME@example.com"
+git config --global user.email $GIT_MAIL
 ```
 
 
 #### Connect with GitHub by a SSH key
   1- Generate a SSH key
 ```
-ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+ssh-keygen -t rsa -b 4096 -C $GIT_MAIL
 ```
   
   2- Add the SSH key to your SSH-key agent.
 ```
-ssh-add ~/.ssh/id_rsa
+ssh-add ~/.ssh/github.com
 ```
   
   3- Add the SSH key to your GitHub account.
   Copy the content of the key and paste in the Github SSH keys section.
 ```
-cat ~/.ssh/id_rsa.pub
+cat ~/.ssh/github.com.pub
 ```
 
 
@@ -286,7 +293,6 @@ sudo ufw allow 53/tcp comment DNS
 sudo ufw allow 53/udp comment DNS
 sudo ufw allow 67/tcp comment DHCP
 sudo ufw allow 67/udp comment DHCP
-sudo ufw allow 546:547/udp comment "DHCP IPv6"
 ```
 
 
@@ -325,14 +331,14 @@ sudo apt install -y wireguard linux-headers
 
 Allow firewall rules
 ```
-sudo ufw allow 51820/udp comment Wireguard
+sudo ufw allow $WG_PORT/udp comment Wireguard
 ```
 
 Initiate Wireguard interface
 ```
 sudo dkms status
-sudo dkms build wireguard/1.0.20200520
-sudo dkms install wireguard/1.0.20200520
+sudo dkms build wireguard/xxxxxx
+sudo dkms install wireguard/xxxxxx
 sudo modprobe wireguard
 sudo wg-quick up wg0
 ```
