@@ -2,10 +2,10 @@
 
 ## Export variables
 ```
-export $SSH_PORT=nnnn
-export $WG_PORT=nnnn
-export $GIT_USER='Federico'
-export $GIT_MAIL='me@federicociro.com'
+export SSH_PORT=nnnn
+export WG_PORT=nnnn
+export GIT_USER='Federico'
+export GIT_MAIL='me@federicociro.com'
 ```
 
 ## Update the system
