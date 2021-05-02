@@ -118,19 +118,19 @@ lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 ```
 Check following link: https://superuser.com/questions/643765/creating-ext4-partition-from-console
 ```
-5. 
-6. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
+4. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
 ```
 sudo mkdir /mnt/$DISKNAME
 ```
-6. Mount the storage device at the mount point you created:
+5. Mount the storage device at the mount point you created:
 ```
 sudo mount /dev/sda1 /mnt/$DISKNAME
 ```
-7. Verify that the storage device is mounted successfully by listing the contents:
+6. Verify that the storage device is mounted successfully by listing the contents:
 ```
 sudo ls /mnt/$DISKNAME
 ```
+Optional: move /home or any other folder to the external disk(https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition).
 
 ### Setting up automatic mounting
 1. Get the UUID of the disk partition:
