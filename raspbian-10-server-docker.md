@@ -101,6 +101,49 @@ over_voltage=2
 arm_freq=1750
 ```
 
+## Mount a storage device (i.e.: USB)[2]
+You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
+1. Plug the storage device into a USB port on the Raspberry Pi.
+2. List all the disk partitions on the Pi using the following command:
+```
+lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
+```
+3. If disk is not formated yet, format disk to ext4
+```
+Check following link: https://superuser.com/questions/643765/creating-ext4-partition-from-console
+```
+5. 
+6. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
+```
+sudo mkdir /mnt/$DISKNAME
+```
+6. Mount the storage device at the mount point you created:
+```
+sudo mount /dev/sda1 /mnt/$DISKNAME
+```
+7. Verify that the storage device is mounted successfully by listing the contents:
+```
+sudo ls /mnt/$DISKNAME
+```
+
+### Setting up automatic mounting
+1. Get the UUID of the disk partition:
+```
+blkid
+```
+2. Find the disk partition from the list and note the UUID. For example, `5C24-1453`.
+3. Open the fstab file using a command line editor:
+```
+sudo nano /etc/fstab
+```
+4. Add the following line in the fstab file:
+```
+UUID=5C24-1453 /mnt/mydisk fstype defaults,auto,users,rw,nofail 0 0
+```
+Replace fstype with the type of your file system, which you found in step 2 of 'Mounting a storage device' above, for example: ntfs.
+5. If the filesystem type is FAT or NTFS, add `,umask=000` immediately after nofail - this will allow all users full read/write access to every file on the storage device.
+
+
 ## Install some utilities:
 ```
 sudo apt install -y tldr tree locate debian-keyring logrotate lnav
@@ -176,43 +219,6 @@ ssh-add ~/.ssh/github.com
 cat ~/.ssh/github.com.pub
 ```
 
-
-## Mount a storage device (i.e.: USB)[2]
-You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
-1. Plug the storage device into a USB port on the Raspberry Pi.
-2. List all the disk partitions on the Pi using the following command:
-```
-lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
-```
-3. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
-```
-sudo mkdir /mnt/$DISKNAME
-```
-4. Mount the storage device at the mount point you created:
-```
-sudo mount /dev/sda1 /mnt/$DISKNAME
-```
-5. Verify that the storage device is mounted successfully by listing the contents:
-```
-sudo ls /mnt/$DISKNAME
-```
-
-### Setting up automatic mounting
-1. Get the UUID of the disk partition:
-```
-blkid
-```
-2. Find the disk partition from the list and note the UUID. For example, `5C24-1453`.
-3. Open the fstab file using a command line editor:
-```
-sudo nano /etc/fstab
-```
-4. Add the following line in the fstab file:
-```
-UUID=5C24-1453 /mnt/mydisk fstype defaults,auto,users,rw,nofail 0 0
-```
-Replace fstype with the type of your file system, which you found in step 2 of 'Mounting a storage device' above, for example: ntfs.
-5. If the filesystem type is FAT or NTFS, add `,umask=000` immediately after nofail - this will allow all users full read/write access to every file on the storage device.
 
 ## Install Wireguard VPN
 Wireguard is still not available in stable repositories. It is neccesary to [install from Debian Backports](https://backports.debian.org/Instructions/).
