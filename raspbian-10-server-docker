@@ -1,13 +1,5 @@
 # Debian 10
 
-## Export variables
-```
-export $SSH_PORT=nnnn
-export $WG_PORT=nnnn
-export $GIT_USER='Federico'
-export $GIT_MAIL='me@federicociro.com'
-```
-
 ## Update the system
 ```
 sudo apt update
@@ -20,6 +12,13 @@ Quick alternative to avoid all apt-updates:
 sudo apt install -y 
 ```
 
+## Export variables
+```
+export $SSH_PORT=nnnn
+export $WG_PORT=nnnn
+export $GIT_USER='Federico'
+export $GIT_MAIL='me@federicociro.com'
+```
 
 ## Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
