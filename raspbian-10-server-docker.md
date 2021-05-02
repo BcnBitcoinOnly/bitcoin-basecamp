@@ -41,6 +41,11 @@ sudo rm sudoers.d/010_pi-nopasswd
 ### Harden' SSH security
 Edit `/etc/ssh/sshd_config` with the following [5]
 ```
+Port $SSH_PORT
+#AddressFamily any
+ListenAddress 0.0.0.0
+#ListenAddress ::
+
 # Logging
 SyslogFacility AUTH
 LogLevel INFO
