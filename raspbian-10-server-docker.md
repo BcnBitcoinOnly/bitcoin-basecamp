@@ -66,6 +66,8 @@ AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
 # To disable tunneled clear text passwords, change to no here!
 PasswordAuthentication no                                                                                                                
 PermitEmptyPasswords no
+
+UsePAM no
 ```
 
 ### Install and config a firewall [1]
@@ -77,7 +79,7 @@ Config some basic rules
 ```
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw limit $SSH_PORT/tcp
+sudo ufw limit $SSH_PORT/tcp comment SSH
 ```
 
 Enable the firewall
