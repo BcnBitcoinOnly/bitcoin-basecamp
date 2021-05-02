@@ -39,6 +39,12 @@ sudo rm sudoers.d/010_pi-nopasswd
 ```
 
 ### Harden' SSH security
+Add authorized public SSH keys
+```
+mkdir /home/$USER/.ssh/
+nano /home/$USER/.ssh/authorized_keys
+```
+
 Edit `/etc/ssh/sshd_config` with the following [5]
 ```
 Port $SSH_PORT
