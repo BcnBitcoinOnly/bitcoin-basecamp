@@ -234,16 +234,6 @@ cat ~/.ssh/github.com.pub
 
 
 ## Install Wireguard VPN
-Wireguard is still not available in stable repositories. It is neccesary to [install from Debian Backports](https://backports.debian.org/Instructions/).
-
-Add Debian Backports to sources.list and then accept GPG keys:
-```
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 04EE7237B7D453EC
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 648ACFD622F3D138
-```
-
-Add `deb http://deb.debian.org/debian buster-backports main` to file `/etc/apt/sources.list`. (Alternative recover from backups)
-
 Now, install Wireguard
 ```
 sudo apt update
@@ -254,18 +244,6 @@ Allow firewall rules
 ```
 sudo ufw allow $WG_PORT/udp comment Wireguard
 ```
-
-Initiate Wireguard interface
-```
-sudo dkms status
-sudo dkms build wireguard/xxxxxx
-sudo dkms install wireguard/xxxxxx
-sudo modprobe wireguard
-sudo wg-quick up wg0
-```
-
-If problem persist after rebuilding it for new kernel, try reinstalling it with `sudo dpkg-reconfigure wireguard-dkms`.
-
 
 Start Wireguard on boot
 ```
