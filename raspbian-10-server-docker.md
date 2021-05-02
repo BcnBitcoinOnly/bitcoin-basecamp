@@ -18,6 +18,7 @@ export SSH_PORT=nnnn
 export WG_PORT=nnnn
 export GIT_USER='Federico'
 export GIT_MAIL='me@federicociro.com'
+export NEW_USER=feder
 ```
 
 ## Overclock CPU [3] (optional)
@@ -142,19 +143,23 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 
 ## Harden server
-### Change user password
+### Change default user [6]
+Create new user and it to sudo and other groups
 ```
-passwd pi
+sudo adduser $NEW_USER
+sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi alice
+sudo su - alice
 ```
-
-### Disable passwordless sudo
-Edit with visudo `/etc/sudoers.d/010_pi-nopasswd` and change it to:
+Delete default "pi" user and permission to sudo without password for pi.
 ```
-pi ALL=(ALL) PASSWD: ALL
+sudo pkill -u pi
+sudo deluser pi
+sudo deluser -remove-home pi
+sudo rm sudoers.d/010_pi-nopasswd
 ```
 
 ## Harden' SSH security
-Edit /etc/ssh/sshd_config with the following [5]
+Edit `/etc/ssh/sshd_config` with the following [5]
 ```
 # Logging
 SyslogFacility AUTH
@@ -268,3 +273,4 @@ sudo mysql -u root < db.sql
 [3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
 [4]:https://docs.docker.com/engine/install/debian/
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+[6]:https://www.raspberrypi.org/documentation/configuration/security.md
