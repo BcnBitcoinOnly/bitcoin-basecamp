@@ -21,6 +21,72 @@ export GIT_MAIL='me@federicociro.com'
 export NEW_USER=feder
 ```
 
+
+## Harden server
+### Change default user [6]
+Create new user and it to sudo and other groups
+```
+sudo adduser $NEW_USER
+sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi alice
+sudo su - alice
+```
+Delete default "pi" user and permission to sudo without password for pi.
+```
+sudo pkill -u pi
+sudo deluser pi
+sudo deluser -remove-home pi
+sudo rm sudoers.d/010_pi-nopasswd
+```
+
+### Harden' SSH security
+Edit `/etc/ssh/sshd_config` with the following [5]
+```
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no               
+#StrictModes yes
+MaxAuthTries 6
+MaxSessions 10
+
+PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no                                                                                                                
+PermitEmptyPasswords no
+```
+
+### Install and config a firewall [1]
+Uncomplicated FireWall (UFW)
+```
+sudo apt install -y ufw
+```
+Config some basic rules
+```
+sudo ufw default deny incoming
+sudo ufw default allow outgoing
+sudo ufw limit $SSH_PORT/tcp
+```
+
+Enable the firewall
+```
+sudo ufw enable
+```
+
+### Install Fail2ban
+```
+sudo apt install -y fail2ban
+```
+
+Configure fail2ban as [following](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server):
+
 ## Overclock CPU [3] (optional)
 Edit /boot/config.txt and change the following:
 ```
@@ -140,73 +206,6 @@ UUID=5C24-1453 /mnt/mydisk fstype defaults,auto,users,rw,nofail 0 0
 ```
 Replace fstype with the type of your file system, which you found in step 2 of 'Mounting a storage device' above, for example: ntfs.
 5. If the filesystem type is FAT or NTFS, add `,umask=000` immediately after nofail - this will allow all users full read/write access to every file on the storage device.
-
-
-## Harden server
-### Change default user [6]
-Create new user and it to sudo and other groups
-```
-sudo adduser $NEW_USER
-sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi alice
-sudo su - alice
-```
-Delete default "pi" user and permission to sudo without password for pi.
-```
-sudo pkill -u pi
-sudo deluser pi
-sudo deluser -remove-home pi
-sudo rm sudoers.d/010_pi-nopasswd
-```
-
-## Harden' SSH security
-Edit `/etc/ssh/sshd_config` with the following [5]
-```
-# Logging
-SyslogFacility AUTH
-LogLevel INFO
-
-# Authentication:
-
-#LoginGraceTime 2m
-PermitRootLogin no               
-#StrictModes yes
-MaxAuthTries 6
-MaxSessions 10
-
-PubkeyAuthentication yes
-
-# Expect .ssh/authorized_keys2 to be disregarded by default in future.
-AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
-
-# To disable tunneled clear text passwords, change to no here!
-PasswordAuthentication no                                                                                                                
-PermitEmptyPasswords no
-```
-
-
-### Install and config a firewall [1]
-Uncomplicated FireWall (UFW)
-```
-sudo apt install -y ufw
-```
-Config some basic rules
-```
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
-sudo ufw limit $SSH_PORT/tcp
-```
-
-Enable the firewall
-```
-sudo ufw enable
-```
-
-### Install Fail2ban
-```
-sudo apt install -y fail2ban
-```
-
-Configure fail2ban as [following](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server):
 
 ## Install Wireguard VPN
 Wireguard is still not available in stable repositories. It is neccesary to [install from Debian Backports](https://backports.debian.org/Instructions/).
