@@ -21,6 +21,13 @@ export GIT_MAIL='me@federicociro.com'
 export NEW_USER=feder
 ```
 
+## Edit hostname
+Edit the following files and reboot
+```
+sudo nano /etc/hostname
+sudo nano /etc hosts
+sudo reboot now
+```
 
 ## Harden server
 ### Change default user [6]
