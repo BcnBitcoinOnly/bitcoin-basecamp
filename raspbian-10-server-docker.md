@@ -98,7 +98,7 @@ sudo ufw enable
 sudo apt install -y fail2ban
 ```
 
-Configure fail2ban as [following](https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server):
+Configure fail2ban as (following)[6]
 
 ## Overclock CPU [3] (optional)
 Edit /boot/config.txt and change the following:
@@ -130,7 +130,7 @@ sudo mount /dev/sda1 /mnt/$DISKNAME
 ```
 sudo ls /mnt/$DISKNAME
 ```
-Optional: move /home or any other folder to the external disk(https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition).
+Optional: (move /home or any other folder to the external disk)[7].
 
 ### Setting up automatic mounting
 1. Get the UUID of the disk partition:
@@ -285,10 +285,12 @@ sudo mysql -u root < db.sql
 ```
 
 
-
+## Sources
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
 [3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
 [4]:https://docs.docker.com/engine/install/debian/
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 [6]:https://www.raspberrypi.org/documentation/configuration/security.md
+[7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
+[8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
