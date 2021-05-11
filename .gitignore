@@ -1,4 +1,5 @@
 /docker/.env
 /docker/pihole/
 /docker/portainer/
-/docker/npm/
+/docker/nextcloud/
+/docker/nextcloud-db/
