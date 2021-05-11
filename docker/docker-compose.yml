@@ -29,13 +29,15 @@ services:
       # run `touch ./var-log/pihole.log` first unless you like errors
       # - './var-log/pihole.log:/var/log/pihole.log'
     environment:
-      TZ: 'Europe/Madrid'
-      WEBPASSWORD: '7yCY8flx1254'
-      DNS1: '127.0.0.1#5053'
-      DNS2: '127.0.0.1#5053'
-      INTERFACE: 'eth0'
-      DNSMASQ_LISTENING: 'eth0'
+      - TZ='Europe/Madrid'
+      - WEBPASSWORD=/run/secrets/pihole_password
+      - DNS1='127.0.0.1#5053'
+      - DNS2='127.0.0.1#5053'
+      - INTERFACE='eth0'
+      - DNSMASQ_LISTENING='eth0'
     restart: always
+    secrets:
+      - pihole_password
   unbound:
     container_name: unbound
     image: klutchell/unbound
@@ -85,6 +87,8 @@ volumes:
   nextcloud:
   nextcloud-db-data:
 secrets:
+  pihole_password:
+    file: pihole_password.txt
   nextcloud_admin_password:
     file: nextcloud_admin_password.txt
   nextcloud_admin_user:
