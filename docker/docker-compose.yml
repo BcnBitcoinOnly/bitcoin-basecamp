@@ -2,7 +2,7 @@ version: "3.2"
 services:
   portainer:
     container_name: portainer
-    image: portainer/portainer
+    image: portainer/portainer-ce
     command: -H unix:///var/run/docker.sock
     restart: always
     ports:
@@ -42,12 +42,9 @@ services:
     ports:
       - '5053:5053/udp'
     restart: always
-  nextcloud-db:
-    container_name: nextcloud-database
+  nextcloud-database:
+    container_name: nextcloud-db
     image: postgres
-    restart: always
-    volumes:
-      - nextcloud-db-postgres:/var/lib/postgresql/data
     environment:
       - POSTGRES_DB_FILE=/run/secrets/postgres_db
       - POSTGRES_USER_FILE=/run/secrets/postgres_user
@@ -56,23 +53,26 @@ services:
       - postgres_db
       - postgres_password
       - postgres_user
+    restart: always
+    volumes:
+      - ./nextcloud-db-data:/var/lib/postgresql/data
   nextcloud:
     container_name: nextcloud
     image: nextcloud
     restart: always
     ports:
       - 8082:80
-    volumes:
-      - nextcloud:/var/www/html
     environment:
-      - POSTGRES_HOST=nextcloud-db
+      - POSTGRES_HOST=nextcloud-database
       - POSTGRES_DB_FILE=/run/secrets/postgres_db
       - POSTGRES_USER_FILE=/run/secrets/postgres_user
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
       - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
       - NEXTCLOUD_ADMIN_USER_FILE=/run/secrets/nextcloud_admin_user
+    volumes:
+      - ./nextcloud:/var/www/html
     depends_on:
-      - nextcloud-db
+      - nextcloud-database
     secrets:
       - nextcloud_admin_password
       - nextcloud_admin_user
@@ -83,7 +83,7 @@ volumes:
   portainer:
   pihole:
   nextcloud:
-  nextcloud-db-postgres:
+  nextcloud-db-data:
 secrets:
   nextcloud_admin_password:
     file: nextcloud_admin_password.txt
