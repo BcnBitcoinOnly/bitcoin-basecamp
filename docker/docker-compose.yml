@@ -43,34 +43,55 @@ services:
       - '5053:5053/udp'
     restart: always
   nextcloud-db:
-    container_name: nextcloud-db
-    image: mariadb
+    container_name: nextcloud-database
+    image: postgres
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
-      - nextcloud-db:/var/lib/mysql
+      - nextcloud-db-postgres:/var/lib/postgresql/data
     environment:
-      - MYSQL_ROOT_PASSWORD=pass1
-      - MYSQL_PASSWORD=pass2
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - POSTGRES_DB_FILE=/run/secrets/postgres_db
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+    secrets:
+      - postgres_db
+      - postgres_password
+      - postgres_user
   nextcloud:
     container_name: nextcloud
     image: nextcloud
     restart: always
     ports:
       - 8082:80
-    links:
-      - nextcloud-db
     volumes:
       - nextcloud:/var/www/html
     environment:
-      - MYSQL_PASSWORD=pass2
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=nextcloud-db
+      - POSTGRES_HOST=nextcloud-db-postgres
+      - POSTGRES_DB_FILE=/run/secrets/postgres_db
+      - POSTGRES_USER_FILE=/run/secrets/postgres_user
+      - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
+      - NEXTCLOUD_ADMIN_PASSWORD_FILE=/run/secrets/nextcloud_admin_password
+      - NEXTCLOUD_ADMIN_USER_FILE=/run/secrets/nextcloud_admin_user
+    depends_on:
+      - nextcloud-db
+    secrets:
+      - nextcloud_admin_password
+      - nextcloud_admin_user
+      - postgres_db
+      - postgres_password
+      - postgres_user
 volumes:
   portainer:
   pihole:
   nextcloud:
-  nextcloud-db:
+  nextcloud-db-postgres:
+secrets:
+  nextcloud_admin_password:
+    file: nextcloud_admin_password.txt # put admin password to this file
+  nextcloud_admin_user:
+    file: nextcloud_admin_user.txt # put admin username to this file
+  postgres_db:
+    file: postgres_db.txt # put postgresql db name to this file
+  postgres_password:
+    file: postgres_password.txt # put postgresql password to this file
+  postgres_user:
+    file: postgres_user.txt # put postgresql username to this file
