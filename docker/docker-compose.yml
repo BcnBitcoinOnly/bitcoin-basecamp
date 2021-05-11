@@ -42,6 +42,35 @@ services:
     ports:
       - '5053:5053/udp'
     restart: always
+  nextcloud-db:
+    container_name: nextcloud-db
+    image: mariadb
+    restart: always
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    volumes:
+      - nextcloud-db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass1
+      - MYSQL_PASSWORD=pass2
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud
+    restart: always
+    ports:
+      - 8082:80
+    links:
+      - nextcloud-db
+    volumes:
+      - nextcloud:/var/www/html
+    environment:
+      - MYSQL_PASSWORD=pass2
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=nextcloud-db
 volumes:
   portainer:
   pihole:
+  nextcloud:
+  nextcloud-db:
