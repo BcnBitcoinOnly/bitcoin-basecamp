@@ -65,7 +65,7 @@ services:
     volumes:
       - nextcloud:/var/www/html
     environment:
-      - POSTGRES_HOST=nextcloud-db-postgres
+      - POSTGRES_HOST=nextcloud-db
       - POSTGRES_DB_FILE=/run/secrets/postgres_db
       - POSTGRES_USER_FILE=/run/secrets/postgres_user
       - POSTGRES_PASSWORD_FILE=/run/secrets/postgres_password
@@ -86,12 +86,12 @@ volumes:
   nextcloud-db-postgres:
 secrets:
   nextcloud_admin_password:
-    file: nextcloud_admin_password.txt # put admin password to this file
+    file: nextcloud_admin_password.txt
   nextcloud_admin_user:
-    file: nextcloud_admin_user.txt # put admin username to this file
+    file: nextcloud_admin_user.txt
   postgres_db:
-    file: postgres_db.txt # put postgresql db name to this file
+    file: postgres_db.txt
   postgres_password:
-    file: postgres_password.txt # put postgresql password to this file
+    file: postgres_password.txt
   postgres_user:
-    file: postgres_user.txt # put postgresql username to this file
+    file: postgres_user.txt
