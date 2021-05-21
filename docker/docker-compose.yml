@@ -72,8 +72,8 @@ services:
       - MYSQL_HOST=nextcloud-database
 #      - NEXTCLOUD_ADMIN_PASSWORD=/run/secrets/nextcloud_admin_password
 #      - NEXTCLOUD_ADMIN_USER=admin
-#    volumes:
-#      - ./nextcloud:/var/www/html
+    volumes:
+      - ./nextcloud:/var/www/html
     depends_on:
       - nextcloud-database
     secrets:
@@ -82,7 +82,7 @@ services:
 volumes:
   portainer:
   pihole:
-#  nextcloud:
+  nextcloud:
   nextcloud-db:
 secrets:
   pihole_password:
