@@ -31,8 +31,8 @@ services:
     environment:
       - TZ='Europe/Madrid'
       - WEBPASSWORD=/run/secrets/pihole_password
-      - DNS1=127.0.0.1#5053
-      - DNS2=127.0.0.1#5053
+#      - DNS1=1.1.1.1
+#      - DNS2=1.0.0.1
       - INTERFACE=eth0
       - DNSMASQ_LISTENING=eth0
     restart: always
