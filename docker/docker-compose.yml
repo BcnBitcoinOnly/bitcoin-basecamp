@@ -28,16 +28,7 @@ services:
       - './pihole/etc-dnsmasq.d:/etc/dnsmasq.d/'
       # run `touch ./var-log/pihole.log` first unless you like errors
       # - './var-log/pihole.log:/var/log/pihole.log'
-    environment:
-      - TZ='Europe/Madrid'
-      - WEBPASSWORD=/run/secrets/pihole_password
-#      - DNS1=1.1.1.1
-#      - DNS2=1.0.0.1
-      - INTERFACE=eth0
-      - DNSMASQ_LISTENING=eth0
     restart: always
-    secrets:
-      - pihole_password
   nextcloud-database:
     container_name: nextcloud-db
     image: mariadb
@@ -64,14 +55,12 @@ services:
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=nextcloud-database
-#      - NEXTCLOUD_ADMIN_PASSWORD=/run/secrets/nextcloud_admin_password
-#      - NEXTCLOUD_ADMIN_USER=admin
+
     volumes:
       - ./nextcloud:/var/www/html
     depends_on:
       - nextcloud-database
     secrets:
-#      - nextcloud_admin_password
       - mariadb_password
   bitwarden:
     container_name: vaultwarden
@@ -79,8 +68,6 @@ services:
     ports: 
       - 8100:80/tcp
     restart: always
-    environment:
-      - WEBSOCKET_ENABLED=true  # Enable WebSocket notifications.
     volumes:
       - './vaultwarden:/data/'
 volumes:
@@ -90,10 +77,6 @@ volumes:
   nextcloud-db:
   vaultwarden:
 secrets:
-  pihole_password:
-    file: pihole_password.txt
-#  nextcloud_admin_password:
-#    file: nextcloud_admin_password.txt
   mariadb_root_password:
     file: mariadb_root_password.txt
   mariadb_password:
