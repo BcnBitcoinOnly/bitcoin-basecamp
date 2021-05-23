@@ -78,6 +78,9 @@ services:
     image: vaultwarden/server:latest
     ports: 
       - 8100:80/tcp
+    restart: always
+    environment:
+      - WEBSOCKET_ENABLED=true  # Enable WebSocket notifications.
     volumes:
       - './vaultwarden:/data/'
 volumes:
