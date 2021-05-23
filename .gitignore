@@ -4,4 +4,4 @@
 /docker/portainer/
 /docker/nextcloud/
 /docker/nextcloud-db/
-
+/docker/vaultwarden/

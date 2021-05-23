@@ -77,7 +77,7 @@ services:
     container_name: vaultwarden
     image: vaultwarden/server:latest
     ports: 
-      - 80:80/tcp
+      - 8100:80/tcp
     volumes:
       - './vaultwarden:/data/'
 volumes:
