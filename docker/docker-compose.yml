@@ -1,6 +1,6 @@
 version: "3.2"
 services:
-  portainer:
+  container_manager:
     container_name: portainer
     image: portainer/portainer-ce
     command: -H unix:///var/run/docker.sock
@@ -11,7 +11,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ./portainer/data:/data
-  pihole:
+  adblocker:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
@@ -73,11 +73,19 @@ services:
     secrets:
 #      - nextcloud_admin_password
       - mariadb_password
+  bitwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    ports: 
+      - 80:80/tcp
+    volumes:
+      - './vaultwarden:/data/'
 volumes:
   portainer:
   pihole:
   nextcloud:
   nextcloud-db:
+  vaultwarden:
 secrets:
   pihole_password:
     file: pihole_password.txt
