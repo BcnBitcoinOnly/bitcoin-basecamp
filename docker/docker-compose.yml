@@ -17,7 +17,6 @@ services:
     ports:
       - 53:53/tcp
       - 53:53/udp
-#      - 67:67/udp
       - 8080:80/tcp
       - 8081:443/tcp
     dns:
@@ -66,8 +65,10 @@ services:
     container_name: vaultwarden
     image: vaultwarden/server:latest
     ports: 
-      - 8100:80/tcp
+      - 8180:80/tcp
     restart: always
+    environment:
+      - WEBSOCKET_ENABLED=true
     volumes:
       - './vaultwarden:/data/'
 volumes:
