@@ -1,7 +1,7 @@
 version: "3.2"
 services:
   container_manager:
-    container_name: portainer
+    container_name: portainer-ce
     image: portainer/portainer-ce
     command: -H unix:///var/run/docker.sock
     restart: always
@@ -10,15 +10,15 @@ services:
       - 8000:8000
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - ./portainer/data:/data
+      - ./portainer_data:/data
   adblocker:
     container_name: pihole
     image: pihole/pihole:latest
     ports:
       - 53:53/tcp
       - 53:53/udp
-      - 8080:80/tcp
-      - 8081:443/tcp
+      - 8110:80/tcp
+      - 8112:443/tcp
     dns:
       - 1.1.1.1
       - 1.0.0.1
@@ -48,15 +48,16 @@ services:
     image: nextcloud
     restart: always
     ports:
-      - 8090:80
+      - 8210:80
     environment:
       - MYSQL_PASSWORD=/run/secrets/mariadb_password
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
       - MYSQL_HOST=nextcloud-database
-
     volumes:
       - ./nextcloud:/var/www/html
+      - ./nextcloud-config:/var/www/html/config
+      - ./nextcloud-data:/var/www/html/data
     depends_on:
       - nextcloud-database
     secrets:
@@ -65,16 +66,18 @@ services:
     container_name: vaultwarden
     image: vaultwarden/server:latest
     ports: 
-      - 8180:80/tcp
+      - 8310:80/tcp
     restart: always
     environment:
       - WEBSOCKET_ENABLED=true
     volumes:
       - './vaultwarden:/data/'
 volumes:
-  portainer:
+  portainer_data:
   pihole:
   nextcloud:
+  nextcloud-config:
+  nextcloud-data:
   nextcloud-db:
   vaultwarden:
 secrets:
