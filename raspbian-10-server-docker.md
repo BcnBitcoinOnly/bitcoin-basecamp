@@ -14,10 +14,6 @@ sudo apt install -y
 
 ## Export variables
 ```
-export SSH_PORT=nnnn
-export WG_PORT=nnnn
-export GIT_USER='Federico'
-export GIT_MAIL='me@federicociro.com'
 export NEW_USER=feder
 ```
 
@@ -25,7 +21,7 @@ export NEW_USER=feder
 Edit the following files and reboot
 ```
 sudo nano /etc/hostname
-sudo nano /etc hosts
+sudo nano /etc/hosts
 sudo reboot now
 ```
 
@@ -34,15 +30,21 @@ sudo reboot now
 Create new user and it to sudo and other groups
 ```
 sudo adduser $NEW_USER
-sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi alice
-sudo su - alice
+sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi $NEW_USER
+sudo reboot now
 ```
 Delete default "pi" user and permission to sudo without password for pi.
 ```
-sudo pkill -u pi
-sudo deluser pi
 sudo deluser -remove-home pi
 sudo rm sudoers.d/010_pi-nopasswd
+```
+
+## Export variables again
+```
+export SSH_PORT=nnnn
+export WG_PORT=nnnn
+export GIT_USER='Federico'
+export GIT_MAIL='me@federicociro.com'
 ```
 
 ### Harden' SSH security
