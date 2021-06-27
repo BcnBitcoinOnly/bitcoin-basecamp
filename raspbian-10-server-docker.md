@@ -223,12 +223,17 @@ git config --global user.email $GIT_MAIL
 ssh-keygen -t rsa -b 4096 -C $GIT_MAIL
 ```
   
-  2- Add the SSH key to your SSH-key agent.
+  2- Initiate the SSH-key agent.
+```
+eval `ssh-agent -s`
+```
+
+  3- Add the SSH key to your SSH-key agent.
 ```
 ssh-add ~/.ssh/github.com
 ```
   
-  3- Add the SSH key to your GitHub account.
+  4- Add the SSH key to your GitHub account.
   Copy the content of the key and paste in the Github SSH keys section.
 ```
 cat ~/.ssh/github.com.pub
