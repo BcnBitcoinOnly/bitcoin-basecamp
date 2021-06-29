@@ -93,6 +93,9 @@ PermitEmptyPasswords no
 UsePAM no
 ```
 
+Restart SSH service and test the SSH connection with Keys before logging out.
+```sudo service sshd restart```
+
 ### Install and config a firewall [1]
 Uncomplicated FireWall (UFW)
 ```
