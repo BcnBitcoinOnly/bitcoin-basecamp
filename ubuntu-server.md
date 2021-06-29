@@ -1,6 +1,14 @@
 # Ubuntu Server 21.04
 Starting from a fresh Ubuntu Server 21.04 (non LTS) install for ARM architecture.
 
+## Overclock CPU [3] (optional)
+Edit /boot/config.txt and change the following:
+```
+over_voltage=2
+arm_freq=1750
+sudo reboot now
+```
+
 ## Update the system
 ```
 sudo apt update
@@ -13,11 +21,6 @@ sudo reboot now
 sudo apt install -y 
 ```
 
-## Export variables
-```
-export NEW_USER=feder
-```
-
 ## Edit hostname
 Edit the following files and reboot
 ```
@@ -27,23 +30,33 @@ sudo reboot now
 ```
 
 ## Harden server
+### Do some check routines:
+- Ensure Only root Has UID of 0
+```
+awk -F: '($3=="0"){print}' /etc/passwd
+```
+- Check for Accounts with Empty Passwords
+```
+cat /etc/shadow | awk -F: '($2==""){print $1}'
+```
+
 ### Change default user [6]
 Create new user and it to sudo and other groups
 ```
+export NEW_USER=feder
 sudo adduser $NEW_USER
 sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi $NEW_USER
 sudo reboot now
 ```
-Delete default "pi" user and permission to sudo without password for pi.
+Delete default "ubuntu" user and permission to sudo without password for pi.
 ```
-sudo deluser -remove-home pi
+sudo deluser -remove-home ubuntu
 sudo rm sudoers.d/010_pi-nopasswd
 ```
 
 ## Export variables again
 ```
-export SSH_PORT=nnnn
-export WG_PORT=nnnn
+export SSH_PORT=22222
 export GIT_USER='Federico'
 export GIT_MAIL='me@federicociro.com'
 ```
@@ -107,15 +120,7 @@ sudo ufw enable
 ```
 sudo apt install -y fail2ban
 ```
-
 Configure fail2ban as (following)[6]
-
-## Overclock CPU [3] (optional)
-Edit /boot/config.txt and change the following:
-```
-over_voltage=2
-arm_freq=1750
-```
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
@@ -315,10 +320,11 @@ sudo systemctl reload apache2
 ## Sources
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
-[3]:https://magpi.raspberrypi.org/articles/how-to-overclock-raspberry-pi-4
+[3]:https://friendsoflittleyus.nl/overclocking-raspberry-pi4-on-ubuntu-20-10/
 [4]:https://docs.docker.com/engine/install/debian/
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 [6]:https://www.raspberrypi.org/documentation/configuration/security.md
 [7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
 [8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+[10]:https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/
