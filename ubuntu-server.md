@@ -262,21 +262,6 @@ sudo systemctl enable wg-quick@wg0
 Allow IP forwarding (to allow DNS request in a different subnet)
 Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative recover from backups)
 
-# Recover backups
-To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
-
-##  Restore Mysql databases
-Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
-Uncompress backup and:
-```
-gzip -dk db.gz
-```
-
-Restore all databases
-```
-sudo mysql -u root < db.sql
-```
-
 # Install services
 ## Install a LAMP server [9]
 ### Install Apache server
@@ -309,6 +294,21 @@ Edit Apache php preference order in `/etc/apache2/mods-enabled/dir.conf`
 Move the PHP index file to the first position after the DirectoryIndex specification.
 ```
 sudo systemctl reload apache2
+```
+
+# Recover backups
+To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
+
+##  Restore Mysql databases
+Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
+Uncompress backup and:
+```
+gzip -dk db.gz
+```
+
+Restore all databases
+```
+sudo mysql -u root < db.sql
 ```
 
 
