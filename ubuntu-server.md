@@ -263,14 +263,37 @@ Allow IP forwarding (to allow DNS request in a different subnet)
 Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative recover from backups)
 
 # Install services
+## Install a LEMP stack (Linux + Nginx + MariaDB + PHP)
+### Install Nginx (webserver)
+```
+sudo apt install -y nginx certbot python-certbot-nginx webhook
+```
 
+More details in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10) and in [Certbot](https://certbot.eff.org/lets-encrypt/debianbuster-nginx).
 
+Recover config files from Backup.
 
+Allow Nginx in the firewall
+```
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
+```
 
-# Recover backups
+#### Restore Nginx configurations
+Restore from backup `etc/nginx` and generate new SSL certificates for each site.
+
+### Install Maria DB (SQL server)
+```
+sudo apt install -y mariadb-server
+```
+
+Configurar db root user and answer "Y" to all the questions
+```
+sudo mysql_secure_installation
+```
+
+####  Restore Mysql databases
 To recover backups, always do it as `root` and with `cp -rp`. Only neccesary files. Watch out for `/etc/sudoers` and `/etc/passwd` specially. Don't override them.
-
-##  Restore Mysql databases
 Restore mysqldump file (.sql) from backup (see `var/lib/mysql/backups`).
 Uncompress backup and:
 ```
@@ -281,6 +304,45 @@ Restore all databases
 ```
 sudo mysql -u root < db.sql
 ```
+
+### Install PHP and some modules
+```
+sudo apt install -y php-fpm php-mysql php-bcmath php-gmp php-imagick
+```
+
+PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
+
+#### Install phpMyAdmin
+```
+sudo apt install -y phpmyadmin php-mbstring php-zip php-gd php-json php-curl php7.3-mbstring
+```
+
+## Install Pi-Hole
+### Install and configure the [prerequisites](https://docs.pi-hole.net/guides/nginx-configuration/)
+```
+sudo apt install -y nginx php7.3-fpm php7.3-cgi php7.3-xml php7.3-sqlite3 php7.3-intl apache2-utils
+```
+
+```
+wget -O basic-install.sh https://install.pi-hole.net
+sudo bash basic-install.sh
+sudo usermod -aG pihole www-data
+```
+
+Allow ports in firewall
+```
+sudo ufw allow 53/tcp comment DNS
+sudo ufw allow 53/udp comment DNS
+sudo ufw allow 67/tcp comment DHCP
+sudo ufw allow 67/udp comment DHCP
+```
+
+## Install Unbound
+```
+sudo apt install -y unbound
+```
+
+See [Pi-Hole Docs](https://docs.pi-hole.net/guides/unbound/) to config Unbound and Pi-Hole. (Alternative recover from backups)
 
 
 ## Sources
