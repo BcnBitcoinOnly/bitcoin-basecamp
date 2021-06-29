@@ -1,11 +1,11 @@
 # Ubuntu Server 21.04
 Starting from a fresh Ubuntu Server 21.04 (non LTS) install for ARM architecture.
 
-## Overclock CPU [3] (optional)
+## Overclock CPU [3] (optional - use cooler fan)
 Edit /boot/config.txt and change the following:
 ```
-over_voltage=2
-arm_freq=1750
+over_voltage=4
+arm_freq=1850
 sudo reboot now
 ```
 
@@ -14,11 +14,6 @@ sudo reboot now
 sudo apt update
 sudo apt -y full-upgrade
 sudo reboot now
-```
-
-## Quick alternative to avoid all apt-updates:
-```
-sudo apt install -y 
 ```
 
 ## Edit hostname
@@ -45,13 +40,12 @@ Create new user and it to sudo and other groups
 ```
 export NEW_USER=feder
 sudo adduser $NEW_USER
-sudo usermod -a -G adm,dialout,cdrom,sudo,audio,video,plugdev,games,users,input,netdev,gpio,i2c,spi $NEW_USER
+sudo usermod -a -G adm,dialout,cdrom,floppy,sudo,audio,video,dip,plugdev,games,users,input,netdev,lxd $NEW_USER
 sudo reboot now
 ```
 Delete default "ubuntu" user and permission to sudo without password for pi.
 ```
 sudo deluser -remove-home ubuntu
-sudo rm sudoers.d/010_pi-nopasswd
 ```
 
 ## Export variables again
