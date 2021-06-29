@@ -127,9 +127,8 @@ You can mount your storage device at a specific folder location. It is conventio
 lsblk -o UUID,NAME,FSTYPE,SIZE,MOUNTPOINT,LABEL,MODEL
 ```
 3. If disk is not formated yet, format disk to ext4
-```
-Check following link: https://superuser.com/questions/643765/creating-ext4-partition-from-console
-```
+Check following link: [https://superuser.com/questions/643765/creating-ext4-partition-from-console]
+
 4. Create a target folder to be the mount point of the storage device. The mount point name used in this case is mydisk. You can specify a name of your choice:
 ```
 sudo mkdir /mnt/$DISKNAME
@@ -164,7 +163,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils libraspberrypi-bin
 ```
 
 ### Install backups utilities
