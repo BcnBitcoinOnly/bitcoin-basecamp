@@ -51,8 +51,6 @@ sudo deluser -remove-home ubuntu
 ## Export variables again
 ```
 export SSH_PORT=22222
-export GIT_USER='Federico'
-export GIT_MAIL='me@federicociro.com'
 ```
 
 ### Harden' SSH security
@@ -204,6 +202,8 @@ sudo usermod -aG docker $USER
 
 ### Install Git
 ```
+export GIT_USER='Federico'
+export GIT_MAIL='me@federicociro.com'
 sudo apt install -y git
 ```
 #### Set Global Credentials
