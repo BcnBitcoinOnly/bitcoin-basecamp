@@ -161,7 +161,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils libraspberrypi-bin
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils libraspberrypi-bin net-tools
 ```
 
 ### Install backups utilities
