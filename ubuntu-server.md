@@ -103,7 +103,7 @@ Config some basic rules
 ```
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw limit $SSH_PORT/tcp comment SSH
+sudo ufw limit from 192.168.0.0/16 to any port $SSH_PORT proto tcp comment 'SSH'
 ```
 
 Enable the firewall
@@ -161,7 +161,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils libraspberrypi-bin net-tools
+sudo apt install -y tldr tree locate logrotate lnav dnsutils libraspberrypi-bin net-tools
 ```
 
 ### Install backups utilities
@@ -266,7 +266,7 @@ Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative reco
 ## Install a LEMP stack (Linux + Nginx + MariaDB + PHP)
 ### Install Nginx (webserver)
 ```
-sudo apt install -y nginx certbot python-certbot-nginx webhook
+sudo apt install -y nginx certbot python-certbot-nginx python3-certbot-nginx webhook
 ```
 
 More details in this [tutorial](https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10) and in [Certbot](https://certbot.eff.org/lets-encrypt/debianbuster-nginx).
@@ -331,10 +331,8 @@ sudo usermod -aG pihole www-data
 
 Allow ports in firewall
 ```
-sudo ufw allow 53/tcp comment DNS
-sudo ufw allow 53/udp comment DNS
-sudo ufw allow 67/tcp comment DHCP
-sudo ufw allow 67/udp comment DHCP
+sudo ufw allow from 192.168.0.0/16 to any port 53 proto tcp comment 'DNS Pi-Hole'
+sudo ufw allow from 192.168.0.0/16 to any port 53 proto udp comment 'DNS Pi-Hole'
 ```
 
 ## Install Unbound
