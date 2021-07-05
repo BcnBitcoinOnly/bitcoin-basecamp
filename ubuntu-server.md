@@ -280,7 +280,7 @@ sudo ufw allow 'Nginx HTTPS'
 ```
 
 #### Restore Nginx configurations
-Restore from backup `etc/nginx` and generate new SSL certificates for each site.
+Restore from backup `etc/nginx/sites-available` and generate new SSL certificates for each site.
 
 ### Install Maria DB (SQL server)
 ```
@@ -310,7 +310,17 @@ sudo mysql -u root < db.sql
 sudo apt install -y php-fpm php-mysql php-bcmath php-gmp php-imagick
 ```
 
-PHP 7.4 not available from official repositories for Raspbian as per Dec-2020. Unnoficial one from [here](https://janw.me/2019/installing-php7-4-rapsberry-pi/).
+Disable "open_basedir" for PHP FPM:
+
+```
+export PHP_VERSION=$(php -r "echo PHP_VERSION;" | grep --only-matching --perl-regexp "7.\d+")
+sudo nano /etc/php/$PHP_VERSION/fpm/php.ini
+```
+Set ```open_basedir = none```
+
+```
+sudo service php$PHP_VERSION-fpm restart
+```
 
 #### Install phpMyAdmin
 ```
