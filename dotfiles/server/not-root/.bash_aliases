@@ -15,7 +15,7 @@ alias temp='vcgencmd measure_temp'
 alias lss='ls -la --block-size=M'
 
 # Listening ports
-alias ports='sudo netstat -tulpn | grep LISTEN'
+alias ports='sudo netstat -tulpn'
 alias ports2='sudo ss -lptn'
 
 # Others
