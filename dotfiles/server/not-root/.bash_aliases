@@ -126,6 +126,7 @@ alias daws=d-aws-cli-fn
 alias dc=dc-fn
 alias dcu="docker-compose up -d"
 alias dcd="docker-compose down"
+alias dcc="docker-compose config"
 alias dcr=dcr-fn
 alias dex=dex-fn
 alias di=di-fn
