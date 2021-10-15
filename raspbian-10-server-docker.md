@@ -59,7 +59,7 @@ sudo reboot now
 Delete default "pi" user and permission to sudo without password for pi.
 ```
 sudo deluser -remove-home pi
-sudo rm sudoers.d/010_pi-nopasswd
+sudo rm /etc/sudoers.d/010_pi-nopasswd
 ```
 
 
