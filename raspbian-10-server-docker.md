@@ -1,5 +1,9 @@
 # Raspberry OS 11
 
+## Enable SSH
+Create a file named "ssh" in the boot partition
+
+
 ## Update the system
 ```
 sudo apt update
@@ -106,12 +110,15 @@ sudo apt install -y fail2ban
 
 Configure fail2ban as (following)[6]
 
-## Overclock CPU [3] (optional)
+## Edit /boot/config.txt
+### Overclock CPU [3] (optional)
 Edit /boot/config.txt and change the following:
 ```
 over_voltage=2
-arm_freq=1750
+arm_freq=1850
 ```
+
+### 
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
