@@ -4,6 +4,27 @@
 Create a file named "ssh" in the boot partition
 
 
+## Edit /boot/config.txt
+### Overclock CPU [3] (optional)
+Edit /boot/config.txt and change the following:
+```
+over_voltage=2
+arm_freq=1850
+```
+
+### Add parameters for HiFi DAC [10]
+Disable default module snd_bcm2835 (RPI audio jack)
+Comment below paramater
+```
+# dtparam=audio=on
+```
+
+Enable HiFiBerry DAC2 HD module 
+```
+dtoverlay=hifiberry-dacplushd
+```
+
+
 ## Update the system
 ```
 sudo apt update
@@ -110,15 +131,6 @@ sudo apt install -y fail2ban
 
 Configure fail2ban as (following)[6]
 
-## Edit /boot/config.txt
-### Overclock CPU [3] (optional)
-Edit /boot/config.txt and change the following:
-```
-over_voltage=2
-arm_freq=1850
-```
-
-### 
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
@@ -325,3 +337,4 @@ sudo systemctl reload apache2
 [7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
 [8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+[10]:https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
