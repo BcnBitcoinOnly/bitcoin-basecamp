@@ -1,21 +1,12 @@
-# Debian 10
+# Raspberry OS 11
 
 ## Update the system
 ```
 sudo apt update
 sudo apt -y full-upgrade
-sudo reboot now
 ```
+Reboot after editing the hostname
 
-## Quick alternative to avoid all apt-updates:
-```
-sudo apt install -y 
-```
-
-## Export variables
-```
-export NEW_USER=feder
-```
 
 ## Edit hostname
 Edit the following files and reboot
@@ -24,6 +15,13 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 sudo reboot now
 ```
+
+
+## Export variables
+```
+export NEW_USER=feder
+```
+
 
 ## Harden server
 ### Change default user [6]
@@ -39,10 +37,9 @@ sudo deluser -remove-home pi
 sudo rm sudoers.d/010_pi-nopasswd
 ```
 
+
 ## Export variables again
 ```
-export SSH_PORT=nnnn
-export WG_PORT=nnnn
 export GIT_USER='Federico'
 export GIT_MAIL='me@federicociro.com'
 ```
@@ -56,7 +53,7 @@ nano /home/$USER/.ssh/authorized_keys
 
 Edit `/etc/ssh/sshd_config` with the following [5]
 ```
-Port $SSH_PORT
+#Port 22
 #AddressFamily any
 ListenAddress 0.0.0.0
 #ListenAddress ::
