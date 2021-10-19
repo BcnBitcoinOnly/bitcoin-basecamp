@@ -261,40 +261,6 @@ Restore all databases
 sudo mysql -u root < db.sql
 ```
 
-# Install services
-## Install a LAMP server [9]
-### Install Apache server
-```
-sudo apt update
-sudo apt install apache2
-```
-
-Make a firewall exception
-```
-sudo ufw allow in "WWW Full"
-```
-
-### Install MariaDB database server
-```
-sudo apt install mariadb-server
-```
-
-Run the initial script:
-```
-sudo mysql_secure_installation
-```
-
-### Install PHP
-```
-sudo apt install php libapache2-mod-php php-mysql
-```
-
-Edit Apache php preference order in `/etc/apache2/mods-enabled/dir.conf`
-Move the PHP index file to the first position after the DirectoryIndex specification.
-```
-sudo systemctl reload apache2
-```
-
 
 ## Sources
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
