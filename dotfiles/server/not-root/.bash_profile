@@ -7,9 +7,8 @@ fi
 
 # User specific environment and startup programs
 
-PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:/home/feder/.cargo/bin:$PATH
 
-export PATH
 unset USERNAME
 
 echo ""
