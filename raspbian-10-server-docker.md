@@ -217,7 +217,7 @@ cat ~/.ssh/github.com.pub
 Install Nginx to use only as a reverse proxy. Webservers will be managed inside docker.
 
 ```
-sudo apt install nginx certbot python3-certbot-nginx
+sudo apt install nginx certbot python3-certbot-nginx php-fpm
 ```
 
 
