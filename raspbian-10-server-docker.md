@@ -1,21 +1,25 @@
-# Debian 10
+# Raspberry OS 11
+
+## Enable SSH
+Create a file named "ssh" in the boot partition
+
+
+## Edit /boot/config.txt
+### Overclock CPU [3] (optional)
+Edit /boot/config.txt and change the following:
+```
+over_voltage=2
+arm_freq=1750
+```
+
 
 ## Update the system
 ```
 sudo apt update
 sudo apt -y full-upgrade
-sudo reboot now
 ```
+Reboot after editing the hostname
 
-## Quick alternative to avoid all apt-updates:
-```
-sudo apt install -y 
-```
-
-## Export variables
-```
-export NEW_USER=feder
-```
 
 ## Edit hostname
 Edit the following files and reboot
@@ -24,6 +28,13 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 sudo reboot now
 ```
+
+
+## Export variables
+```
+export NEW_USER=feder
+```
+
 
 ## Harden server
 ### Change default user [6]
@@ -36,13 +47,12 @@ sudo reboot now
 Delete default "pi" user and permission to sudo without password for pi.
 ```
 sudo deluser -remove-home pi
-sudo rm sudoers.d/010_pi-nopasswd
+sudo rm /etc/sudoers.d/010_pi-nopasswd
 ```
+
 
 ## Export variables again
 ```
-export SSH_PORT=nnnn
-export WG_PORT=nnnn
 export GIT_USER='Federico'
 export GIT_MAIL='me@federicociro.com'
 ```
@@ -56,7 +66,7 @@ nano /home/$USER/.ssh/authorized_keys
 
 Edit `/etc/ssh/sshd_config` with the following [5]
 ```
-Port $SSH_PORT
+#Port 22
 #AddressFamily any
 ListenAddress 0.0.0.0
 #ListenAddress ::
@@ -109,12 +119,6 @@ sudo apt install -y fail2ban
 
 Configure fail2ban as (following)[6]
 
-## Overclock CPU [3] (optional)
-Edit /boot/config.txt and change the following:
-```
-over_voltage=2
-arm_freq=1750
-```
 
 ## Mount a storage device (i.e.: USB)[2]
 You can mount your storage device at a specific folder location. It is conventional to do this within the /mnt folder, for example /mnt/mydisk. Note that the folder must be empty.
@@ -161,7 +165,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils docker docker-compose qrencode
 ```
 
 ### Install backups utilities
@@ -169,37 +173,6 @@ sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils
 sudo apt install -y borgbackup rsync rclone
 ```
 
-### Install Docker
-See Docker docs. [4]
-
-```
-curl -fsSL https://get.docker.com -o get-docker.sh
-sudo sh get-docker.sh
-```
-
-### Install Docker Compose
-For Debian:
-```
-sudo curl -L "https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-sudo chmod +x /usr/local/bin/docker-compose
-```
-
-Alternative, for Raspbian OS:
-First install dependencies (and PIP):
-```
-sudo apt install -y libffi-dev libssl-dev
-sudo apt install -y python3-pip
-```
-
-Then, install with PIP:
-```
-sudo pip3 install docker-compose
-```
-
-Add non-sudo user to docker group in order to use docker without sudo.
-```
-sudo usermod -aG docker $USER
-```
 
 ### Install Git
 ```
@@ -240,6 +213,14 @@ cat ~/.ssh/github.com.pub
 ```
 
 
+## Install Nginx and Let's Encrypt 
+Install Nginx to use only as a reverse proxy. Webservers will be managed inside docker.
+
+```
+sudo apt install nginx certbot python3-certbot-nginx
+```
+
+
 ## Install Wireguard VPN
 Now, install Wireguard
 ```
@@ -256,7 +237,6 @@ Start Wireguard on boot
 ```
 sudo systemctl enable wg-quick@wg0
 ```
-
 
 Allow IP forwarding (to allow DNS request in a different subnet)
 Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative recover from backups)
@@ -276,40 +256,6 @@ Restore all databases
 sudo mysql -u root < db.sql
 ```
 
-# Install services
-## Install a LAMP server [9]
-### Install Apache server
-```
-sudo apt update
-sudo apt install apache2
-```
-
-Make a firewall exception
-```
-sudo ufw allow in "WWW Full"
-```
-
-### Install MariaDB database server
-```
-sudo apt install mariadb-server
-```
-
-Run the initial script:
-```
-sudo mysql_secure_installation
-```
-
-### Install PHP
-```
-sudo apt install php libapache2-mod-php php-mysql
-```
-
-Edit Apache php preference order in `/etc/apache2/mods-enabled/dir.conf`
-Move the PHP index file to the first position after the DirectoryIndex specification.
-```
-sudo systemctl reload apache2
-```
-
 
 ## Sources
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
@@ -321,3 +267,5 @@ sudo systemctl reload apache2
 [7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
 [8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+[10]:https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
+Also check https://stadicus.github.io/RaspiBolt/raspibolt_20_pi.html
