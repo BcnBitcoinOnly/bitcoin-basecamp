@@ -177,7 +177,7 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils docker docker-compose
+sudo apt install -y tldr tree locate debian-keyring logrotate lnav dnsutils docker docker-compose qrencode
 ```
 
 ### Install backups utilities
@@ -307,3 +307,4 @@ sudo systemctl reload apache2
 [8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
 [10]:https://www.hifiberry.com/docs/software/configuring-linux-3-18-x/
+Also check https://stadicus.github.io/RaspiBolt/raspibolt_20_pi.html
