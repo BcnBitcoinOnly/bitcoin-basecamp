@@ -9,19 +9,7 @@ Create a file named "ssh" in the boot partition
 Edit /boot/config.txt and change the following:
 ```
 over_voltage=2
-arm_freq=1850
-```
-
-### Add parameters for HiFi DAC [10]
-Disable default module snd_bcm2835 (RPI audio jack)
-Comment below paramater
-```
-# dtparam=audio=on
-```
-
-Enable HiFiBerry DAC2 HD module 
-```
-dtoverlay=hifiberry-dacplushd
+arm_freq=1750
 ```
 
 
