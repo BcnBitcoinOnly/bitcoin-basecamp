@@ -225,6 +225,14 @@ cat ~/.ssh/github.com.pub
 ```
 
 
+## Install Nginx and Let's Encrypt 
+Install Nginx to use only as a reverse proxy. Webservers will be managed inside docker.
+
+```
+sudo apt install nginx certbot python3-certbot-nginx
+```
+
+
 ## Install Wireguard VPN
 Now, install Wireguard
 ```
@@ -241,9 +249,6 @@ Start Wireguard on boot
 ```
 sudo systemctl enable wg-quick@wg0
 ```
-
-## Install Nginx and Let's Encrypt 
-Install Nginx to use only as a reverse proxy. Webservers will be managed inside docker.
 
 Allow IP forwarding (to allow DNS request in a different subnet)
 Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`. (Alternative recover from backups)
