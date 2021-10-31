@@ -77,3 +77,25 @@ ssh-add ~/.ssh/github.com
 ```
 cat ~/.ssh/github.com.pub
 ```
+
+#### Connect with local server by a SSH key
+  1- Generate a SSH key
+```
+ssh-keygen -t ed25519 -C $HOSTNAME
+```
+  
+  2- Initiate the SSH-key agent.
+```
+eval `ssh-agent -s`
+```
+
+  3- Add the SSH key to your SSH-key agent.
+```
+ssh-add ~/.ssh/server
+```
+  
+  4- Add the SSH key to your GitHub account.
+  Copy the content of the key and paste in the Github SSH keys section.
+```
+cat ~/.ssh/server.pub
+```
