@@ -165,13 +165,9 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 
 ## Install some utilities:
 ```
-sudo apt install -y tldr tree locate logrotate lnav dnsutils libraspberrypi-bin net-tools docker docker-compose
+sudo apt install -y tldr tree locate logrotate lnav dnsutils libraspberrypi-bin net-tools docker docker-compose borgbackup rsync rclone git
 ```
 
-### Install backups utilities
-```
-sudo apt install -y borgbackup rsync rclone
-```
 
 Add non-sudo user to docker group in order to use docker without sudo.
 ```
@@ -182,7 +178,6 @@ sudo usermod -aG docker $USER
 ```
 export GIT_USER='Federico'
 export GIT_MAIL='me@federicociro.com'
-sudo apt install -y git
 ```
 #### Set Global Credentials
 Set your username:
