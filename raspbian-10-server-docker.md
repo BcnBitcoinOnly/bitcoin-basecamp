@@ -1,4 +1,4 @@
-# Raspberry OS 11
+# Raspberry OS 11 32 bits
 
 ## Enable SSH
 Create a file named "ssh" in the boot partition
