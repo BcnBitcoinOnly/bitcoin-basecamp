@@ -4,7 +4,7 @@ Starting from a fresh Ubuntu Server 21.04 (non LTS) install for ARM architecture
 ## Overclock CPU [3] (optional - use cooler fan)
 Edit /boot/config.txt and change the following:
 ```
-over_voltage=4
+over_voltage=2
 arm_freq=1850
 sudo reboot now
 ```
@@ -12,7 +12,7 @@ sudo reboot now
 ## Update the system
 ```
 sudo apt update
-sudo apt -y full-upgrade
+sudo apt upgrade
 sudo reboot now
 ```
 
