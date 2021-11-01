@@ -1,4 +1,23 @@
-# Raspberry OS 11 32 bits
+# Debian 11 64 bits arm64
+Debian images are still on testing for arm64 architecture. 
+In order to use it, tested images can be downloaded from: https://raspi.debian.net/tested-images/
+
+Once installed the image, login is neccesary via physical GUI with user root and without password.
+
+## Add users
+If /home folder is persisted from a backup, respective users can be added with:
+Also add user to sudo group and repair permissions in /home folder.
+```
+useradd $USER
+groupadd $USER sudo
+```
+
+## Change language and locales
+If locales are not working, change them with:
+```
+dpkg-reconfigure locales
+```
+
 
 ## Enable SSH
 Create a file named "ssh" in the boot partition
@@ -272,3 +291,4 @@ sudo mysql -u root < db.sql
 Also check:
 https://stadicus.github.io/RaspiBolt/raspibolt_20_pi.html
 https://linuxhint.com/install_debian_raspberry_pi_4/
+https://forums.raspberrypi.com/viewtopic.php?t=282839
