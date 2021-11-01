@@ -15,7 +15,8 @@ groupadd $USER sudo
 ## Change language and locales
 If locales are not working, change them with:
 ```
-dpkg-reconfigure locales
+apt install locales
+sudo update-locale LANG=LANG=en_IN.UTF-8 LANGUAGE
 ```
 
 
