@@ -3,7 +3,7 @@ Starting from a fresh Ubuntu Server 21.04 (non LTS) install for ARM architecture
 
 ## Enable SSH
 Create a file named "ssh" in the boot partition
-
+Default user/password login is ubuntu/ubuntu.
 
 ## Overclock CPU [3] (optional - use cooler fan)
 Edit /boot/config.txt and change the following:
