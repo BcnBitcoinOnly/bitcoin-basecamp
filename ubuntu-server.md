@@ -6,8 +6,8 @@ Edit /boot/config.txt and change the following:
 ```
 over_voltage=2
 arm_freq=1850
-sudo reboot now
 ```
+Reboot.
 
 ## Update the system
 ```
