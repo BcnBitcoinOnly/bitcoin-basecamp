@@ -112,15 +112,3 @@ See [Pi-Hole Docs][5] to config Unbound and Pi-Hole.
 [3]:https://certbot.eff.org/lets-encrypt/debianbuster-nginx
 [4]:https://docs.pi-hole.net/guides/webserver/nginx/
 [5]:https://docs.pi-hole.net/guides/dns/unbound/
-
-
-## Sources
-[5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
-[6]:https://www.raspberrypi.org/documentation/configuration/security.md
-[7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
-[8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
-[9]:
-[10]:https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/
-
-
-[9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
