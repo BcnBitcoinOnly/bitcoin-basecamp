@@ -28,7 +28,7 @@ Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`.
 ## Install[6] a LEMP stack (Linux + Nginx + MariaDB + PHP) and secure it [2]
 ### Install Nginx (webserver)
 ```
-sudo apt install -y nginx certbot python-certbot-nginx python3-certbot-nginx webhook
+sudo apt install -y nginx certbot python-certbot-nginx python3-certbot-nginx
 ```
 
 Generate a wildcard SSL certificate following [this guide.][7]
