@@ -159,7 +159,7 @@ sudo nano /etc/fstab
 
 4. Add the following line in the fstab file:
 ```
-UUID=5C24-1453 /mnt/usb fat32 defaults,auto,users,rw,nofail 0 0
+UUID=5C24-1453 /mnt/usb ext4 defaults,auto,users,rw,nofail 0 0
 ```
 Replace fstype with the type of your file system, which you found in step 2 of 'Mounting a storage device' above, for example: ntfs.
 
