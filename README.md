@@ -10,7 +10,15 @@ General instructions for Debian/Ubuntu amd64, armhf and arm64. Some of these ins
 | root     |          |
 | root     | toor     |
 | ubuntu   | ubuntu   |
-| raspberry| pi       |
+| pi       | raspberry|
+
+
+## Edit hostname
+Edit the following files and reboot
+```
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+```
 
 
 ## Update the system
@@ -35,6 +43,30 @@ sudo ufw limit 22/tcp comment SSH
 Enable the firewall
 ```
 sudo ufw enable
+```
+
+## Harden OS
+### Do some check routines:
+- Ensure Only root Has UID of 0
+```
+awk -F: '($3=="0"){print}' /etc/passwd
+```
+- Check for Accounts with Empty Passwords
+```
+cat /etc/shadow | awk -F: '($2==""){print $1}'
+```
+
+### Change default user [6]
+Create new user and it to sudo and other groups
+```
+export NEW_USER=feder
+sudo adduser $NEW_USER
+sudo usermod -a -G adm,dialout,cdrom,floppy,sudo,audio,video,dip,plugdev,games,users,input,netdev,lxd $NEW_USER
+sudo reboot now
+```
+Delete default "ubuntu" user and permission to sudo without password for pi.
+```
+sudo deluser -remove-home ubuntu
 ```
 
 
@@ -133,7 +165,20 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 5. OPTIONAL: If the filesystem type is FAT or NTFS, add `,umask=000` immediately after nofail - this will allow all users full read/write access to every file on the storage device.
 
 
+Additional guides:
+- (Silverbox: GNU/Linux Home Server)[https://ovk.github.io/silverbox/]
+- (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
+- (Debian server)[https://servidordebian.org/]
+- (Tips for your cyber hygiene)https://infosec-handbook.eu/specials/2019-ecsm/cyber-hygiene/
 
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
+[3]:https://www.raspberrypi.org/documentation/configuration/security.md
+[4]:https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/
+
+[5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+
+[7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
+[8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
+[9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
