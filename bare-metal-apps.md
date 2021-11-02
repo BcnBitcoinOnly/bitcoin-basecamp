@@ -105,10 +105,10 @@ sudo apt install -y unbound
 See [Pi-Hole Docs][5] to config Unbound and Pi-Hole.
 
 
-[1]:https://www.wireguard.com/quickstart/
-[6]https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
-[2]:https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
-[7]:https://medium.com/@alitou/getting-a-wildcard-ssl-certificate-using-certbot-and-deploy-on-nginx-15b8ffa34157
-[3]:https://certbot.eff.org/lets-encrypt/debianbuster-nginx
-[4]:https://docs.pi-hole.net/guides/webserver/nginx/
-[5]:https://docs.pi-hole.net/guides/dns/unbound/
+[1]: https://www.wireguard.com/quickstart/
+[6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+[2]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
+[7]: https://medium.com/@alitou/getting-a-wildcard-ssl-certificate-using-certbot-and-deploy-on-nginx-15b8ffa34157
+[3]: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
+[4]: https://docs.pi-hole.net/guides/webserver/nginx/
+[5]: https://docs.pi-hole.net/guides/dns/unbound/
