@@ -36,8 +36,8 @@ More details in this in [Certbot][3].
 
 Allow Nginx in the firewall
 ```
-sudo ufw allow 80/tcp comment Nginx_HTTP
-sudo ufw allow 443/tcp comment Nginx_HTTPS
+sudo ufw allow from 0.0.0.0 to any port 80 proto tcp comment 'Nginx HTTP'
+sudo ufw allow from 0.0.0.0 to any port 443 proto tcp comment 'Nginx HTTPS'
 ```
 
 
