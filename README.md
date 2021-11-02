@@ -2,16 +2,6 @@
 Firsts steps for a fresh new installation of some UNIX distributions. Applies both for home servers and desktops.
 General instructions for Debian/Ubuntu amd64, armhf and arm64. Some of these instructions are not neccesary if system is recovered from a backup. 
 
-Prior to first boot, if available, edit `/boot/config.txt` for optional overclocking and additional kernel modules.
-
-```
-over_voltage=2
-arm_freq=1750
-
-# Comment out default audio jack
-#dtparam=audio=on
-dtoverlay=hifiberry-dacplus
-```
 
 ## Default usernames for some common distributions
 
