@@ -1,0 +1,10 @@
+Prior to first boot, if available, edit `/boot/config.txt` for optional overclocking and additional kernel modules.
+
+```
+over_voltage=2
+arm_freq=1750
+
+# Comment out default audio jack
+#dtparam=audio=on
+dtoverlay=hifiberry-dacplus
+```
