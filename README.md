@@ -28,7 +28,7 @@ sudo apt -y full-upgrade
 ```
 
 
-## Install and [config a firewall] [1]
+## Install and [config a firewall][1]
 Uncomplicated FireWall (UFW)
 ```
 sudo apt install -y ufw
@@ -56,7 +56,7 @@ awk -F: '($3=="0"){print}' /etc/passwd
 cat /etc/shadow | awk -F: '($2==""){print $1}'
 ```
 
-### Change default user [6]
+### Change default user [more info][2]
 Create new user and it to sudo and other groups
 ```
 export NEW_USER=feder
@@ -117,8 +117,9 @@ cat ~/.ssh/github.com.pub
 ```
 
 
-## Mount a storage device (i.e.: USB)[2]
+## [Mount][3] a storage device
 You can mount your storage device at a specific folder location. It is conventional to do this within the `/mnt` folder, for example `/mnt/mydisk`. Note that the folder must be empty.
+Sometimes it is also convenient moving /home and /var folder to a [separate disk or partition][4].
 
 1. Plug in the storage device.
 
@@ -172,7 +173,8 @@ mkdir /home/$USER/.ssh/
 nano /home/$USER/.ssh/authorized_keys
 ```
 
-Edit `/etc/ssh/sshd_config` with the following [5]
+[Edit][5] `/etc/ssh/sshd_config`
+
 ```
 #Port 22
 #AddressFamily any
@@ -209,7 +211,7 @@ UsePAM no
 sudo apt install -y fail2ban
 ```
 
-(Configure)[6] fail2ban.
+[Configure][6] fail2ban.
 
 
 Additional guides:
@@ -217,14 +219,12 @@ Additional guides:
 - (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
 - (Debian server)[https://servidordebian.org/]
 - (Tips for your cyber hygiene)https://infosec-handbook.eu/specials/2019-ecsm/cyber-hygiene/
+- (Ubuntu Server Hardening Guide)[https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/]
 
 
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
-[2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
-[3]:https://www.raspberrypi.org/documentation/configuration/security.md
-[4]:https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/
+[2]:https://www.raspberrypi.org/documentation/configuration/security.md
+[3]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
+[4]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 [6]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
-
-[8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
-[9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
