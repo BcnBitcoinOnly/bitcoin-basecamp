@@ -165,6 +165,53 @@ Replace fstype with the type of your file system, which you found in step 2 of '
 5. OPTIONAL: If the filesystem type is FAT or NTFS, add `,umask=000` immediately after nofail - this will allow all users full read/write access to every file on the storage device.
 
 
+### Harden' SSH security
+Add authorized public SSH keys
+```
+mkdir /home/$USER/.ssh/
+nano /home/$USER/.ssh/authorized_keys
+```
+
+Edit `/etc/ssh/sshd_config` with the following [5]
+```
+#Port 22
+#AddressFamily any
+ListenAddress 0.0.0.0
+#ListenAddress ::
+
+# Logging
+SyslogFacility AUTH
+LogLevel INFO
+
+# Authentication:
+
+#LoginGraceTime 2m
+PermitRootLogin no               
+#StrictModes yes
+MaxAuthTries 6
+MaxSessions 10
+
+PubkeyAuthentication yes
+
+# Expect .ssh/authorized_keys2 to be disregarded by default in future.
+AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
+
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no                                                                                                                
+PermitEmptyPasswords no
+
+UsePAM no
+```
+
+
+#### Install Fail2ban
+```
+sudo apt install -y fail2ban
+```
+
+(Configure)[6] fail2ban.
+
+
 Additional guides:
 - (Silverbox: GNU/Linux Home Server)[https://ovk.github.io/silverbox/]
 - (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
@@ -176,9 +223,8 @@ Additional guides:
 [2]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
 [3]:https://www.raspberrypi.org/documentation/configuration/security.md
 [4]:https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/
-
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
+[6]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
 
-[7]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
 [8]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [9]:https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
