@@ -37,7 +37,7 @@ Config some basic rules
 ```
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
-sudo ufw limit 22/tcp comment SSH
+sudo ufw limit from 192.168.0.0/16 to any port 22 proto tcp comment 'SSH server'
 ```
 
 Enable the firewall
@@ -176,31 +176,10 @@ nano /home/$USER/.ssh/authorized_keys
 [Edit][5] `/etc/ssh/sshd_config`
 
 ```
-#Port 22
-#AddressFamily any
 ListenAddress 0.0.0.0
-#ListenAddress ::
 
-# Logging
-SyslogFacility AUTH
-LogLevel INFO
-
-# Authentication:
-
-#LoginGraceTime 2m
 PermitRootLogin no               
-#StrictModes yes
-MaxAuthTries 6
-MaxSessions 10
-
-PubkeyAuthentication yes
-
-# Expect .ssh/authorized_keys2 to be disregarded by default in future.
-AuthorizedKeysFile      .ssh/authorized_keys .ssh/authorized_keys2
-
-# To disable tunneled clear text passwords, change to no here!
 PasswordAuthentication no                                                                                                                
-PermitEmptyPasswords no
 
 UsePAM no
 ```
