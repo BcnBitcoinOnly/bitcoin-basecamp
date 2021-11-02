@@ -78,18 +78,6 @@ sudo mysql -u root --one-database db1 < all_databases.sql
 sudo apt install -y php-fpm php-mysql php-bcmath php-gmp php-imagick
 ```
 
-Edit php.ini and disable "open_basedir" for PHP FPM:
-
-```
-export PHP_VERSION=$(php -r "echo PHP_VERSION;" | grep --only-matching --perl-regexp "7.\d+")
-sudo nano /etc/php/$PHP_VERSION/fpm/php.ini
-```
-Set ```open_basedir = none```
-
-```
-sudo service php$PHP_VERSION-fpm restart
-```
-
 
 ## Install Pi-Hole
 ### Install and configure the [prerequisites][4]
