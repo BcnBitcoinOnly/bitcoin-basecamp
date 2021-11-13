@@ -77,8 +77,16 @@ sudo deluser -remove-home ubuntu
 
 
 ## Install some utilities:
+Debian:
 ```
-sudo apt install -y git tldr tree locate debian-keyring logrotate lnav dnsutils qrencode borgbackup rsync rclone libraspberrypi-bin net-tools
+sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools
+sudo apt install -y locate debian-keyring
+sudo apt install -y libraspberrypi-bin
+```
+
+ARCH:
+```
+sudo pacman -S git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools
 ```
 
 ### Configure Git
