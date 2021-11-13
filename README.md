@@ -22,9 +22,15 @@ sudo nano /etc/hosts
 
 
 ## Update the system
+Debian based OS:
 ```
 sudo apt update
 sudo apt -y full-upgrade
+```
+
+Arch based OS:
+```
+sudo pacman -Syu
 ```
 
 
