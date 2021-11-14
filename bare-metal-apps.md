@@ -75,14 +75,14 @@ sudo mysql -u root --one-database db1 < all_databases.sql
 
 ### Install PHP and some modules
 ```
-sudo apt install -y php-fpm php-mysql php-bcmath php-gmp php-imagick
+sudo apt install -y php php-{cli,zip,gd,fpm,json,common,mysql,zip,mbstring,curl,xml,bcmath,imap,ldap,intl,gmp,imagick,cgi,sqlite3}
 ```
 
 
 ## Install Pi-Hole
 ### Install and configure the [prerequisites][4]
 ```
-sudo apt install -y nginx php-fpm php-cgi php-xml php-sqlite3 php-intl apache2-utils
+sudo apt install -y nginx apache2-utils
 ```
 
 ```
