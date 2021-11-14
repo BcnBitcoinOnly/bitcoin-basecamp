@@ -14,6 +14,7 @@ echo "Linking non-root files"
 ln -s /home/$non_root/git/fresh-linux/dotfiles/server/not-root/.bash_aliases /home/$non_root/.bash_aliases
 rm /home/$non_root/.bashrc
 ln -s /home/$non_root/git/fresh-linux/dotfiles/server/not-root/.bashrc /home/$non_root/.bashrc
+rm /home/$non_root/.bash_profile
 ln -s /home/$non_root/git/fresh-linux/dotfiles/server/not-root/.bash_profile /home/$non_root/.bash_profile
 ln -s /home/$non_root/git/fresh-linux/dotfiles/server/not-root/.nanorc /home/$non_root/.nanorc
 
@@ -22,4 +23,5 @@ echo "Linking root files"
 sudo ln -s /home/$non_root/git/fresh-linux/dotfiles/server/not-root/.bash_aliases /root/.bash_aliases
 sudo rm /root/.bashrc
 sudo ln -s /home/$non_root/git/fresh-linux/dotfiles/server/root/.bashrc /root/.bashrc
+sudo rm /root/.bash_profile
 sudo ln -s /home/$non_root/.bash_profile /root/.bash_profile
