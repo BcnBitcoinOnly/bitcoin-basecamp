@@ -104,6 +104,17 @@ sudo apt install -y unbound
 
 See [Pi-Hole Docs][5] to config Unbound and Pi-Hole.
 
+## Install Docker
+```
+sudo apt install docker docker-compose
+```
+
+Then, create the docker group and add the local user to it.
+```
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
 
 [1]: https://www.wireguard.com/quickstart/
 [6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
