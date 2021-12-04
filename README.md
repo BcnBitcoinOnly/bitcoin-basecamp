@@ -2,7 +2,6 @@
 Firsts steps for a fresh new installation of some UNIX distributions. Applies both for home servers and desktops.
 General instructions for Debian/Ubuntu amd64, armhf and arm64. Some of these instructions are not neccesary if system is recovered from a backup. 
 
-
 ## Default usernames for some common distributions
 
 | Username | Password |
