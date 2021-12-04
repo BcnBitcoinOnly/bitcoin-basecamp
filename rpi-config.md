@@ -16,10 +16,10 @@ arm_freq=1750
 dtoverlay=hifiberry-dacplus
 
 # No WiFi
-dtoverlay=disable-wifi # antes llamado pi3-disable-wifi 
+dtoverlay=disable-wifi
 
 # No Bluetooth
-dtoverlay=disable-bt # antes llamado dtoverlay=pi3-disable-bt
+dtoverlay=disable-bt
 
 # No blinking lights
 dtoverlay=act-led
