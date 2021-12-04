@@ -24,6 +24,7 @@ dtoverlay=disable-bt
 # No blinking lights
 dtoverlay=act-led
 
+[pi4]
 # Disable the PWR LED.
 dtparam=pwr_led_trigger=none
 dtparam=pwr_led_activelow=off
