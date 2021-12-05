@@ -127,4 +127,4 @@ sudo apt install  mpd
 [3]: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
 [4]: https://docs.pi-hole.net/guides/webserver/nginx/
 [5]: https://docs.pi-hole.net/guides/dns/unbound/
-[6]: https://blog.desdelinux.net/music-player-daemon-configuracion-simple-y-algunos-usos-extra/
+[6]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
