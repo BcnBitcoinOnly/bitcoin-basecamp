@@ -126,6 +126,12 @@ sudo touch /var/log/mpd.log
 sudo touch /run/mpd/pid
 ```
 
+Add exception to firewall:
+```
+sudo ufw allow 6600/tcp comment "Music Player Daemon"
+```
+
+
 [1]: https://www.wireguard.com/quickstart/
 [6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
 [2]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
