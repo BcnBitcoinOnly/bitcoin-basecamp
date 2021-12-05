@@ -118,6 +118,12 @@ sudo usermod -aG docker $USER
 ## [Install MPD][6]
 ```
 sudo apt install  mpd
+
+sudo touch /var/lib/mpd/db
+sudo touch /var/lib/mpd/state
+sudo touch /var/lib/mpd/sticker.sql
+sudo touch /var/log/mpd.log
+sudo touch /run/mpd/pid
 ```
 
 [1]: https://www.wireguard.com/quickstart/
