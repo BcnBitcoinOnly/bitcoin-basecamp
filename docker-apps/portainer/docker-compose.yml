@@ -1,16 +1,18 @@
 version: '3'
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: cr.portainer.io/portainer/portainer-ce:2.9.3
     container_name: portainer
+#    command: -H unix:///var/run/docker.sock
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+#    security_opt:
+#      - no-new-privileges:true
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /var/run/docker.sock:/var/run/docker.sock
       - portainer-data:/data
     ports:
-      - 9000:9000
+      - 8000:8000
+      - 9443:9443
 volumes:
   portainer-data:
