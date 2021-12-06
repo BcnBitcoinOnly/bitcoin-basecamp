@@ -1,7 +1,2 @@
 /docker/*.env
-/docker/*.txt
-/docker/pihole/
-/docker/portainer/
-/docker/nextcloud/
-/docker/nextcloud-db/
-/docker/vaultwarden/
+/docker/*/*.env
