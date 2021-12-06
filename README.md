@@ -19,6 +19,10 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 ```
 
+## Set the timezone
+```
+sudo timedatectl set-timezone
+```
 
 ## Update the system
 Debian based OS:

@@ -36,8 +36,8 @@ More details in this in [Certbot][3].
 
 Allow Nginx in the firewall
 ```
-sudo ufw allow from 0.0.0.0 to any port 80 proto tcp comment 'Webserver Nginx HTTP'
-sudo ufw allow from 0.0.0.0 to any port 443 proto tcp comment 'Webserver Nginx HTTPS'
+sudo ufw allow 80/tcp comment 'Webserver Nginx HTTP'
+sudo ufw allow 443/tcp comment 'Webserver Nginx HTTPS'
 ```
 
 
@@ -115,6 +115,31 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
+## [Install MPD][6]
+```
+sudo apt install  mpd
+
+sudo touch /var/lib/mpd/db
+sudo touch /var/lib/mpd/state
+sudo touch /var/lib/mpd/sticker.sql
+sudo touch /var/log/mpd.log
+sudo touch /run/mpd/pid
+```
+
+Add exception to firewall:
+```
+sudo ufw allow 6600/tcp comment "Music Player Daemon"
+```
+
+## [Install Spotify Daemon][7]
+Download the binarie or compile from source. Tested in armhf and arm64 (compìled).
+Use backup config files.
+
+Add exception to firewall:
+```
+sudo ufw allow 10200/tcp comment "Spotify connect 1"
+sudo ufw allow 10201/tcp comment "Spotify connect 2"
+```
 
 [1]: https://www.wireguard.com/quickstart/
 [6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
@@ -123,3 +148,5 @@ sudo usermod -aG docker $USER
 [3]: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
 [4]: https://docs.pi-hole.net/guides/webserver/nginx/
 [5]: https://docs.pi-hole.net/guides/dns/unbound/
+[6]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
+[7]: https://github.com/Spotifyd/spotifyd
