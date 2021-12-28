@@ -1,7 +1,7 @@
 version: '3'
 services:
   portainer:
-    image: portainer/portainer-ce:latest
+    image: cr.portainer.io/portainer/portainer-ce:2.9.3
     container_name: portainer
 #    command: -H unix:///var/run/docker.sock
     restart: unless-stopped
@@ -13,6 +13,6 @@ services:
       - portainer-data:/data
     ports:
       - 8000:8000
-      - 9000:9000
+      - 9443:9443
 volumes:
   portainer-data:

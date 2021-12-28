@@ -1,0 +1,25 @@
+version: '3'
+services:
+#  nginx-proxy:
+#    image: jwilder/nginx-proxy
+#    ports:
+#      - "81:80"
+#    volumes:
+#      - /var/run/docker.sock:/tmp/docker.sock:ro
+  homeassistant:
+    container_name: homeassistant
+    image: homeassistant/home-assistant
+#    image: "ghcr.io/home-assistant/raspberrypi4-homeassistant:stable"
+#    ports:
+#      - 8200:8123
+    environment:
+      - http_proxy=http://192.168.20.150:8123
+#      - VIRTUAL_HOST=hass.local
+    volumes:
+      - ha_config:/config
+      - /etc/localtime:/etc/localtime:ro
+    restart: unless-stopped
+#    privileged: true
+    network_mode: host
+volumes:
+  ha_config:

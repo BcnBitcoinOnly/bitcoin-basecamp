@@ -3,18 +3,18 @@ version: '3.3'
 services:
   app:
     image: fireflyiii/core:latest
-    restart: always
+    restart: unless-stopped
     volumes:
       - firefly_iii_upload:/var/www/html/storage/upload
     env_file: .env
     ports:
-      - 80:8080
+      - 8080:8080
     depends_on:
       - db
   db:
     image: mariadb    
     hostname: fireflyiiidb
-    restart: always
+    restart: unless-stopped
     environment:
       - MYSQL_RANDOM_ROOT_PASSWORD=yes
       - MYSQL_USER=firefly
