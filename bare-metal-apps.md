@@ -32,6 +32,7 @@ sudo apt install -y nginx certbot python-certbot-nginx python3-certbot-nginx
 ```
 
 Generate a wildcard SSL certificate following [this guide.][7]
+TLDR: `sudo certbot certonly --manual --server https://acme-v02.api.letsencrypt.org/directory --preferred-challenges dns-01 -d "*.<DOMAIN_NAME>"`
 More details in this in [Certbot][3].
 
 Allow Nginx in the firewall
