@@ -141,7 +141,7 @@ Add exception to firewall:
 sudo ufw allow 10200/tcp comment "Spotify connect 1"
 sudo ufw allow 10201/tcp comment "Spotify connect 2"
 ```
-
+More info over [RPI as audio receiver][8].
 [1]: https://www.wireguard.com/quickstart/
 [6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
 [2]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
@@ -151,3 +151,4 @@ sudo ufw allow 10201/tcp comment "Spotify connect 2"
 [5]: https://docs.pi-hole.net/guides/dns/unbound/
 [6]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
 [7]: https://github.com/Spotifyd/spotifyd
+[8]: https://github.com/nicokaiser/rpi-audio-receiver
