@@ -1,0 +1,51 @@
+version: "2.1"
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett
+    container_name: jackett
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+#      - AUTO_UPDATE=true #optional
+#      - RUN_OPTS=<run options here> #optional
+    volumes:
+      - jackett_config:/config
+      - /srv/data:/downloads
+    ports:
+      - 9117:9117
+    restart: unless-stopped
+
+  lidarr:
+    image: lscr.io/linuxserver/lidarr
+    container_name: lidarr
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - lidarr_config:/config
+#      - /path/to/music:/music #optional
+#      - /path/to/downloads:/downloads #optional
+    ports:
+      - 8686:8686
+    restart: unless-stopped
+
+  qbittorrent:
+    image: linuxserver/qbittorrent
+    container_name: qbittorrent
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - UMASK_SET=022
+      - WEBUI_PORT=8090
+    volumes:
+      - qbittorrent_config:/config
+      - /srv/data/downloads:/downloads
+    restart: unless-stopped
+
+volumes:
+  jackett_config:
+  lidarr_config:
+  qbittorrent_config:
