@@ -144,7 +144,15 @@ sudo ufw allow 10201/tcp comment "Spotify connect 2"
 More info over [RPI as audio receiver][10].
 
 
-## Install HACS inside the Home Assistant Container
+## Install [HACS][11] inside the Home Assistant Container
+Download and execute HACS script inside the homeassistant docker container.
+```
+docker exec -it homeassistant bash
+wget -O - https://get.hacs.xyz | bash -
+exit
+```
+
+
 Sources:
 - [1]: https://www.wireguard.com/quickstart/
 - [2]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
@@ -156,3 +164,4 @@ Sources:
 - [8]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
 - [9]: https://github.com/Spotifyd/spotifyd
 - [10]: https://github.com/nicokaiser/rpi-audio-receiver
+- [11]: https://hacs.xyz/docs/setup/download#option-2-run-the-downloader-inside-the-container
