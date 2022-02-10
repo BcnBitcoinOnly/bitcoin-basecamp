@@ -25,15 +25,15 @@ Allow IP forwarding (to allow DNS request in a different subnet)
 Edit `/etc/sysctl.conf` and uncomment `net.ipv4.ip_forward=1`.
 
 
-## Install[6] a LEMP stack (Linux + Nginx + MariaDB + PHP) and secure it [2]
+## Install[2] a LEMP stack (Linux + Nginx + MariaDB + PHP) and secure it [3]
 ### Install Nginx (webserver)
 ```
 sudo apt install -y nginx certbot python-certbot-nginx python3-certbot-nginx
 ```
 
-Generate a wildcard SSL certificate following [this guide.][7]
+Generate a wildcard SSL certificate following [this guide.][4]
 TLDR: `sudo certbot certonly --manual --server https://acme-v02.api.letsencrypt.org/directory --preferred-challenges dns-01 -d "*.<DOMAIN_NAME>"`
-More details in this in [Certbot][3].
+More details in this in [Certbot][5].
 
 Allow Nginx in the firewall
 ```
@@ -81,7 +81,7 @@ sudo apt install -y php php-{cli,zip,gd,fpm,json,common,mysql,zip,mbstring,curl,
 
 
 ## Install Pi-Hole
-### Install and configure the [prerequisites][4]
+### Install and configure the [prerequisites][6]
 ```
 sudo apt install -y nginx apache2-utils
 ```
@@ -103,7 +103,7 @@ sudo ufw allow from 192.168.0.0/16 to any port 53 proto udp comment 'DNS Pi-Hole
 sudo apt install -y unbound
 ```
 
-See [Pi-Hole Docs][5] to config Unbound and Pi-Hole.
+See [Pi-Hole Docs][7] to config Unbound and Pi-Hole.
 
 ## Install Docker
 ```
@@ -116,7 +116,7 @@ sudo groupadd docker
 sudo usermod -aG docker $USER
 ```
 
-## [Install MPD][6]
+## [Install MPD][8]
 ```
 sudo apt install  mpd
 
@@ -132,7 +132,7 @@ Add exception to firewall:
 sudo ufw allow 6600/tcp comment "Music Player Daemon"
 ```
 
-## [Install Spotify Daemon][7]
+## [Install Spotify Daemon][9]
 Download the binarie or compile from source. Tested in armhf and arm64 (compìled).
 Use backup config files.
 
@@ -141,14 +141,18 @@ Add exception to firewall:
 sudo ufw allow 10200/tcp comment "Spotify connect 1"
 sudo ufw allow 10201/tcp comment "Spotify connect 2"
 ```
-More info over [RPI as audio receiver][8].
-[1]: https://www.wireguard.com/quickstart/
-[6]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
-[2]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
-[7]: https://medium.com/@alitou/getting-a-wildcard-ssl-certificate-using-certbot-and-deploy-on-nginx-15b8ffa34157
-[3]: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
-[4]: https://docs.pi-hole.net/guides/webserver/nginx/
-[5]: https://docs.pi-hole.net/guides/dns/unbound/
-[6]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
-[7]: https://github.com/Spotifyd/spotifyd
-[8]: https://github.com/nicokaiser/rpi-audio-receiver
+More info over [RPI as audio receiver][10].
+
+
+## Install HACS inside the Home Assistant Container
+Sources:
+- [1]: https://www.wireguard.com/quickstart/
+- [2]: https://www.digitalocean.com/community/tutorials/how-to-install-linux-apache-mariadb-php-lamp-stack-on-debian-10
+- [3]: https://www.digitalocean.com/community/tutorials/how-to-secure-nginx-with-let-s-encrypt-on-debian-10
+- [4]: https://medium.com/@alitou/getting-a-wildcard-ssl-certificate-using-certbot-and-deploy-on-nginx-15b8ffa34157
+- [5]: https://certbot.eff.org/lets-encrypt/debianbuster-nginx
+- [6]: https://docs.pi-hole.net/guides/webserver/nginx/
+- [7]: https://docs.pi-hole.net/guides/dns/unbound/
+- [8]: https://wiki.archlinux.org/title/Music_Player_Daemon_(Espa%C3%B1ol)#Procedimiento_de_Instalaci%C3%B3n_del_demonio
+- [9]: https://github.com/Spotifyd/spotifyd
+- [10]: https://github.com/nicokaiser/rpi-audio-receiver
