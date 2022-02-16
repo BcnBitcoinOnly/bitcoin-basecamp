@@ -68,7 +68,7 @@ Restore all databases
 sudo mysql -u root < all_databases.sql
 ```
 
-Restore all databases
+Restore one databases
 ```
 sudo mysql -u root --one-database db1 < all_databases.sql
 ```
