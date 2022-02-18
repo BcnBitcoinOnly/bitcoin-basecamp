@@ -11,7 +11,7 @@ sudo apt install -y wireguard linux-headers
 
 Allow firewall rules
 ```
-sudo ufw allow from 0.0.0.0 to any port 51820 proto udp comment 'VPN Wireguard'
+sudo ufw allow to any port 51820 proto udp comment 'VPN Wireguard'
 ```
 
 [Configure][1] a wg0.conf file. 
