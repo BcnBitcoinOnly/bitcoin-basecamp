@@ -89,7 +89,10 @@ sudo apt install -y nginx apache2-utils
 ```
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
+
 sudo usermod -aG pihole www-data
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html
 ```
 
 Allow ports in firewall
