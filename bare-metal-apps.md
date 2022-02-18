@@ -101,6 +101,13 @@ sudo ufw allow from 192.168.0.0/16 to any port 53 proto tcp comment 'DNS Pi-Hole
 sudo ufw allow from 192.168.0.0/16 to any port 53 proto udp comment 'DNS Pi-Hole'
 ```
 
+Optional for DCHP server:
+```
+sudo ufw allow from 192.168.0.0/16 to any port 67 proto tcp comment 'DHCP Pi-Hole'
+sudo ufw allow from 192.168.0.0/16 to any port 67 proto udp comment 'DHCP Pi-Hole'
+sudo ufw allow 546:547/udp comment 'DHCP6 Pi-Hole'
+```
+
 ## Install Unbound
 ```
 sudo apt install -y unbound
