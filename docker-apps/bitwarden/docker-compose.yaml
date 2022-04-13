@@ -6,6 +6,17 @@ services:
     restart: always
     ports:
       - 8020:80
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+      - DOMAIN=${DOMAIN}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_FROM_NAME=${SMTP_FROM_NAME}
+      - SMTP_SECURITY=${SMTP_SECURITY}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_AUTH_MECHANISM=${SMTP_AUTH_MECHANISM}
     volumes:
       - bw-data:/data
 volumes:
