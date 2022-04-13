@@ -11,7 +11,7 @@ sudo apt install -y wireguard linux-headers
 
 Allow firewall rules
 ```
-sudo ufw allow from 0.0.0.0 to any port 51820 proto udp comment 'VPN Wireguard'
+sudo ufw allow to any port 51820 proto udp comment 'VPN Wireguard'
 ```
 
 [Configure][1] a wg0.conf file. 
@@ -89,13 +89,23 @@ sudo apt install -y nginx apache2-utils
 ```
 wget -O basic-install.sh https://install.pi-hole.net
 sudo bash basic-install.sh
+
 sudo usermod -aG pihole www-data
+chown -R www-data:www-data /var/www/html
+chmod -R 755 /var/www/html
 ```
 
 Allow ports in firewall
 ```
 sudo ufw allow from 192.168.0.0/16 to any port 53 proto tcp comment 'DNS Pi-Hole'
 sudo ufw allow from 192.168.0.0/16 to any port 53 proto udp comment 'DNS Pi-Hole'
+```
+
+Optional for DCHP server:
+```
+sudo ufw allow to any port 67 proto tcp comment 'DHCP Pi-Hole'
+sudo ufw allow to any port 67 proto udp comment 'DHCP Pi-Hole'
+sudo ufw allow 546:547/udp comment 'DHCP6 Pi-Hole'
 ```
 
 ## Install Unbound
