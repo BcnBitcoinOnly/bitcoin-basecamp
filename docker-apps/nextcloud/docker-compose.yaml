@@ -1,34 +1,44 @@
-version: '2'
+version: '3'
 
 services:
   db:
-#    image: mariadb
-    image: arm64v8/mariadb:latest
+    image: postgres:alpine
     restart: always
-    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     volumes:
-      - db:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_PASSWORD=nextcloud
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+      - db:/var/lib/postgresql/data
+    env_file:
+      - db.env
+
+  redis:
+    image: redis:alpine
+    restart: always
 
   app:
-    image: nextcloud
+    image: nextcloud:apache
     restart: always
     ports:
-      - 8380:80
-    links:
-      - db
+      - 127.0.0.1:8200:80
     volumes:
       - nextcloud:/var/www/html
     environment:
-      - MYSQL_PASSWORD=nextcloud
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_HOST=db
+      - POSTGRES_HOST=db
+      - REDIS_HOST=redis
+    env_file:
+      - db.env
+    depends_on:
+      - db
+      - redis
+
+  cron:
+    image: nextcloud:apache
+    restart: always
+    volumes:
+      - nextcloud:/var/www/html
+    entrypoint: /cron.sh
+    depends_on:
+      - db
+      - redis
 
 volumes:
-  nextcloud:
   db:
+  nextcloud:
