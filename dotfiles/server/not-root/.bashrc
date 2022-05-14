@@ -108,3 +108,4 @@ if ! shopt -oq posix; then
 fi
 
 # Custom aliases in file .bash_aliases
+export GPG_TTY=$(tty)
