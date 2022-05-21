@@ -19,6 +19,21 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 ```
 
+## Lock root account
+`#` `usermod -aG sudo $USER`
+```
+sudo passwd -l root
+```
+
+## Add missing [firmware][7]
+```
+mkdir firmware
+cd firmware
+wget -r -nd --no-parent -erobots=off -S '*.bin' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915/
+sudo mv *.bin /lib/firmware/i915/
+sudo update-initramfs -c -k all
+```
+
 ## Set the timezone and enable automatic synchronization
 ```
 sudo timedatectl set-timezone
@@ -211,14 +226,45 @@ sudo apt install -y fail2ban
 [Configure][6] fail2ban.
 
 
-Additional guides:
+## Optional
+### Edit grub to use the right Intel firmware
+```
+sudo nano /etc/default/grub
+```
+
+Edit the following line in grub:
+`GRUB_CMDLINE_LINUX_DEFAULT="quiet splash i915.force_probe=4c8a"`
+
+```
+sudo update-grub
+```
+
+### Edit apt source lists
+```
+sudo apt edit-sources 
+```
+
+And edit / paste the following:
+```
+deb http://deb.debian.org/debian bullseye main contrib non-free
+deb-src http://deb.debian.org/debian bullseye main contrib non-free
+
+deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+
+deb http://deb.debian.org/debian bullseye-updates main contrib non-free
+deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
+```
+
+
+## Additional guides:
 - (Silverbox: GNU/Linux Home Server)[https://ovk.github.io/silverbox/]
 - (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
 - (Debian server)[https://servidordebian.org/]
 - (Tips for your cyber hygiene)https://infosec-handbook.eu/specials/2019-ecsm/cyber-hygiene/
 - (Ubuntu Server Hardening Guide)[https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/]
 
-
+[7]:https://wiki.debian.org/Firmware
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
 [2]:https://www.raspberrypi.org/documentation/configuration/security.md
 [3]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
