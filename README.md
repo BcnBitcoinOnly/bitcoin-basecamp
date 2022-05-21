@@ -19,21 +19,6 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 ```
 
-## Lock root account
-`#` `usermod -aG sudo $USER`
-```
-sudo passwd -l root
-```
-
-## Add missing [firmware][7]
-```
-mkdir firmware
-cd firmware
-wget -r -nd --no-parent -erobots=off -S '*.bin' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915/
-sudo mv *.bin /lib/firmware/i915/
-sudo update-initramfs -c -k all
-```
-
 ## Set the timezone and enable automatic synchronization
 ```
 sudo timedatectl set-timezone
@@ -227,6 +212,21 @@ sudo apt install -y fail2ban
 
 
 ## Optional
+### Lock root account
+`#` `usermod -aG sudo $USER`
+```
+sudo passwd -l root
+```
+
+### Add missing [firmware][7]
+```
+mkdir firmware
+cd firmware
+wget -r -nd --no-parent -erobots=off -S '*.bin' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915/
+sudo mv *.bin /lib/firmware/i915/
+sudo update-initramfs -c -k all
+```
+
 ### Edit grub to use the right Intel firmware
 ```
 sudo nano /etc/default/grub
