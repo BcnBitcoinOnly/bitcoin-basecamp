@@ -19,9 +19,10 @@ sudo nano /etc/hostname
 sudo nano /etc/hosts
 ```
 
-## Set the timezone
+## Set the timezone and enable automatic synchronization
 ```
 sudo timedatectl set-timezone
+sudo apt install ntp
 ```
 
 ## Update the system
