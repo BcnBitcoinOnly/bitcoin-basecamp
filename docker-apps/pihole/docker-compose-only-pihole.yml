@@ -1,6 +1,7 @@
 version: "3"
 
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+# Also: https://github.com/chriscrowe/docker-pihole-unbound
 services:
   pihole:
     container_name: pihole
