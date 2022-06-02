@@ -5,7 +5,7 @@ services:
     image: postgres:alpine
     restart: always
     volumes:
-      - db:/var/lib/postgresql/data
+      - /home/feder/docker/nextcloud/nextcloud_db:/var/lib/postgresql/data
     env_file:
       - db.env
 
@@ -20,7 +20,7 @@ services:
 #      - 127.0.0.1:8200:80
       - 8200:80
     volumes:
-      - nextcloud:/var/www/html
+      - /home/feder/docker/nextcloud/nextcloud_app:/var/www/html
     environment:
       - POSTGRES_HOST=db
       - REDIS_HOST=redis
@@ -34,12 +34,12 @@ services:
     image: nextcloud:apache
     restart: always
     volumes:
-      - nextcloud:/var/www/html
+      - /home/feder/docker/nextcloud/nextcloud_app:/var/www/html
     entrypoint: /cron.sh
     depends_on:
       - db
       - redis
 
 volumes:
-  db:
-  nextcloud:
+  nextcloud_db:
+  nextcloud_app:

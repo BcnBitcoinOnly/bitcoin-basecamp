@@ -1,0 +1,4 @@
+# Copy this file to db.env and edit it
+POSTGRES_PASSWORD=
+POSTGRES_DB=odoo
+POSTGRES_USER=odoo
