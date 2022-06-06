@@ -2,7 +2,7 @@ version: '3.1'
 
 services:
   web:
-    image: odoo
+    image: odoo:14
     container_name: oddo_app
     env_file:
       - db.env
@@ -11,19 +11,19 @@ services:
     ports:
       - "8369:8069"
     restart: unless-stopped
-#    volumes:
-#      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
+    volumes:
+      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
 
   db:
-    image: postgres
+    image: postgres:13
     container_name: odoo_db
     env_file:
       - db.env
-#    volumes:
-#      - /home/feder/docker/odoo/odoo-db:/var/lib/odoo
+    volumes:
+      - /home/feder/docker/odoo/odoo-db:/var/lib/odoo
     restart: unless-stopped
 
-#volumes:
-#  odoo-data:
-#  odoo-db:
+volumes:
+  odoo-data:
+  odoo-db:
   
