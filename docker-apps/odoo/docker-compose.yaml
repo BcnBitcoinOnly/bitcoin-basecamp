@@ -4,26 +4,29 @@ services:
   web:
     image: odoo:14
     container_name: oddo_app
-    env_file:
-      - db.env
     depends_on:
       - db
     ports:
-      - "8369:8069"
-    restart: unless-stopped
-    volumes:
-      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
+      - "8069:8069"
+#    restart: unless-stopped
+#    volumes:
+#      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
 
   db:
     image: postgres:13
     container_name: odoo_db
-    env_file:
-      - db.env
-    volumes:
-      - /home/feder/docker/odoo/odoo-db:/var/lib/odoo
-    restart: unless-stopped
+#    volumes:
+#      - /home/feder/docker/odoo/odoo-db:/var/lib/odoo
+      #- ./config:/etc/odoo
+      #- ./addons:/mnt/extra-addons
+#    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
 
-volumes:
-  odoo-data:
-  odoo-db:
+
+#volumes:
+#  odoo-data:
+#  odoo-db:
   

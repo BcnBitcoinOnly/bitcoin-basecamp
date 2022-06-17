@@ -3,6 +3,7 @@ version: '3'
 services:
   db:
     image: postgres:alpine
+    container_name: nextcloud_db
     restart: always
     volumes:
       - /home/feder/docker/nextcloud/nextcloud_db:/var/lib/postgresql/data
@@ -15,6 +16,7 @@ services:
 
   app:
     image: nextcloud:apache
+    container_name: nextcloud_app
     restart: always
     ports:
 #      - 127.0.0.1:8200:80
@@ -32,6 +34,7 @@ services:
 
   cron:
     image: nextcloud:apache
+    container_name: nextcloud_cron
     restart: always
     volumes:
       - /home/feder/docker/nextcloud/nextcloud_app:/var/www/html
