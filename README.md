@@ -30,6 +30,14 @@ sudo apt install ntp
 sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
 ```
 
+Then edit `/etc/systemd/logind.conf` and add the following:
+```
+HandleSuspendKey=ignore
+HandleHibernateKey=ignore
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+```
 
 ## Update the system
 Debian based OS:
