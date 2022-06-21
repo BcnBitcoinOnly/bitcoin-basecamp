@@ -25,6 +25,12 @@ sudo timedatectl set-timezone
 sudo apt install ntp
 ```
 
+## Disable suspension if needed
+```
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
+
+
 ## Update the system
 Debian based OS:
 ```
