@@ -89,7 +89,7 @@ sudo deluser -remove-home ubuntu
 ## Install some utilities:
 Debian:
 ```
-sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass
+sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop
 sudo apt install -y locate debian-keyring
 sudo apt install -y libraspberrypi-bin
 ```
