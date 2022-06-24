@@ -25,6 +25,20 @@ sudo timedatectl set-timezone
 sudo apt install ntp
 ```
 
+## Disable suspension if needed
+```
+sudo systemctl mask sleep.target suspend.target hibernate.target hybrid-sleep.target
+```
+
+Then edit `/etc/systemd/logind.conf` and add the following:
+```
+HandleSuspendKey=ignore
+HandleHibernateKey=ignore
+HandleLidSwitch=ignore
+HandleLidSwitchExternalPower=ignore
+HandleLidSwitchDocked=ignore
+```
+
 ## Update the system
 Debian based OS:
 ```
@@ -83,7 +97,7 @@ sudo deluser -remove-home ubuntu
 ## Install some utilities:
 Debian:
 ```
-sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass
+sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop
 sudo apt install -y locate debian-keyring
 sudo apt install -y libraspberrypi-bin
 ```
