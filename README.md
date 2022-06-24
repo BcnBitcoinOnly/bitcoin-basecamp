@@ -275,7 +275,7 @@ deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
 - (Silverbox: GNU/Linux Home Server)[https://ovk.github.io/silverbox/]
 - (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
 - (Debian server)[https://servidordebian.org/]
-- (Tips for your cyber hygiene)https://infosec-handbook.eu/specials/2019-ecsm/cyber-hygiene/
+- (Tips for your cyber hygiene)https://web.archive.org/web/20210419115705/https://infosec-handbook.eu/blog/ecsm2019-cyber-hygiene/
 - (Ubuntu Server Hardening Guide)[https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/]
 
 [7]:https://wiki.debian.org/Firmware
