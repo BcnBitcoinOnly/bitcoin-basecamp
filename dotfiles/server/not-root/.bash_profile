@@ -15,12 +15,12 @@ echo ""
 echo "Initializing SSH Agent"
 eval `ssh-agent -s`
 ssh-add /home/$USER/.ssh/github.com
-ssh-add /home/$USER/.ssh/server
+#ssh-add /home/$USER/.ssh/server
 echo ""
 echo "Identities found:"
 ssh-add -l
 
-echo ""
-echo ""
-echo "Checking updates"
-sudo apt update
+#echo ""
+#echo ""
+#echo "Checking updates"
+#sudo apt update
