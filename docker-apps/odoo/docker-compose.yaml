@@ -6,12 +6,15 @@ services:
     container_name: oddo_app
     depends_on:
       - db
-    ports:
-      - "8069:8069"
+#    ports:
+#      - "8069:8069"
     restart: unless-stopped
     volumes:
 #      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
       - odoo-data:/var/lib/odoo
+    networks:
+      - npm-nw
+      - odoo-nw
 
   db:
     image: postgres:13
@@ -27,8 +30,15 @@ services:
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
       - PGDATA=/var/lib/postgresql/data/pgdata
+    networks: 
+      - odoo-nw
+
 
 volumes:
   odoo-data:
   odoo-db:
   
+networks:
+  odoo-nw:
+  npm-nw: 
+    external: true

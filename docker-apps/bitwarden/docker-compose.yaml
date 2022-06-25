@@ -4,8 +4,8 @@ services:
     image: vaultwarden/server:latest
     container_name: vaultwarden
     restart: always
-    ports:
-      - 8020:80
+#    ports:
+#      - 8020:80
     environment:
       - ADMIN_TOKEN=${ADMIN_TOKEN}
       - DOMAIN=${DOMAIN}
@@ -19,5 +19,12 @@ services:
       - SMTP_AUTH_MECHANISM=${SMTP_AUTH_MECHANISM}
     volumes:
       - bw-data:/data
+    networks: 
+      - npm-nw:
+
 volumes:
   bw-data:
+
+networks:
+  npm-nw:
+    external: true
