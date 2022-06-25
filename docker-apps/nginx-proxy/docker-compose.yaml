@@ -1,3 +1,7 @@
+## Used guide: https://www.howtoforge.com/how-to-install-and-use-nginx-proxy-manager/
+## Forward Hostname is the name "Host" of the container. It's not the container name. 
+## Domain names must be FQDN, either local or public, but something like "subdomain.foo.bar"
+
 version: '2'
 
 services:
