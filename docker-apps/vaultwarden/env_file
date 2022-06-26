@@ -1,3 +1,5 @@
+DATADIR=
+
 ## Vaultwarden Configuration File
 ## Uncomment any of the following lines to change the defaults
 ##

@@ -1,9 +1,9 @@
 version: '3'
 services:
-  bitwarden:
+  vaultwarden:
     image: vaultwarden/server:latest
     container_name: vaultwarden
-    restart: always
+    restart: unless-stopped
 #    ports:
 #      - 8020:80
     environment:
@@ -18,12 +18,12 @@ services:
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - SMTP_AUTH_MECHANISM=${SMTP_AUTH_MECHANISM}
     volumes:
-      - bw-data:/data
+      - ${DATADIR}/data:/data
     networks: 
       - npm-nw:
 
 volumes:
-  bw-data:
+  data:
 
 networks:
   npm-nw:
