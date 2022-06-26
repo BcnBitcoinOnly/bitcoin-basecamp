@@ -8,7 +8,10 @@ PIHOLE_WEBPORT=
 TZ=
 
 #Set to your server's LAN IP, used by web block modes and lighttpd bind address.
-FTLCONF_REPLY_ADDR4=
+IP=
+INTERFACE=
+
+REV_SERVER=
 #If conditional forwarding is enabled, set the IP of the local network router
 REV_SERVER_TARGET=
 #If conditional forwarding is enabled, set the domain of the local network router
