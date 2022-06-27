@@ -17,30 +17,14 @@ services:
       - SMTP_USERNAME=${SMTP_USERNAME}
       - SMTP_PASSWORD=${SMTP_PASSWORD}
       - SMTP_AUTH_MECHANISM=${SMTP_AUTH_MECHANISM}
-      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@db:5432/vaultwarden
     volumes:
       - ${DATADIR}/data:/data
     networks: 
       - bitwarden-nw
       - npm-nw
 
-  db:
-    image: postgres
-    container_name: bitwarden_db
-    environment:
-      - POSTGRES_DB=vaultwarden
-      - POSTGRES_USER=${DB_USER}
-      - POSTGRES_PASSWORD=${DB_PASSWORD}
-      - PGDATA=/var/lib/postgresql/data/pgdata
-    volumes:
-      - ${DATADIR}/db_data:/var/lib/postgresql/data/pgdata
-    restart: always
-    networks: 
-      - bitwarden-nw
-
 volumes:
   data:
-  db_data:
 
 networks:
   bitwarden-nw:
