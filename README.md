@@ -64,6 +64,8 @@ sudo ufw default allow outgoing
 sudo ufw limit from 192.168.0.0/16 to any port 22 proto tcp comment 'SSH server'
 ```
 
+Uncomment last line of `/etc/rsyslog.d/20-ufw.conf` to stop logging UFW in SYSLOG:
+
 Enable the firewall
 ```
 sudo ufw enable
