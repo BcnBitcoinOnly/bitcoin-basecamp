@@ -1,0 +1,27 @@
+version: '3'
+services:
+  npm-app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    environment:
+      - DISABLE_IPV6=true
+    volumes:
+      - ${DATADIR}/data:/data
+      - ${DATADIR}/letsencrypt:/etc/letsencrypt
+    networks:
+      - npm-nw
+      - npm-internal
+
+volumes:
+  data:
+  letsencrypt:
+
+networks:
+  npm-internal:
+  npm-nw:
+    external: true

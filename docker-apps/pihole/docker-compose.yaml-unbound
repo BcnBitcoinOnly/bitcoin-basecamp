@@ -1,36 +1,32 @@
 version: "3"
-
 # More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
 # Also: https://github.com/chriscrowe/docker-pihole-unbound
+
 services:
   pihole:
     container_name: pihole
-    image: pihole/pihole:latest
+#    image: pihole/pihole:latest
+    image: cbcrowe/pihole-unbound:latest
     hostname: ${HOSTNAME}
     domainname: ${DOMAIN_NAME}
     ports:
       - "53:53/tcp"
       - "53:53/udp"
-      - "67:67/udp"
+#      - "67:67/udp"
 #      - "${PIHOLE_WEBPORT}:80/tcp"
     environment:
+      - FTLCONF_REPLY_ADDR4=${IP}
       - TZ=${TZ:-UTC}
       - WEBPASSWORD=${WEBPASSWORD}
-      - FTLCONF_REPLY_ADDR4=${IP}
-
-      - PIHOLE_DNS_=1.1.1.1;1.0.0.1
+      - PIHOLE_DNS_=127.0.0.1#5335
+      - DNSSEC=false
       - IPv6=false
-
-      - INTERFACE=${INTERFACE}
       - DNSMASQ_LISTENING=single
-    dns:
-      - 127.0.0.1
-      - 1.1.1.1
-
+      - INTERFACE=${INTERFACE:-eth0}
     # Volumes store your data between container upgrades
     volumes:
-      - '${DATADIR}/etc-pihole:/etc/pihole/'
-      - '${DATADIR}/etc-dnsmasq.d:/etc/dnsmasq.d/'
+      - '${DATADIR}/etc-pihole-unbound:/etc/pihole/'
+      - '${DATADIR}/etc-dnsmasq-unbound:/etc/dnsmasq.d/'
     # Recommended but not required (DHCP needs NET_ADMIN)
     #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
 #    cap_add:
@@ -40,8 +36,8 @@ services:
     restart: unless-stopped
 
 volumes:
-  etc-pihole:
-  etc-dnsmasq.d:
+  etc-pihole-unbound:
+  etc-dnsmasq-unbound:
 
 networks: 
   npm-nw:
