@@ -64,6 +64,8 @@ sudo ufw default allow outgoing
 sudo ufw limit from 192.168.0.0/16 to any port 22 proto tcp comment 'SSH server'
 ```
 
+Uncomment last line of `/etc/rsyslog.d/20-ufw.conf` to stop logging UFW in SYSLOG:
+
 Enable the firewall
 ```
 sudo ufw enable
@@ -268,6 +270,42 @@ deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib no
 
 deb http://deb.debian.org/debian bullseye-updates main contrib non-free
 deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
+```
+
+
+### Install Firefox from unstable
+Edit apt sources and add the Debian (or other distro) unstable repository:
+
+```
+sudo apt edit-sources 
+```
+
+Add the following source (unstable):
+```
+deb http://deb.debian.org/debian/ unstable main contrib non-free
+```
+
+Set a low pin priority for the Debian Unstable repository so your system doesn't automatically install packages from it unless you manually specify this
+```
+sudo nano /etc/apt/preferences.d/99pin-unstable
+```
+
+Paste:
+```
+Package: *
+Pin: release a=stable
+Pin-Priority: 900
+
+Package: *
+Pin: release a=unstable
+Pin-Priority: 10
+```
+
+Install Firefox and remove Firefox ESR:
+```
+sudo apt update
+sudo apt install -t unstable firefox
+sudo apt purge firefox-esr
 ```
 
 
