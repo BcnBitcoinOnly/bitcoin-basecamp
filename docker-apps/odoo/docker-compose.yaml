@@ -3,7 +3,7 @@ version: '3.1'
 services:
   web:
     image: odoo:14
-    container_name: oddo_app
+    container_name: odoo_app
     depends_on:
       - db
 #    ports:
@@ -11,34 +11,37 @@ services:
     restart: unless-stopped
     volumes:
 #      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
-      - odoo-data:/var/lib/odoo
+      - data:/var/lib/odoo
+      - config:/etc/odoo
+      - addons:/mnt/extra-addons
     networks:
       - npm-nw
-      - odoo-nw
+      - odoo-network
 
   db:
     image: postgres:13
     container_name: odoo_db
     volumes:
-#      - odoo-db:/var/lib/odoo
-      - odoo-db:/var/lib/postgresql/data/pgdata
-      #- ./config:/etc/odoo
-      #- ./addons:/mnt/extra-addons
+      - db:/var/lib/odoo
+#      - db:/var/lib/postgresql/data/pgdata
     restart: always
     environment:
       - POSTGRES_DB=postgres
       - POSTGRES_PASSWORD=odoo
       - POSTGRES_USER=odoo
-      - PGDATA=/var/lib/postgresql/data/pgdata
+#      - PGDATA=/var/lib/postgresql/data/pgdata
     networks: 
-      - odoo-nw
+      - odoo-network
 
 
 volumes:
-  odoo-data:
-  odoo-db:
+  data:
+  config:
+  addons:
+  db:
   
 networks:
-  odoo-nw:
+  odoo-network:
+    internal: true
   npm-nw: 
     external: true

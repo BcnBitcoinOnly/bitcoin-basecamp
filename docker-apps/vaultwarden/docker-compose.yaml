@@ -21,7 +21,7 @@ services:
     volumes:
       - ${DATADIR}/data:/data
     networks: 
-      - bitwarden-nw
+      - bitwarden-network
       - npm-nw
 
   db:
@@ -36,13 +36,13 @@ services:
       - ${DATADIR}/db_data:/var/lib/postgresql/data/pgdata
     restart: always
     networks: 
-      - bitwarden-nw
+      - bitwarden-network
 
 volumes:
   data:
   db_data:
 
 networks:
-  bitwarden-nw:
+  bitwarden-network:
   npm-nw:
     external: true
