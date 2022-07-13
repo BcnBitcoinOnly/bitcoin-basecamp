@@ -9,6 +9,8 @@ services:
     ports:
       - "8069:8069"
     restart: unless-stopped
+    environment:
+      - ADDONS_REPO=https://github.com/OCA/business-requirement.git
     volumes:
 #      - /home/feder/docker/odoo/odoo-data:/var/lib/odoo
       - odoo-data:/var/lib/odoo
