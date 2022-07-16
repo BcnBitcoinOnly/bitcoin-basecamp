@@ -1,6 +1,7 @@
 # Bare metal apps
 For systems where containers are not preferred, bare metal can be the right choice.
 
+# For Raspberry Pi: USING RASPBERRY PI OS 64BITS
 
 ## Set up a VPN server
 Wireguard is choosen over OpenVPN. Install it:
