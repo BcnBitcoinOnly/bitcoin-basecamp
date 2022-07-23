@@ -1,15 +1,5 @@
 # Fresh-linux
-Firsts steps for a fresh new installation of some UNIX distributions. Applies both for home servers and desktops.
-General instructions for Debian/Ubuntu amd64, armhf and arm64. Some of these instructions are not neccesary if system is recovered from a backup. 
-
-## Default usernames for some common distributions
-
-| Username | Password |
-| -------- |----------|
-| root     |          |
-| root     | toor     |
-| ubuntu   | ubuntu   |
-| pi       | raspberry|
+Firsts steps for a fresh new installation of Fedora.
 
 
 ## Edit hostname
@@ -92,15 +82,9 @@ sudo deluser -remove-home ubuntu
 ## Install some utilities:
 Debian:
 ```
-sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop seahorse
-sudo apt install -y locate debian-keyring
-sudo apt install -y libraspberrypi-bin
+sudo dnf install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools htop seahorse
 ```
 
-ARCH:
-```
-sudo pacman -S git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools
-```
 
 ### Configure Git
 ```
@@ -241,71 +225,14 @@ Edit the following line in grub:
 sudo update-grub
 ```
 
-### Edit apt source lists
-```
-sudo apt edit-sources 
-```
-
-And edit / paste the following:
-```
-deb http://deb.debian.org/debian bullseye main contrib non-free
-deb-src http://deb.debian.org/debian bullseye main contrib non-free
-
-deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
-deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
-
-deb http://deb.debian.org/debian bullseye-updates main contrib non-free
-deb-src http://deb.debian.org/debian bullseye-updates main contrib non-free
-```
-
-
-### Install Firefox from unstable
-Edit apt sources and add the Debian (or other distro) unstable repository:
-
-```
-sudo apt edit-sources 
-```
-
-Add the following source (unstable):
-```
-deb http://deb.debian.org/debian/ unstable main contrib non-free
-```
-
-Set a low pin priority for the Debian Unstable repository so your system doesn't automatically install packages from it unless you manually specify this
-```
-sudo nano /etc/apt/preferences.d/99pin-unstable
-```
-
-Paste:
-```
-Package: *
-Pin: release a=stable
-Pin-Priority: 900
-
-Package: *
-Pin: release a=unstable
-Pin-Priority: 10
-```
-
-Install Firefox and remove Firefox ESR:
-```
-sudo apt update
-sudo apt install -t unstable firefox
-sudo apt purge firefox-esr
-```
 
 
 ## Additional guides:
 - (Silverbox: GNU/Linux Home Server)[https://ovk.github.io/silverbox/]
-- (The Debian Administrator's Handbook)[https://debian-handbook.info/browse/stable/]
-- (Debian server)[https://servidordebian.org/]
 - (Tips for your cyber hygiene)https://web.archive.org/web/20210419115705/https://infosec-handbook.eu/blog/ecsm2019-cyber-hygiene/
 - (Ubuntu Server Hardening Guide)[https://www.nuharborsecurity.com/ubuntu-server-hardening-guide-2/]
 
-[7]:https://wiki.debian.org/Firmware
 [1]:https://www.digitalocean.com/community/tutorials/ufw-essentials-common-firewall-rules-and-commands
-[2]:https://www.raspberrypi.org/documentation/configuration/security.md
-[3]:https://www.raspberrypi.org/documentation/configuration/external-storage.md
 [4]:https://unix.stackexchange.com/questions/131311/moving-var-home-to-separate-partition
 [5]:https://www.digitalocean.com/community/tutorials/how-to-configure-ssh-key-based-authentication-on-a-linux-server
 [6]:https://www.digitalocean.com/community/tutorials/how-fail2ban-works-to-protect-services-on-a-linux-server
