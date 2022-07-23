@@ -16,13 +16,12 @@ General instructions for Debian/Ubuntu amd64, armhf and arm64. Some of these ins
 Edit the following files and reboot
 ```
 sudo nano /etc/hostname
-sudo nano /etc/hosts
+
 ```
 
 ## Set the timezone and enable automatic synchronization
 ```
-sudo timedatectl set-timezone
-sudo apt install ntp
+sudo timedatectl set-timezone $REGION/TIMEZONE
 ```
 
 ## Disable suspension if needed
@@ -40,22 +39,16 @@ HandleLidSwitchDocked=ignore
 ```
 
 ## Update the system
-Debian based OS:
 ```
-sudo apt update
-sudo apt -y full-upgrade
-```
-
-Arch based OS:
-```
-sudo pacman -Syu
+sudo dnf update
+sudo dnf upgrade
 ```
 
 
 ## Install and [config a firewall][1]
 Uncomplicated FireWall (UFW)
 ```
-sudo apt install -y ufw
+sudo dnf install -y ufw
 ```
 Config some basic rules
 ```
@@ -99,7 +92,7 @@ sudo deluser -remove-home ubuntu
 ## Install some utilities:
 Debian:
 ```
-sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop
+sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop seahorse
 sudo apt install -y locate debian-keyring
 sudo apt install -y libraspberrypi-bin
 ```
@@ -226,13 +219,6 @@ sudo apt install -y fail2ban
 
 [Configure][6] fail2ban.
 
-
-## Optional
-### Lock root account
-`#` `usermod -aG sudo $USER`
-```
-sudo passwd -l root
-```
 
 ### Add missing [firmware][7]
 ```
