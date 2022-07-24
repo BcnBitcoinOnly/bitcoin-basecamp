@@ -82,7 +82,7 @@ sudo deluser -remove-home ubuntu
 ## Install some utilities:
 Debian:
 ```
-sudo dnf install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools htop seahorse
+sudo dnf install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools htop seahorse openssl
 ```
 
 
