@@ -39,16 +39,17 @@ HandleLidSwitchExternalPower=ignore
 HandleLidSwitchDocked=ignore
 ```
 
+
+## Install sudo and add user if needed
+```
+apt install sudo
+usermod -aG $USER sudo
+```
+
 ## Update the system
-Debian based OS:
 ```
 sudo apt update
 sudo apt -y full-upgrade
-```
-
-Arch based OS:
-```
-sudo pacman -Syu
 ```
 
 
@@ -82,32 +83,14 @@ awk -F: '($3=="0"){print}' /etc/passwd
 cat /etc/shadow | awk -F: '($2==""){print $1}'
 ```
 
-### Change default user [more info][2]
-Create new user and it to sudo and other groups
-```
-export NEW_USER=feder
-sudo adduser $NEW_USER
-sudo usermod -a -G adm,dialout,cdrom,floppy,sudo,audio,video,dip,plugdev,games,users,input,netdev,lxd $NEW_USER
-sudo reboot now
-```
-Delete default "ubuntu" user and permission to sudo without password for pi.
-```
-sudo deluser -remove-home ubuntu
-```
-
 
 ## Install some utilities:
-Debian:
 ```
 sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop
 sudo apt install -y locate debian-keyring
 sudo apt install -y libraspberrypi-bin
 ```
 
-ARCH:
-```
-sudo pacman -S git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools
-```
 
 ### Configure Git
 ```
@@ -227,15 +210,9 @@ sudo apt install -y fail2ban
 [Configure][6] fail2ban.
 
 
-## Optional
-### Lock root account
-`#` `usermod -aG sudo $USER`
-```
-sudo passwd -l root
-```
-
 ### Add missing [firmware][7]
 ```
+cd /opt
 mkdir firmware
 cd firmware
 wget -r -nd --no-parent -erobots=off -S '*.bin' https://git.kernel.org/pub/scm/linux/kernel/git/firmware/linux-firmware.git/tree/i915/
