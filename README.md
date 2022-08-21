@@ -21,8 +21,7 @@ sudo nano /etc/hosts
 
 ## Set the timezone and enable automatic synchronization
 ```
-sudo timedatectl set-timezone
-sudo apt install ntp
+sudo timedatectl set-timezone $Region/City
 ```
 
 ## Disable suspension if needed
