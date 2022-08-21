@@ -85,8 +85,7 @@ cat /etc/shadow | awk -F: '($2==""){print $1}'
 
 ## Install some utilities:
 ```
-sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop
-sudo apt install -y locate debian-keyring
+sudo apt install -y git tldr tree logrotate lnav dnsutils qrencode borgbackup rsync rclone net-tools ssh-askpass htop locate debian-keyring ncdu
 sudo apt install -y libraspberrypi-bin
 ```
 
@@ -191,12 +190,8 @@ nano /home/$USER/.ssh/authorized_keys
 
 [Edit][5] `/etc/ssh/sshd_config`
 
-```
-ListenAddress 0.0.0.0
-
-PermitRootLogin no               
+```          
 PasswordAuthentication no                                                                                                                
-
 UsePAM no
 ```
 
