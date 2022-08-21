@@ -1,15 +1,17 @@
-DATADIR=
-
-HOSTNAME=
-DOMAIN_NAME=
-
-WEBPASSWORD=
-PIHOLE_WEBPORT=
-TZ=
-
 #Set to your server's LAN IP, used by web block modes and lighttpd bind address.
 IP=
 INTERFACE=
+
+DATADIR=/home/$USER/docker/pihole
+
+HOSTNAME=$HOSTNAME
+DOMAIN_NAME=
+
+WEBPASSWORD=changeme
+PIHOLE_WEBPORT=8080
+TZ=changetimezone
+
+ADMIN_EMAIL=
 
 REV_SERVER=
 #If conditional forwarding is enabled, set the IP of the local network router
