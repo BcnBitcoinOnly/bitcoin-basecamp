@@ -7,7 +7,8 @@ For systems where containers are not preferred, bare metal can be the right choi
 Wireguard is choosen over OpenVPN. Install it:
 ```
 sudo apt update
-sudo apt install -y wireguard linux-headers
+sudo apt install -y wireguard
+sudo apt install -y linux-headers
 ```
 
 Allow firewall rules
