@@ -33,15 +33,17 @@ To install this repository on your Debian system, follow these steps:
 
 ```git clone https://github.com/federicociro/Mini-debian.git```
 
-
 5. Once the repository has been cloned, navigate to the root directory of the repository and run any necessary setup scripts or configuration commands.
 
 That's it! You should now be able to use the repository on your Debian system.
 
 ### Usage
+Run `.install.sh` and/or any necessary setup scripts or configuration commands.
 
 ## Configuration
 ### Scripts
+
+
 ### Configuration files
 
 ## Documentation
