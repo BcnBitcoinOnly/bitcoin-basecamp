@@ -113,6 +113,15 @@ fi
         sudo apt install curl
     fi
 
+    # sudo: A program that allows a user to run commands with the security privileges of another user (by default, the superuser).
+    read -p "Install 'sudo' for allowing privileged user access? [Y/n] " REPLY
+    if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
+        sudo apt install sudo
+    fi
+
+# replace $USER with the non-root user
+#usermod -a -G sudo $USER
+
 sudo useradd -m bitcoin
 sudo useradd -m electrs
 sudo useradd -m mempool
