@@ -112,3 +112,7 @@ fi
     if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
         sudo apt install curl
     fi
+
+sudo useradd -m bitcoin
+sudo useradd -m electrs
+sudo useradd -m mempool
