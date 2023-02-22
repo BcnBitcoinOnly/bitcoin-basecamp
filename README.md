@@ -71,25 +71,23 @@ That's it! You should now have a fully functional Bitcoin node running on your L
 ## Documentation
 
 ### Troubleshooting guide
-1. If the script is not executing, ensure that it has the necessary permissions to be run as an executable. You can do this by running chmod +x script-name.sh.
+1. If the script is not executing, ensure that it has the necessary permissions to be run as an executable. You can do this by running `chmod +x script-name.sh`.
 
-2. If you are receiving a "This script must be run as root" error, ensure that you are running the script as a superuser. You can do this by running sudo ./script-name.sh.
+2. If you are receiving a "This script must be run as root" error, ensure that you are running the script as a superuser. You can do this by running `sudo ./script-name.sh`.
 
-3. If the system update and upgrade commands are not running, ensure that the system has an active internet connection and that the package repository URLs are correct. You can check this by running ping google.com or ping archive.ubuntu.com.
+3. If the system update and upgrade commands are not running, ensure that the system has an active internet connection and that the package repository URLs are correct. You can check this by running `ping google.com` or `ping archive.ubuntu.com`.
 
-4. If the hostname is not being set, ensure that the hostnamectl command is supported by the system and that the user has permissions to run it. You can check this by running hostnamectl set-hostname test-hostname and verifying that the hostname has been updated.
+4. If the hostname is not being set, ensure that the `hostnamectl` command is supported by the system and that the user has permissions to run it. You can check this by running `hostnamectl set-hostname test-hostname` and verifying that the hostname has been updated.
 
-5. If the ufw firewall is not being installed or configured properly, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install ufw.
+5. If the ufw firewall is not being installed or configured properly, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running `sudo apt update` and `sudo apt install ufw`.
 
-6. If the non-root users are not being created properly, ensure that the useradd command is supported by the system and that the user has permissions to run it. You can check this by running useradd test-user and verifying that the user has been created.
+6. If the non-root users are not being created properly, ensure that the useradd command is supported by the system and that the user has permissions to run it. You can check this by running `sudo useradd test-user` and verifying that the user has been created.
 
-7. If the Nginx, Certbot, and Fail2ban packages are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban.
+7. If the Nginx, Certbot, and Fail2ban packages are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running `sudo apt update` and `sudo apt install nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban`.
 
 8. If the Cloudflare credentials file is not being created or the certbot command is not functioning correctly, ensure that the Cloudflare email and API key are correct and that the DNS records have been configured properly. You can check this by logging in to your Cloudflare account and verifying that the email and API key are correct, and that the DNS records for your domain have been configured correctly.
 
-9. If the Bitcoin Core repository is not being cloned or the dependencies are not being installed, ensure that the git command is installed and that the system has an active internet connection. You can check this by running sudo apt install git and ping github.com.
-
-10. If the utilities are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install package-name.
+9. If the Bitcoin Core repository is not being cloned or the dependencies are not being installed, ensure that the `git` command is installed and that the system has an active internet connection. You can check this by running `sudo apt install git` and `ping github.com`.
 
 ### Contributing guide
 Contributing Guide for Bitcoin Basecamp
