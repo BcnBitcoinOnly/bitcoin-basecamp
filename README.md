@@ -1,4 +1,4 @@
-# Mini-debian
+# Bitcoin Basecamp
 Bitcoin Basecamp is a GitHub repository that provides a comprehensive set of packages specifically tailored for Bitcoin-related software and services on a fresh Linux instance. Our repository is regularly updated to ensure that you have access to the latest versions of all the software packages you need to run a Bitcoin node, including Bitcoin Core, Electrs, and many other popular Bitcoin related tools.
 
 Our repository is designed to make it easy for you to set up and maintain a reliable Bitcoin node on Linux. Whether you're a seasoned Bitcoin user or just getting started, Bitcoin Basecamp provides a solid foundation for your Bitcoin-related activities. We also provide detailed documentation and guides to help you get started with your Bitcoin node, including tips on security, performance, and optimization.
@@ -13,7 +13,6 @@ With Bitcoin Basecamp, you can be confident that you're using the best tools and
   - [Scripts](#scripts)
   - [Configuration files](#configuration-files)
 - [Documentation](#documentation)
-  - [Getting started guide](#getting-started-guide)
   - [Troubleshooting guide](#troubleshooting-guide)
   - [Contributing guide](#contributing-guide)
 - [License](#license)
@@ -67,13 +66,33 @@ That's it! You should now have a fully functional Bitcoin node running on your L
 ## Configuration
 ### Scripts
 
-
 ### Configuration files
 
 ## Documentation
-### Getting started guide
+
 ### Troubleshooting guide
+1. If the script is not executing, ensure that it has the necessary permissions to be run as an executable. You can do this by running chmod +x script-name.sh.
+
+2. If you are receiving a "This script must be run as root" error, ensure that you are running the script as a superuser. You can do this by running sudo ./script-name.sh.
+
+3. If the system update and upgrade commands are not running, ensure that the system has an active internet connection and that the package repository URLs are correct. You can check this by running ping google.com or ping archive.ubuntu.com.
+
+4. If the hostname is not being set, ensure that the hostnamectl command is supported by the system and that the user has permissions to run it. You can check this by running hostnamectl set-hostname test-hostname and verifying that the hostname has been updated.
+
+5. If the ufw firewall is not being installed or configured properly, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install ufw.
+
+6. If the non-root users are not being created properly, ensure that the useradd command is supported by the system and that the user has permissions to run it. You can check this by running useradd test-user and verifying that the user has been created.
+
+7. If the Nginx, Certbot, and Fail2ban packages are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban.
+
+8. If the Cloudflare credentials file is not being created or the certbot command is not functioning correctly, ensure that the Cloudflare email and API key are correct and that the DNS records have been configured properly. You can check this by logging in to your Cloudflare account and verifying that the email and API key are correct, and that the DNS records for your domain have been configured correctly.
+
+9. If the Bitcoin Core repository is not being cloned or the dependencies are not being installed, ensure that the git command is installed and that the system has an active internet connection. You can check this by running sudo apt install git and ping github.com.
+
+10. If the utilities are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install package-name.
+
 ### Contributing guide
+
 
 ## License
 
