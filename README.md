@@ -92,7 +92,47 @@ That's it! You should now have a fully functional Bitcoin node running on your L
 10. If the utilities are not being installed, ensure that the apt package manager is functioning correctly and that the package repository URLs are correct. You can check this by running sudo apt update and sudo apt install package-name.
 
 ### Contributing guide
+Contributing Guide for Bitcoin Basecamp
 
+Thank you for your interest in contributing to Bitcoin Basecamp! Our repository is designed to provide a comprehensive set of packages specifically tailored for Bitcoin-related software and services on a fresh Linux instance. We welcome contributions from the community that will help us improve our repository and provide a better experience for all users.
+
+Getting Started
+
+Before contributing, please take a moment to review our code of conduct to ensure that your contributions align with our values and guidelines. We also recommend that you join our community on Discord to connect with other contributors and get support from our team.
+
+Contributing to Bitcoin Basecamp can take many forms, including:
+
+1. Bug fixes and feature improvements
+2. Documentation updates and improvements
+3. Testing and quality assurance
+4. Translation of documentation or software
+5. New package suggestions
+
+Submitting Changes
+
+To submit changes to Bitcoin Basecamp, please follow these steps:
+
+1. Fork our repository on GitHub and create a new branch for your changes.
+2. Make your changes and ensure that they adhere to our coding standards.
+3. Test your changes thoroughly to ensure they work as expected.
+4. Create a pull request and describe your changes in detail.
+5. Wait for feedback from our team and address any comments or issues that are raised.
+
+Code of Conduct
+
+Our community values respect, inclusivity, and collaboration. We ask that all contributors to Bitcoin Basecamp follow our code of conduct, which includes:
+
+- Treating all individuals with respect and dignity, regardless of their background or identity.
+- Being open to feedback and willing to collaborate with others.
+- Avoiding discriminatory language or behavior.
+- Contributing to a positive and welcoming environment for all community members.
+
+Thank you for your contributions to Bitcoin Basecamp! We appreciate your support in helping us build a better Bitcoin ecosystem on Linux.
 
 ## License
+Bitcoin Basecamp is open-source software licensed under the GNU General Public License v3.0. This means that you are free to use, modify, and distribute the software under the terms of this license.
+
+A copy of the full license text can be found in the LICENSE file.
+
+If you have any questions about the license or how it applies to your use of Bitcoin Basecamp, please don't hesitate to contact us.
 
