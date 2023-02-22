@@ -132,7 +132,6 @@ Thank you for your contributions to Bitcoin Basecamp! We appreciate your support
 ## License
 Bitcoin Basecamp is open-source software licensed under the GNU General Public License v3.0. This means that you are free to use, modify, and distribute the software under the terms of this license.
 
-A copy of the full license text can be found in the LICENSE file.
+A copy of the full license text can be found in the [LICENSE](LICENSE) file.
 
 If you have any questions about the license or how it applies to your use of Bitcoin Basecamp, please don't hesitate to contact us.
-
