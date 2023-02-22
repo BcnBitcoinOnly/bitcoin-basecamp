@@ -1,5 +1,9 @@
 # Mini-debian
-This document provides instructions for the initial setup of a new installation of Debian on a server using the amd64 architecture. By following these instructions, you can ensure that your new server installation is configured with the necessary packages and settings to function properly. These steps are not necessary if you are recovering a system from a backup.
+Bitcoin Basecamp is a GitHub repository that provides a comprehensive set of packages specifically tailored for Bitcoin-related software and services on a fresh Linux instance. Our repository is regularly updated to ensure that you have access to the latest versions of all the software packages you need to run a Bitcoin node, including Bitcoin Core, Electrs, and many other popular Bitcoin related tools.
+
+Our repository is designed to make it easy for you to set up and maintain a reliable Bitcoin node on Linux. Whether you're a seasoned Bitcoin user or just getting started, Bitcoin Basecamp provides a solid foundation for your Bitcoin-related activities. We also provide detailed documentation and guides to help you get started with your Bitcoin node, including tips on security, performance, and optimization.
+
+With Bitcoin Basecamp, you can be confident that you're using the best tools and packages available to run your Bitcoin node. Our team of experts is always available to provide support and guidance whenever you need it. So why wait? Check out Bitcoin Basecamp on GitHub today and start exploring the exciting world of Bitcoin on Linux!
 
 ## Getting Started
 ### Prerequisites
