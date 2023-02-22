@@ -5,21 +5,32 @@ Our repository is designed to make it easy for you to set up and maintain a reli
 
 With Bitcoin Basecamp, you can be confident that you're using the best tools and packages available to run your Bitcoin node. Our team of experts is always available to provide support and guidance whenever you need it. So why wait? Check out Bitcoin Basecamp on GitHub today and start exploring the exciting world of Bitcoin on Linux!
 
+## Table of Contents
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Configuration](#configuration)
+  - [Scripts](#scripts)
+  - [Configuration files](#configuration-files)
+- [Documentation](#documentation)
+  - [Getting started guide](#getting-started-guide)
+  - [Troubleshooting guide](#troubleshooting-guide)
+  - [Contributing guide](#contributing-guide)
+- [License](#license)
+
 ## Getting Started
 ### Prerequisites
-Before you can use this repository, you will need to have the following software installed on your system:
+To use Bitcoin Basecamp, you'll need the following:
 
-- Debian 10 or later (amd64 architecture)
+- A fresh Linux instance installed on your machine. Specifically, our repository is designed to work with Debian-based distributions, such as Debian 10 or later (amd64 architecture), Ubuntu, and Linux Mint.
+- A basic understanding of how to use the command line interface (CLI), as many of the tools and packages in Bitcoin Basecamp are accessed via the command line.
+- Linux system administration basics, including knowledge of package management, network configuration, and security best practices.
+- Minimal computing resources, including disk space, memory, and processing power. Running a Bitcoin node requires a minimum of 100GB of disk space, 4GB of RAM, and a multi-core processor.
 
-In addition, you should have a basic understanding of the following concepts and technologies:
-
-- Command line interface (CLI) usage
-- Linux system administration basics
-
-If you are new to any of these concepts or technologies, there are many online resources available to help you get started. I recommend consulting the official Debian documentation as well as community forums and tutorials for additional guidance.
+Before installing Bitcoin Basecamp, be sure to review the hardware requirements for running a Bitcoin node and ensure that your machine meets these requirements. Additionally, we recommend that you familiarize yourself with the basics of Bitcoin and related software, as this will help you get the most out of our repository.
 
 ### Installation
-To install this repository on your Debian system, follow these steps:
+To install Bitcoin Basecamp and run the scripts inside the scripts/ directory, follow these steps:
 
 1. Open a terminal window and run the following command to update your system's package index:
 
@@ -35,14 +46,23 @@ To install this repository on your Debian system, follow these steps:
 
 4. Once Git is installed, navigate to the directory where you want to store the repository and run the following command to clone the repository to your local system:
 
-```git clone https://github.com/federicociro/Mini-debian.git```
+```git clone https://github.com/federicociro/Bitcoin-Basecamp.git```
 
-5. Once the repository has been cloned, navigate to the root directory of the repository and run any necessary setup scripts or configuration commands.
+5. Navigate to the scripts/ directory within the cloned repository:
 
-That's it! You should now be able to use the repository on your Debian system.
+```cd Bitcoin-Basecamp/scripts/```
 
-### Usage
-Run `.install.sh` and/or any necessary setup scripts or configuration commands.
+6. Review the scripts in the scripts/ directory to ensure that they're appropriate for your use case.
+
+7. Run the scripts in the order that you'd like them to be executed, using the following command:
+
+```sudo ./script-name.sh```
+
+You may need to modify the script's permissions to make it executable using the chmod command. For example, if you want to make the install-bitcoin-core.sh script executable, you would run the following command:
+
+```chmod +x install.sh```
+
+That's it! You should now have a fully functional Bitcoin node running on your Linux instance using the software and packages provided by Bitcoin Basecamp.
 
 ## Configuration
 ### Scripts

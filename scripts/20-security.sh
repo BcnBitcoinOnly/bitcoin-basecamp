@@ -28,18 +28,13 @@ chmod 600 /root/.secrets/certbot/cloudflare.ini
 sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /root/.secrets/certbot/cloudflare.ini -d $DOMAIN -m $CF_EMAIL --agree-tos --no-eff-email --preferred-challenges dns-01
 
 # Create a stream configuration file for Nginx
-cat > /etc/nginx/conf.d/electrs-stream.conf << EOF
-upstream electrs {
-  server 127.0.0.1:50001;
-}
-server {
-  listen 50002 ssl;
-  ssl_certificate /etc/letsencrypt/live/$DOMAIN/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/$DOMAIN/privkey.pem;
-  proxy_pass electrs;
-}
-EOF
+sudo mkdir -p /etc/nginx/stream-available
+sudo mkdir -p /etc/nginx/stream-enabled
+sudo cp config/etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-available/electrs-stream.conf
+
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/stream-available/electrs-stream.conf
+
+sudo ln -s /etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-enabled/electrs-stream.conf
 
 # Restart nginx to apply the new configuration
 sudo systemctl restart nginx
-
