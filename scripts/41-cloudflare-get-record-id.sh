@@ -2,25 +2,34 @@
 
 # Source: https://api.cloudflare.com/#dns-records-for-a-zone-dns-record-details
 
-if [ "$(id -u)" != "0" ]; then
-   echo "This script must be run as root" 1>&2
-   exit 1
+CONFIG_FILE="/root/.secrets/cloudflare/config.json"
+
+# Create config file if it doesn't exist
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "{}" > "$CONFIG_FILE"
 fi
+
 
 # Prompt user for values
 read -p "Enter your cloudflare email address: " USER
 read -p "Enter your Global API Key: " GLOBAL_KEY
+read -p "Enter your domain.tld: " A_RECORD_NAME
 read -p "Enter your Zone ID: " ZONE_ID
 
-curl -X GET "https://api.cloudflare.com/client/v4/zones/$ZONE_ID/dns_records" \
-     -H "Content-Type:application/json" \
-     -H "X-Auth-Key:$GLOBAL_KEY" \
-     -H "X-Auth-Email:$USER" \
-     -H "Content-Type: application/json"
+# Check if JSON file exists
+if [ -f auth_info.json ]; then
+    # Read existing JSON data
+    AUTH_INFO=$(cat auth_info.json)
+else
+    # Create empty JSON object
+    AUTH_INFO="{}"
+fi
 
-# Extract record ID from response
-RECORD_ID=$(echo $response | jq -r '.result[0].id')
+# Get the current config file contents
+config=$(cat "$CONFIG_FILE")
 
-# Save record ID to secrets folder
-sudo mkdir -p /root/.secrets/cloudflare
-sudo echo $RECORD_ID > /root/.secrets/cloudflare/record_id_$ZONE_ID
+# Append the new values to the config file
+new_config=$(echo "$config" | jq --arg user "$USER" --arg key "$GLOBAL_KEY" --arg domain "$A_RECORD_NAME" --arg zone "$ZONE_ID" '. + {"user": $user, "key": $key, "domain": $domain, "zone": $zone}')
+
+# Write the updated config file contents back to the file
+echo "$new_config" > "$CONFIG_FILE"
