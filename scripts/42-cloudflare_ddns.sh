@@ -1,19 +1,5 @@
-/*
-* This file is part of Bitcoin Basecamp
-* Bitcoin Basecamp is free software: you can redistribute it and/or modify
-* it under the terms of the GNU General Public License as published by
-* the Free Software Foundation, either version 3 of the License, or
-* (at your option) any later version.
-*
-* Bitcoin Basecamp is distributed in the hope that it will be useful,
-* but WITHOUT ANY WARRANTY; without even the implied warranty of
-* MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-* GNU General Public License for more details.
-*
-* You should have received a copy of the GNU General Public License
-* along with Bitcoin Basecamp.  If not, see <https://www.gnu.org/licenses/>.
-*/
 #!/bin/bash
+## This script is used to check for changes in the public IP address of a domain and update the domain's DNS records on Cloudflare accordingly. It uses API v4 to communicate with Cloudflare and requires authentication credentials to access the relevant DNS records. If the public IP address has not changed, the script will exit. If the public IP address has changed, the script will record the new IP address and update the DNS records on Cloudflare. The script handles changes for two domains, and requires the domain name, zone ID, and record ID to be specified in the script for each domain.
 
 # Use set -eu at the beginning of the script to exit immediately if any command in the script returns a non-zero exit code, or if any uninitialized variables are used. This can help prevent errors from being overlooked.
 set -eu
@@ -21,7 +7,6 @@ set -eu
 AUTH_EMAIL="example@domain.tld"
 AUTH_KEY="cloudflare_auth_key"
 
-# Domain 1
 # Domain name
 A_RECORD_NAME1="domain1.com"
 # Zone Id unique for each domain
@@ -29,13 +14,6 @@ ZONE_ID1="zoneid1"
 # Get this through a script: cloudflare-get-record-id.sh
 # Source: https://api.cloudflare.com/#getting-started-requests
 A_RECORD_ID1="recordid1"
-
-# Domain 2
-# Domain name
-A_RECORD_NAME2="domain2.com"
-# Zone Id unique for each domain
-ZONE_ID2="zoneid2"
-A_RECORD_ID2="recordid2"
 
 # Retrieve the last recorded public IP address
 touch /tmp/ip-record
@@ -80,23 +58,4 @@ curl "https://api.cloudflare.com/client/v4/zones/$ZONE_ID1/dns_records/$A_RECORD
      -H "X-Auth-Email: $AUTH_EMAIL" \
      -H "X-Auth-Key: $AUTH_KEY" \
      -d "$RECORD1"
-echo ""
-
-echo "Changing DNS for domain2"
-RECORD2=$(cat <<EOF
-{ "type": "A",
-  "name": "$A_RECORD_NAME2",
-  "content": "$PUBLIC_IP",
-  "ttl": 180,
-  "proxied": true }
-EOF
-)
-
-# Update the record to Cloudflare
-curl "https://api.cloudflare.com/client/v4/zones/$ZONE_ID2/dns_records/$A_RECORD_ID2" \
-     -X PUT \
-     -H "Content-Type: application/json" \
-     -H "X-Auth-Email: $AUTH_EMAIL" \
-     -H "X-Auth-Key: $AUTH_KEY" \
-     -d "$RECORD2"
 echo ""
