@@ -47,4 +47,12 @@ make -j "$(($(nproc)+1))" check
 sudo make install
 
 # Create the config file
-sudo mkdir -p /home/bitcoin/.bitcoin
+sudo mkdir -p /etc/bitcoin
+cp -rp ../config/etc/bitcoin/bitcoin.conf /etc/bitcoin/
+cp -rp ../config/etc/systemd/system/bitcoind.service /etc/systemd/system/
+
+# Reload systemd files and activate bitcoind
+sudo systemctl daemon-reload
+sudo systemctl enable bitcoind
+sudo systemctl start bitcoind
+sudo systemctl status bitcoind
