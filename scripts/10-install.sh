@@ -1,9 +1,27 @@
-
 #!/bin/bash
 
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
    exit 1
+fi
+
+# Make executables all the scripts
+chmod +x *.sh
+
+# replace $USER with the non-root user
+#usermod -a -G sudo $USER
+
+# Check if users exist, if not add them
+if ! id -u bitcoin > /dev/null 2>&1; then
+  sudo useradd -m bitcoin
+fi
+
+if ! id -u electrs > /dev/null 2>&1; then
+  sudo useradd -m electrs
+fi
+
+if ! id -u mempool > /dev/null 2>&1; then
+  sudo useradd -m mempool
 fi
 
 # Update the system.
@@ -28,10 +46,3 @@ if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
 else
   echo "ufw not installed. SSH traffic not limited."
 fi
-
-# replace $USER with the non-root user
-#usermod -a -G sudo $USER
-
-sudo useradd -m bitcoin
-sudo useradd -m electrs
-sudo useradd -m mempool
