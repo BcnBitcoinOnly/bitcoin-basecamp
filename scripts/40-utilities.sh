@@ -5,6 +5,8 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+echo "--------------------------------------------------"
+echo "Installing utilities:"
 # Prompt to install utilities
 # tldr: Simplified and community-driven man pages
 read -p "Install 'tldr' for simplified man pages? [Y/n] " REPLY

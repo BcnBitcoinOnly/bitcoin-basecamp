@@ -6,12 +6,16 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Make executables all the scripts
+echo "--------------------------------------------------"
+echo "Adding execution capability to the scripts"
 chmod +x *.sh
 
 # replace $USER with the non-root user
 #usermod -a -G sudo $USER
 
 # Check if users exist, if not add them
+echo "--------------------------------------------------"
+echo "Adding users..."
 if ! id -u bitcoin > /dev/null 2>&1; then
   sudo useradd -m bitcoin
 fi
@@ -37,6 +41,8 @@ if [ -n "$hostname" ]; then
 fi
 
 # Prompt the user to install ufw.
+echo "--------------------------------------------------"
+echo "Installing a firewall:"
 read -p "Install 'ufw' for a front-end for iptables? [Y/n] " REPLY
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
   sudo apt install ufw -y

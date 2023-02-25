@@ -9,7 +9,6 @@ if [ ! -f "$CONFIG_FILE" ]; then
   echo "{}" > "$CONFIG_FILE"
 fi
 
-
 # Prompt user for values
 read -p "Enter your cloudflare email address: " USER
 read -p "Enter your Global API Key: " GLOBAL_KEY

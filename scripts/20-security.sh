@@ -17,7 +17,10 @@ read -p "Enter the domain name you wish to use (e.g. example.com,*.example.com f
 
 # Check if certificate already exists
 if sudo certbot certificates | grep -q "$DOMAIN"; then
+   echo "--------------------------------------------------"
    echo "Certificate already exists for domain $DOMAIN"
+   echo "--------------------------------------------------"
+   sudo certbot certificates
 else
    # Prompt for Cloudflare email and API key
    read -p "Enter your Cloudflare email address: " CF_EMAIL
@@ -39,13 +42,15 @@ sudo mkdir -p /etc/nginx/stream-enabled
 if [ -f /etc/nginx/stream-available/electrs-stream.conf ]; then
   echo "File electrs-stream.conf already exists in /etc/nginx/stream-available. Skipping copy."
 else
-  sudo cp config/etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-available/electrs-stream.conf
+  sudo cp ../config/etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-available/electrs-stream.conf
 fi
 
 sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/stream-available/electrs-stream.conf
 
 if [ -L /etc/nginx/stream-enabled/electrs-stream.conf ]; then
+  echo "--------------------------------------------------"
   echo "Symbolic link electrs-stream.conf already exists in /etc/nginx/stream-enabled. Skipping creation."
+  echo "--------------------------------------------------"
 else
   sudo ln -s /etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-enabled/electrs-stream.conf
 fi
