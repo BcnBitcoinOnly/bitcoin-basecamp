@@ -9,6 +9,28 @@ fi
 sudo apt update
 sudo apt upgrade -y
 
+# Prompt the user to install ufw.
+echo "--------------------------------------------------"
+echo "Installing a firewall:"
+read -p "Install 'ufw' for a front-end for iptables? [Y/n] " REPLY
+if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
+  sudo apt install ufw -y
+  sudo ufw limit ssh comment "Secure Shell"
+  sudo ufw enable
+  echo "ufw installed and enabled. SSH traffic is limited."
+else
+  echo "ufw not installed. SSH traffic not limited."
+fi
+
+# Rule 1 - VPN Wireguard traffic
+read -p "Do you want to allow VPN Wireguard traffic? (Y/n): " allow_vpn_wireguard
+if [[ ${allow_vpn_wireguard,,} != "n" ]]; then
+    sudo ufw allow 51820/udp comment "VPN Wireguard"
+fi
+
+# Show UFW status
+sudo ufw status verbose
+
 # Install Nginx, Certbot and Fail2ban
 sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban
 

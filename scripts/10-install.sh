@@ -39,16 +39,3 @@ if [ -n "$hostname" ]; then
   echo "Hostname set to $hostname"
   echo "A reboot is needed to apply the changes."
 fi
-
-# Prompt the user to install ufw.
-echo "--------------------------------------------------"
-echo "Installing a firewall:"
-read -p "Install 'ufw' for a front-end for iptables? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-  sudo apt install ufw -y
-  sudo ufw limit ssh
-  sudo ufw enable
-  echo "ufw installed and enabled. SSH traffic is limited."
-else
-  echo "ufw not installed. SSH traffic not limited."
-fi

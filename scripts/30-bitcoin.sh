@@ -47,6 +47,12 @@ if [ ! -f "/etc/systemd/system/bitcoind.service" ]; then
     sudo cp -rp ../config/etc/systemd/system/bitcoind.service /etc/systemd/system/
 fi
 
+# Create an UFW rule - Bitcoin Core traffic (TCP)
+read -p "Do you want to allow Bitcoin Core traffic over TCP? (Y/n): " allow_bitcoin_core_tcp
+if [[ ${allow_bitcoin_core_tcp,,} != "n" ]]; then
+    sudo ufw allow 8333/tcp comment "Bitcoin Core"
+fi
+
 # Check if bitcoind is already running
 if sudo systemctl is-active --quiet bitcoind; then
   echo "bitcoind is already running"
@@ -57,3 +63,4 @@ else
   sudo systemctl start bitcoind
   sudo systemctl status bitcoind
 fi
+
