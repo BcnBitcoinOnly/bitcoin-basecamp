@@ -5,6 +5,10 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+# Install Nginx, Certbot and Fail2ban
+sudo apt update
+sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban
+
 echo "--------------------------------------------------"
 echo "Installing utilities:"
 # Prompt to install utilities

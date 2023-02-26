@@ -31,9 +31,6 @@ fi
 # Show UFW status
 sudo ufw status verbose
 
-# Install Nginx, Certbot and Fail2ban
-sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban
-
 # Prompt for domain name
 read -p "Enter the domain name you wish to use (e.g. example.com,*.example.com for wildcard): " DOMAIN
 
