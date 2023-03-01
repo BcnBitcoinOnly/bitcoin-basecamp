@@ -21,7 +21,7 @@ if ! id -u bitcoin > /dev/null 2>&1; then
 fi
 
 if ! id -u electrs > /dev/null 2>&1; then
-  sudo useradd -m electrs
+  sudo useradd -m fulcrum
 fi
 
 if ! id -u mempool > /dev/null 2>&1; then

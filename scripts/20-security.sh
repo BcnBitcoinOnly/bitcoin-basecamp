@@ -52,26 +52,27 @@ else
 
    # Request a certificate using the Cloudflare DNS challenge
    sudo certbot certonly --dns-cloudflare --dns-cloudflare-credentials /root/.secrets/certbot/cloudflare.ini -d $DOMAIN -m $CF_EMAIL --agree-tos --no-eff-email --preferred-challenges dns-01
+   $DOMAIN >> /root/.secrets/certbot/domain.txt
 fi
 
 # Create a stream configuration file for Nginx
 sudo mkdir -p /etc/nginx/stream-available
 sudo mkdir -p /etc/nginx/stream-enabled
 
-if [ -f /etc/nginx/stream-available/electrs-stream.conf ]; then
-  echo "File electrs-stream.conf already exists in /etc/nginx/stream-available. Skipping copy."
+if [ -f /etc/nginx/stream-available/fulcrum-stream.conf ]; then
+  echo "File fulcrum-stream.conf already exists in /etc/nginx/stream-available. Skipping copy."
 else
-  sudo cp ../config/etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-available/electrs-stream.conf
+  sudo cp ../config/etc/nginx/stream-available/fulcrum-stream.conf /etc/nginx/stream-available/fulcrum-stream.conf
 fi
 
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/stream-available/electrs-stream.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/stream-available/fulcrum-stream.conf
 
-if [ -L /etc/nginx/stream-enabled/electrs-stream.conf ]; then
+if [ -L /etc/nginx/stream-enabled/fulcrum-stream.conf ]; then
   echo "--------------------------------------------------"
-  echo "Symbolic link electrs-stream.conf already exists in /etc/nginx/stream-enabled. Skipping creation."
+  echo "Symbolic link fulcrum-stream.conf already exists in /etc/nginx/stream-enabled. Skipping creation."
   echo "--------------------------------------------------"
 else
-  sudo ln -s /etc/nginx/stream-available/electrs-stream.conf /etc/nginx/stream-enabled/electrs-stream.conf
+  sudo ln -s /etc/nginx/stream-available/fulcrum-stream.conf /etc/nginx/stream-enabled/fulcrum-stream.conf
 fi
 
 # Restart nginx to apply the new configuration
