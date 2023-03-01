@@ -20,7 +20,7 @@ if ! id -u bitcoin > /dev/null 2>&1; then
   sudo useradd -m bitcoin
 fi
 
-if ! id -u electrs > /dev/null 2>&1; then
+if ! id -u fulcrum > /dev/null 2>&1; then
   sudo useradd -m fulcrum
 fi
 

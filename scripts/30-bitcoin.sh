@@ -41,7 +41,7 @@ fi
 # Create the config file if it doesn't exist
 if [ ! -f "/etc/bitcoin/bitcoin.conf" ]; then
     sudo mkdir -p /etc/bitcoin
-    sudo cp -rp $script_loc/config/etc/bitcoin/bitcoin.conf /etc/bitcoin/
+    sudo cp -rp $script_loc/../config/etc/bitcoin/bitcoin.conf /etc/bitcoin/
 fi
 
 # Create an UFW rule
@@ -55,7 +55,7 @@ if sudo systemctl is-active --quiet bitcoind; then
     echo "bitcoind is already running"
 else
     # Reload systemd files and activate bitcoind
-    sudo cp -rp $script_loc/config/etc/systemd/system/bitcoind.service /etc/systemd/system/
+    sudo cp -rp $script_loc/../config/etc/systemd/system/bitcoind.service /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable bitcoind
     sudo systemctl start bitcoind

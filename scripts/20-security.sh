@@ -5,6 +5,8 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+script_loc=$(pwd)
+
 # Update and upgrade the system
 sudo apt update
 sudo apt upgrade -y
@@ -23,8 +25,8 @@ else
 fi
 
 # Rule 1 - VPN Wireguard traffic
-read -p "Do you want to allow VPN Wireguard traffic? (Y/n): " allow_vpn_wireguard
-if [[ ${allow_vpn_wireguard,,} != "n" ]]; then
+read -p "Do you want to allow VPN Wireguard traffic? (Y/n): " REPLY
+if [[ $REPLY != "n" ]]; then
     sudo ufw allow 51820/udp comment "VPN Wireguard"
 fi
 
@@ -62,7 +64,7 @@ sudo mkdir -p /etc/nginx/stream-enabled
 if [ -f /etc/nginx/stream-available/fulcrum-stream.conf ]; then
   echo "File fulcrum-stream.conf already exists in /etc/nginx/stream-available. Skipping copy."
 else
-  sudo cp ../config/etc/nginx/stream-available/fulcrum-stream.conf /etc/nginx/stream-available/fulcrum-stream.conf
+  sudo cp $script_loc/../config/etc/nginx/stream-available/fulcrum-stream.conf /etc/nginx/stream-available/fulcrum-stream.conf
 fi
 
 sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/stream-available/fulcrum-stream.conf

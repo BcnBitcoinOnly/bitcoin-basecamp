@@ -47,8 +47,8 @@ if [ ! -f "/etc/fulcrum/fulcrum.conf" ]; then
     sudo mkdir -p /etc/fulcrum
     sudo mkdir -p /var/lib/fulcrum
     sudo chown -R fulcrum:fulcrum /var/lib/fulcrum/
-    sudo cp -rp $script_loc/config/etc/fulcrum/fulcrum.conf /etc/fulcrum/
-    sudo cp -rp $script_loc/config/etc/fulcrum/fulcrum-banner.txt /etc/fulcrum/
+    sudo cp -rp $script_loc/../config/etc/fulcrum/fulcrum.conf /etc/fulcrum/
+    sudo cp -rp $script_loc/../config/etc/fulcrum/fulcrum-banner.txt /etc/fulcrum/
 fi
 
 # Create an UFW rule
@@ -62,7 +62,7 @@ if sudo systemctl is-active --quiet fulcrum; then
     echo "fulcrum is already running"
 else
     # Reload systemd files and activate bitcoind
-    sudo cp -rp $script_loc/config/etc/systemd/system/fulcrum.service /etc/systemd/system/
+    sudo cp -rp $script_loc/../config/etc/systemd/system/fulcrum.service /etc/systemd/system/
     sudo systemctl daemon-reload
     sudo systemctl enable bitcoind
     sudo systemctl start bitcoind
