@@ -64,7 +64,7 @@ else
     # Reload systemd files and activate bitcoind
     sudo cp -rp $script_loc/../config/etc/systemd/system/fulcrum.service /etc/systemd/system/
     sudo systemctl daemon-reload
-    sudo systemctl enable bitcoind
-    sudo systemctl start bitcoind
-    sudo systemctl status bitcoind
+    sudo systemctl enable fulcrum
+    sudo systemctl start fulcrum
+    sudo systemctl status fulcrum
 fi
