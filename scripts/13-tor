@@ -9,16 +9,12 @@ fi
 sudo apt update
 sudo apt install -y tor
 
-# Open the torrc file in append mode
-sudo tee -a /etc/tor/torrc > /dev/null <<EOT
-
-## The port on which Tor will listen for local connections from Tor
-## controller applications, as documented in control-spec.txt.
-ControlPort 9051
-CookieAuthentication 1
-CookieAuthFileGroupReadable 1
-
-EOT
+# Append configurations to torrc file
+echo '## The port on which Tor will listen for local connections from Tor' | sudo tee -a /etc/tor/torrc
+echo '## controller applications, as documented in control-spec.txt.' | sudo tee -a /etc/tor/torrc
+echo 'ControlPort 9051' | sudo tee -a /etc/tor/torrc
+echo 'CookieAuthentication 1' | sudo tee -a /etc/tor/torrc
+echo 'CookieAuthFileGroupReadable 1' | sudo tee -a /etc/tor/torrc
 
 # Restart the Tor service to apply the changes
 sudo systemctl restart tor.service
@@ -35,5 +31,6 @@ fi
 # Print the hidden service addresses
 for dir in $hidden_service_dirs
 do
+   echo "Take note of hidden services:"
     echo "$dir: $(cat /var/lib/tor/hidden_service/$dir/hostname)"
 done
