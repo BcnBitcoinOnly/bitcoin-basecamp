@@ -2,6 +2,11 @@
 
 script_loc=$(pwd)
 
+if [ "$(id -u)" != "0" ]; then
+   echo "This script must be run as root" 1>&2
+   exit 1
+fi
+
 # Check if Bitcoin Core is already installed
 if [ -d "/opt/bitcoin" ]; then
     echo "Bitcoin Core is already installed in /opt/bitcoin"

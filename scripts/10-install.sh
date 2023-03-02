@@ -22,10 +22,12 @@ fi
 
 if ! id -u fulcrum > /dev/null 2>&1; then
   sudo useradd -m fulcrum
+  sudo adduser fulcrum bitcoin
 fi
 
 if ! id -u mempool > /dev/null 2>&1; then
   sudo useradd -m mempool
+  sudo adduser mempool bitcoin
 fi
 
 # Update the system.

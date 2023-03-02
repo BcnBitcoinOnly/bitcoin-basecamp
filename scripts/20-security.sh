@@ -68,6 +68,7 @@ else
 fi
 
 sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/streams-available/fulcrum-stream.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/sites-available/mempool.conf
 
 if [ -L /etc/nginx/stream-enabled/fulcrum-stream.conf ]; then
   echo "--------------------------------------------------"
@@ -82,10 +83,12 @@ echo 'stream {' | sudo tee -a /etc/nginx/nginx.conf
 echo '  # Do not change the _ DOMAIN _ part. It will be replaced with sed in the Security script.' | sudo tee -a /etc/nginx/nginx.conf
 echo '  ssl_certificate /etc/letsencrypt/live/_DOMAIN_/fullchain.pem;' | sudo tee -a /etc/nginx/nginx.conf
 echo '  ssl_certificate_key /etc/letsencrypt/live/_DOMAIN_/privkey.pem;' | sudo tee -a /etc/nginx/nginx.conf
-echo '  ssl_session_cache shared:STREAM-TLS:1m;' | sudo tee -a /etc/nginx/nginx.conf
-echo '  ssl_session_timeout 4h;' | sudo tee -a /etc/nginx/nginx.conf
+echo '  # Configure SSL protocols and ciphers' | sudo tee -a /etc/nginx/nginx.conf
+echo '  ssl_session_cache shared:STREAM-TLS:10m;' | sudo tee -a /etc/nginx/nginx.conf
+echo '  ssl_session_timeout 8h;' | sudo tee -a /etc/nginx/nginx.conf
 echo '  ssl_protocols TLSv1.2 TLSv1.3;' | sudo tee -a /etc/nginx/nginx.conf
 echo '  ssl_prefer_server_ciphers on;' | sudo tee -a /etc/nginx/nginx.conf
+echo '  ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384;' | sudo tee -a /etc/nginx/nginx.conf
 echo '  include /etc/nginx/streams-enabled/*.conf;' | sudo tee -a /etc/nginx/nginx.conf
 echo '}' | sudo tee -a /etc/nginx/nginx.conf
 

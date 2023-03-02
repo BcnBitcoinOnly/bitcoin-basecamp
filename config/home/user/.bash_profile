@@ -15,6 +15,3 @@ echo ""
 echo "Initializing SSH Agent"
 eval `ssh-agent -s`
 ssh-add /home/$USER/.ssh/*.key
-echo ""
-echo "Identities found:"
-ssh-add -l
