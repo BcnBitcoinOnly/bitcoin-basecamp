@@ -18,9 +18,9 @@ sudo git checkout cookie
 #latestrelease=$(curl -s https://api.github.com/repos/mempool/mempool/releases/latest|grep tag_name|head -1|cut -d '"' -f4)
 #sudo git checkout $latestrelease
 
-# Install MariaDB
+# Install NPM
 sudo apt update
-sudo apt install -y mariadb-server mariadb-client npm
+sudo apt install -y npm
 
 # Create a database and grant privileges (db, user and password = mempool)
 if ! sudo mysql -e "use mempool" ; then 

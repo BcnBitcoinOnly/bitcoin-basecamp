@@ -24,12 +24,6 @@ else
   echo "ufw not installed. SSH traffic not limited."
 fi
 
-# Rule 1 - VPN Wireguard traffic
-read -p "Do you want to allow VPN Wireguard traffic? (Y/n): " REPLY
-if [[ $REPLY != "n" ]]; then
-    sudo ufw allow 51820/udp comment "VPN Wireguard"
-fi
-
 # Show UFW status
 sudo ufw status verbose
 

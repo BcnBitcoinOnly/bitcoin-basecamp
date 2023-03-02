@@ -5,9 +5,11 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
-# Install Nginx, Certbot and Fail2ban
+# Install LEMP stack, Certbot and Fail2ban
 sudo apt update
-sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban
+sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban apache2-utils
+sudo apt install -y mariadb-server mariadb-client
+sudo apt install -y php php-{cli,zip,gd,fpm,json,common,mysql,zip,mbstring,curl,xml,bcmath,imap,ldap,intl,gmp,imagick,cgi,sqlite3}
 
 echo "--------------------------------------------------"
 echo "Installing utilities:"
@@ -40,12 +42,6 @@ fi
 read -p "Install 'dnsutils' for DNS utilities (dig, nslookup, etc.)? [Y/n] " REPLY
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     sudo apt install dnsutils
-fi
-
-# qrencode: Encode and decode QR codes
-read -p "Install 'qrencode' for QR code encoding and decoding? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    sudo apt install qrencode
 fi
 
 # borgbackup: Deduplicated and encrypted backups
@@ -88,10 +84,4 @@ fi
 read -p "Install 'curl' for efficient file synchronization? [Y/n] " REPLY
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     sudo apt install curl
-fi
-
-# sudo: A program that allows a user to run commands with the security privileges of another user (by default, the superuser).
-read -p "Install 'sudo' for allowing privileged user access? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    sudo apt install sudo
 fi
