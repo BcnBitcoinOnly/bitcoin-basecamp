@@ -69,8 +69,8 @@ links:
 # First level array represent a group.
 # Leave only a "items" key if not using group (group name, icon & tagstyle are optional, section separation will not be displayed).
 services:
-  - name: "Applications"
-    icon: "fas fa-cloud"
+  - name: "Self hosted"
+    icon: "fas fa-heartbeat"
     items:
       - name: "Pi-hole"
         logo: "assets/tools/pihole.png"
@@ -88,13 +88,6 @@ services:
         keywords: "self hosted bitcoin sats"
         url: "https://mempool._DOMAIN_/"
         target: "_blank" # optional html a tag target attribute
-      - name: "Weather"
-        location: "Barcelona" # your location.
-        locationId: "3128760" # Optional: Specify OpenWeatherMap city ID for better accuracy
-        apikey: "<---insert-api-key-here--->" # insert your own API key here. Request one from https://openweathermap.org/api.
-        units: "metric" # units to display temperature. Can be one of: metric, imperial, kelvin. Defaults to kelvin.
-        background: "square" # choose which type of background you want behind the image. Can be one of: square, circle, none. Defaults to none.
-        type: "OpenWeather"
       #- name: "Prometheus"
         #type: Prometheus
         #logo: "assets/tools/sample.png"
@@ -114,9 +107,17 @@ services:
         #type: "Emby"
         #apikey: "<---insert-api-key-here--->"
         #libraryType: "music" #Choose which stats to show. Can be one of: music, series or movies.
-  #- name: "Other group"
-    #icon: "fas fa-heartbeat"
-    #items:
+  - name: "Others"
+    icon: "fas fa-cloud"
+    items:
+      - name: "Weather"
+        location: "Barcelona" # your location.
+        locationId: "3128760" # Optional: Specify OpenWeatherMap city ID for better accuracy
+        apikey: "<---insert-api-key-here--->" # insert your own API key here. Request one from https://openweathermap.org/api.
+        units: "metric" # units to display temperature. Can be one of: metric, imperial, kelvin. Defaults to kelvin.
+        background: "square" # choose which type of background you want behind the image. Can be one of: square, circle, none. Defaults to none.
+        type: "OpenWeather"
+        target: "_blank" # optional html a tag target attribute
       #- name: "Pi-hole"
         #logo: "assets/tools/sample.png"
         ## subtitle: "Network-wide Ad Blocking" # optional, if no subtitle is defined, PiHole statistics will be shown
