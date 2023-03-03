@@ -51,18 +51,24 @@ else
    $DOMAIN >> /root/.secrets/certbot/domain.txt
 fi
 
+# Replace domain in config files
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/streams-available/fulcrum-stream.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/mempool.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/pihole.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/homer.conf
+sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/homer/config.yml
+
 # Create a stream configuration file for Nginx
 sudo mkdir -p /etc/nginx/streams-available
 sudo mkdir -p /etc/nginx/streams-enabled
+
+sudo cp $script_loc/../config/etc/nginx/conf.d/security.conf /etc/nginx/conf.d/
 
 if [ -f /etc/nginx/streams-available/fulcrum-stream.conf ]; then
   echo "File fulcrum-stream.conf already exists in /etc/nginx/stream-available. Skipping copy."
 else
   sudo cp $script_loc/../config/etc/nginx/streams-available/fulcrum-stream.conf /etc/nginx/streams-available/fulcrum-stream.conf
 fi
-
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/streams-available/fulcrum-stream.conf
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" /etc/nginx/sites-available/mempool.conf
 
 if [ -L /etc/nginx/stream-enabled/fulcrum-stream.conf ]; then
   echo "--------------------------------------------------"

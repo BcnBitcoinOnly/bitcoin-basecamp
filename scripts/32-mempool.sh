@@ -35,7 +35,12 @@ sudo npm run build
 # Copy configuration file
 sudo cp $script_loc/../config/etc/mempool/mempool-config.json /opt/mempool/backend/mempool-config.json
 sudo chmod 600 /opt/mempool/backend/mempool-config.json
+sudo cp $script_loc/../config/etc/nginx/sites-available/mempool.conf /etc/nginx/sites-available/mempool.conf
+sudo ln -s /etc/nginx/sites-available/mempool.conf /etc/nginx/sites-enabled/
 
 # Copy frontend to /var/www folder
 sudo rsync -av --delete /home/mempool/mempool/frontend/dist/mempool/ /var/www/mempool/
 sudo chown -R www-data:www-data /var/www/mempool
+
+# Restart nginx to apply the new configuration
+sudo systemctl restart nginx
