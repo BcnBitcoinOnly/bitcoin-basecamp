@@ -1,4 +1,0 @@
-# Copy this file to .env and edit it
-POSTGRES_PASSWORD=
-POSTGRES_DB=odoo
-POSTGRES_USER=odoo
