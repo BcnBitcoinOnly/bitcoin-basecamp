@@ -1,0 +1,11 @@
+[Unit]
+Description=Cloudflare always up to date DNS daemon.
+Documentation=https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-records
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/cloudflare-ddns.sh
+StandardOutput=file:/var/log/cloudflare-ddns.log
+
+[Install]
+WantedBy=default.target

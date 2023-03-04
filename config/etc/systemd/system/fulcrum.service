@@ -1,0 +1,18 @@
+[Unit]
+Description=Fulcrum
+After=bitcoind.service
+PartOf=bitcoind.service
+StartLimitBurst=2
+StartLimitIntervalSec=20
+
+[Service]
+ExecStart=/usr/local/bin/Fulcrum /etc/fulcrum/fulcrum.conf
+KillSignal=SIGINT
+User=fulcrum
+Type=exec
+TimeoutStopSec=300
+RestartSec=30
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
