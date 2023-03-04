@@ -43,10 +43,25 @@ else
     sudo make install
 fi
 
+# Generate RPC auth credentials
+# Read the username and password from user input
+read -p "Enter username: " username
+read -s -p "Enter password: " password
+
+# Generate the rpcauth line with the provided username and password
+rpcauth=$(python3 /opt/bitcoin/share/rpcauth/rpcauth.py $username $password | grep rpcauth)
+
+# Append the rpcauth line to the bitcoin.conf file
+echo "$rpcauth" >> $script_loc/../config/etc/bitcoin/bitcoin.conf
+
+# Output the generated rpcauth line for reference
+echo "rpcauth line: $rpcauth"
+
 # Create the config file if it doesn't exist
 if [ ! -f "/etc/bitcoin/bitcoin.conf" ]; then
     sudo mkdir -p /etc/bitcoin
     sudo cp -rp $script_loc/../config/etc/bitcoin/bitcoin.conf /etc/bitcoin/
+    sudo chmod 600 /etc/bitcoin/bitcoin.conf
 fi
 
 # Create an UFW rule

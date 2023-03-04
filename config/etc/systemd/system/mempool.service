@@ -3,7 +3,7 @@ Description=mempool
 After=bitcoind.service
 
 [Service]
-WorkingDirectory=/home/mempool/mempool/backend
+WorkingDirectory=/opt/mempool/backend
 ExecStart=/usr/bin/node --max-old-space-size=2048 dist/index.js
 User=mempool
 

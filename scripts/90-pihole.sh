@@ -24,7 +24,12 @@ chmod -R 755 /var/www/html
 # It's recommended to install and configure Unbound to use it with PiHole too: https://docs.pi-hole.net/guides/dns/unbound/
 
 sudo cp $script_loc/../config/etc/nginx/sites-available/pihole.conf /etc/nginx/sites-available/pihole.conf
+sudo ln -s /etc/nginx/sites-available/pihole.conf /etc/nginx/sites-enabled/
 sudo rm /etc/nginx/sites-enabled/default
 
 # Restart nginx to apply the new configuration
 sudo systemctl restart nginx
+
+# Add the DNS server configuration to the dhclient.conf file
+echo "supersede domain-name-servers 127.0.0.1;" | sudo tee -a /etc/dhcp/dhclient.conf > /dev/null
+echo "System requires a reboot to take new changes"
