@@ -28,35 +28,8 @@ sudo mkdir /etc/prometheus
 # Copy the Prometheus configuration file to the /etc/prometheus directory
 sudo cp /opt/prometheus/prometheus.yml /etc/prometheus/prometheus.yml
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
-
-# Configure Prometheus to run as a systemd service
-sudo tee /etc/systemd/system/prometheus.service > /dev/null <<EOF
-[Unit]
-Description=Prometheus
-Wants=network-online.target
-After=network-online.target
-
-[Service]
-User=prometheus
-Group=prometheus
-Type=simple
-ExecStart=/opt/prometheus/prometheus \
-  --config.file /etc/prometheus/prometheus.yml \
-  --storage.tsdb.path /var/lib/prometheus/
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-EOF
-
-# Reload systemd to pick up the new service definition
-sudo systemctl daemon-reload
-
-# Start Prometheus
-sudo systemctl start prometheus
-
-# Enable Prometheus to start at boot time
-sudo systemctl enable prometheus
+sudo cp $script_loc/../config/etc/nginx/sites-available/prometheus.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/prometheus.conf /etc/nginx/sites-enabled/
 
 # Check if bitcoind is already running
 if sudo systemctl is-active --quiet prometheus; then
@@ -69,3 +42,8 @@ else
     sudo systemctl start prometheus
     sudo systemctl status prometheus
 fi
+
+# Update repositories and install prerequisites
+#sudo apt update
+#sudo apt-get install python3-pip
+#sudo pip3 install prometheus_client
