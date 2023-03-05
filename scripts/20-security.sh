@@ -52,11 +52,7 @@ else
 fi
 
 # Replace domain in config files
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/streams-available/fulcrum-stream.conf
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/mempool.conf
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/pihole.conf
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/nginx/sites-available/homer.conf
-sudo sed -i "s/_DOMAIN_/$DOMAIN/g" $script_loc/../config/etc/homer/config.yml
+sudo find $script_loc/../config/etc/nginx -type f -exec sed -i "s/_DOMAIN_/$DOMAIN/g" {} \;
 
 # Create a stream configuration file for Nginx
 sudo mkdir -p /etc/nginx/streams-available
