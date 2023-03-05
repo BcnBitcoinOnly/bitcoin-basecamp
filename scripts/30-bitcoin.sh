@@ -70,6 +70,10 @@ if [[ $REPLY != "n" ]]; then
     sudo ufw allow 8333/tcp comment "Bitcoin Core"
 fi
 
+# Create log folder
+mkdir /var/log/bitcoind
+chown bitcoin:bitcoin /var/log/bitcoind
+
 # Check if bitcoind is already running
 if sudo systemctl is-active --quiet bitcoind; then
     echo "bitcoind is already running"
@@ -81,4 +85,3 @@ else
     sudo systemctl start bitcoind
     sudo systemctl status bitcoind
 fi
-
