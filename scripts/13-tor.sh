@@ -8,6 +8,7 @@ fi
 # Install Tor
 sudo apt update
 sudo apt install -y tor
+sudo adduser bitcoin debian-tor
 
 # Append configurations to torrc file
 echo '## The port on which Tor will listen for local connections from Tor' | sudo tee -a /etc/tor/torrc
