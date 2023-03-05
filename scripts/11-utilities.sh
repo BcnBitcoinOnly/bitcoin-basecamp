@@ -5,6 +5,8 @@ if [ "$(id -u)" != "0" ]; then
    exit 1
 fi
 
+script_loc=$(pwd)
+
 # Install LEMP stack, Certbot and Fail2ban
 sudo apt update
 sudo apt install -y nginx certbot python3-certbot-nginx python3-certbot-dns-cloudflare fail2ban apache2-utils
@@ -30,6 +32,7 @@ fi
 read -p "Install 'logrotate' for log rotation? [Y/n] " REPLY
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     sudo apt install logrotate
+    sudo cp $script_loc/../config/etc/logrotate.d/* /etc/logrotate.d/
 fi
 
 # lnav: Log file navigator

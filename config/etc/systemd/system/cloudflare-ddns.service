@@ -4,7 +4,7 @@ Documentation=https://api.cloudflare.com/#dns-records-for-a-zone-list-dns-record
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/cloudflare-ddns.sh
+ExecStart=/usr/local/bin/update-ip.sh
 StandardOutput=file:/var/log/cloudflare-ddns.log
 
 [Install]
