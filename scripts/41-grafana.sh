@@ -20,3 +20,7 @@ sudo systemctl daemon-reload
 sudo systemctl enable grafana-server
 sudo systemctl start grafana-server
 sudo systemctl status grafana-server
+
+# Reverse proxy
+sudo cp $script_loc/../config/etc/nginx/sites-available/grafana.conf /etc/nginx/sites-available/
+sudo ln -s /etc/nginx/sites-available/grafana.conf /etc/nginx/sites-enabled/
