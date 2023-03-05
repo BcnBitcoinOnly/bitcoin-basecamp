@@ -19,6 +19,7 @@ alias ports2='sudo ss -lptn'
 
 # Others
 alias nano='nano -lS'
+alias btc='sudo -u bitcoin bitcoin-cli -datadir=/var/lib/bitcoind'
 
 # Docker
 function dnames-fn {
