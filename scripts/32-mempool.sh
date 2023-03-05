@@ -59,7 +59,8 @@ sudo -u mempool npm run build
 # Copy configuration file
 sudo cp $script_loc/../config/etc/mempool/mempool-config.json /opt/mempool/backend/mempool-config.json
 sudo chmod 600 /opt/mempool/backend/mempool-config.json
-sudo cp $script_loc/../config/etc/nginx/sites-available/mempool.conf /etc/nginx/sites-available/mempool.conf
+sudo cp $script_loc/../config/etc/nginx/snippets/nginx-mempool.conf /etc/nginx/snippets/
+sudo cp $script_loc/../config/etc/nginx/sites-available/mempool.conf /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/mempool.conf /etc/nginx/sites-enabled/
 
 # Specify Website
