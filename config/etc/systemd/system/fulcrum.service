@@ -13,6 +13,8 @@ Type=exec
 TimeoutStopSec=300
 RestartSec=30
 Restart=always
+StandardOutput=file:/var/log/fulcrum/fulcrum.log
+StandardError=file:/var/log/fulcrum/error.log
 
 [Install]
 WantedBy=multi-user.target

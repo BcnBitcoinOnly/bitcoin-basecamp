@@ -1,0 +1,7 @@
+/var/log/fulcrum/*.log {
+  daily
+  rotate 7
+  compress
+  missingok
+  notifempty
+}
