@@ -63,6 +63,12 @@ sudo cp $script_loc/../config/etc/nginx/snippets/nginx-mempool.conf /etc/nginx/s
 sudo cp $script_loc/../config/etc/nginx/sites-available/mempool.conf /etc/nginx/sites-available/
 sudo ln -s /etc/nginx/sites-available/mempool.conf /etc/nginx/sites-enabled/
 
+# Create log folder
+sudo mkdir /var/log/mempool
+sudo touch /var/log/mempool/mempool.log
+sudo touch /var/log/mempool/error.log
+sudo chown -R mempool:mempool /var/log/mempool/
+
 # Specify Website
 echo "Which website do you want to configure the frontend for?"
 echo "1. Mempool.space"

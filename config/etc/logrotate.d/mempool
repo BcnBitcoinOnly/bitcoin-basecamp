@@ -1,8 +1,8 @@
-/var/log/fulcrum/*.log {
+/var/log/mempool/*.log {
   daily
   rotate 7
   compress
   missingok
   notifempty
-  create 0644 fulcrum fulcrum
+  create 0644 mempool mempool
 }
