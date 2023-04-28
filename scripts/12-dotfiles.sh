@@ -25,8 +25,8 @@ script_loc=$(pwd)
 
 echo "Linking non-root files"
 rm -f /home/$non_root/.bashrc
-cp $script_loc/../home/user/.bashrc /home/$non_root/.bashrc
+cp $script_loc/../config/home/user/.bashrc /home/$non_root/.bashrc
 rm -f /home/$non_root/.bash_profile
-cp $script_loc/../home/user/.bash_profile /home/$non_root/.bash_profile
-cp $script_loc/../home/user/.bash_aliases /home/$non_root/.bash_aliases
-cp $script_loc/../home/user/.nanorc /home/$non_root/.nanorc
+cp $script_loc/../config/home/user/.bash_profile /home/$non_root/.bash_profile
+cp $script_loc/../config/home/user/.bash_aliases /home/$non_root/.bash_aliases
+cp $script_loc/../config/home/user/.nanorc /home/$non_root/.nanorc
