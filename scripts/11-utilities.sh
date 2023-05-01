@@ -44,24 +44,6 @@ if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
     sudo apt install dnsutils
 fi
 
-# borgbackup: Deduplicated and encrypted backups
-read -p "Install 'borgbackup' for encrypted backups? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    sudo apt install borgbackup
-fi
-
-# rsync: Efficient file synchronization
-read -p "Install 'rsync' for efficient file synchronization? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    sudo apt install rsync
-fi
-
-# rclone: Sync files and directories to/from cloud services
-read -p "Install 'rclone' for syncing with cloud services? [Y/n] " REPLY
-if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
-    sudo apt install rclone
-fi
-
 # net-tools: Network configuration utilities (ifconfig, netstat, etc.)
 read -p "Install 'net-tools' for network configuration utilities? [Y/n] " REPLY
 if [[ $REPLY =~ ^[Yy]$ || $REPLY == "" ]]; then
