@@ -46,6 +46,10 @@ sudo install -m 0755 -o root -g root -t /usr/local/bin Fulcrum-$version-x86_64-l
 if [ ! -f "/etc/fulcrum/fulcrum.conf" ]; then
     sudo mkdir -p /etc/fulcrum
     sudo mkdir -p /var/lib/fulcrum
+    sudo mkdir /var/log/fulcrum
+    sudo touch /var/log/fulcrum/fulcrum.log
+    sudo touch /var/log/fulcrum/error.log
+    sudo chown -R fulcrum:fulcrum /var/log/fulcrum/
     sudo chown -R fulcrum:fulcrum /var/lib/fulcrum/
     sudo cp -rp $script_loc/../config/etc/fulcrum/fulcrum.conf /etc/fulcrum/
     sudo cp -rp $script_loc/../config/etc/fulcrum/fulcrum-banner.txt /etc/fulcrum/

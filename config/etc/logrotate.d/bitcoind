@@ -1,0 +1,9 @@
+/var/log/bitcoind/debug.log {
+    daily
+    rotate 7
+    compress
+    delaycompress
+    missingok
+    notifempty
+    create 0644 bitcoin bitcoin
+}

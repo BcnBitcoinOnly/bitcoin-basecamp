@@ -17,5 +17,8 @@ ProtectSystem=full
 NoNewPrivileges=true
 PrivateDevices=true
 
+StandardOutput=file:/var/log/mempool/mempool.log
+StandardError=file:/var/log/mempool/error.log
+
 [Install]
 WantedBy=multi-user.target
