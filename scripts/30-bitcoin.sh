@@ -62,6 +62,7 @@ if [ ! -f "/etc/bitcoin/bitcoin.conf" ]; then
     sudo mkdir -p /etc/bitcoin
     sudo cp -rp $script_loc/../config/etc/bitcoin/bitcoin.conf /etc/bitcoin/
     sudo chmod 600 /etc/bitcoin/bitcoin.conf
+    sudo chown bitcoin:bitcoin /etc/bitcoin/bitcoin.conf
 fi
 
 # Create an UFW rule

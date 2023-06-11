@@ -24,8 +24,7 @@ ExecStartPre=/bin/chgrp bitcoin /var/bitcoind/
 ExecStart=/usr/bin/bitcoind -daemonwait \
                             -pid=/run/bitcoind/bitcoind.pid \
                             -conf=/etc/bitcoin/bitcoin.conf \
-                            -datadir=/var/lib/bitcoind/
-                            -startupnotify="chmod g+r /var/lib/bitcoind/.cookie"
+                            -datadir=/var/lib/bitcoind
 
 # Process management
 ####################
